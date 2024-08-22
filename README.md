@@ -3,9 +3,9 @@
 
 
 
-Stock Watcher ist eine mobile Anwendung, mit der die Aktienmärkte in Echtzeit verfolgt werden können.
+<p>Stock Watcher ist eine mobile Anwendung, mit der die Aktienmärkte in Echtzeit verfolgt werden können.
 Die App bietet Benutzern detaillierte Informationen zu bestimmten Aktien, darunter die neuesten Kurse, historische Daten und relevante Nachrichtenartikel.
-Darüber hinaus enthält Stock Watcher eine einzigartige Social-Feed-Funktion, mit der Benutzer Diskussionen über Aktien erstellen und daran teilnehmen können.
+Darüber hinaus enthält Stock Watcher eine einzigartige Social-Feed-Funktion, mit der Benutzer Diskussionen über Aktien erstellen und daran teilnehmen können.</p>
 
 ## Geplantes Design
 
