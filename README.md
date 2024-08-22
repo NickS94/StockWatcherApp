@@ -21,19 +21,19 @@ Hier kommen alle geplanten Features der App rein mit dem Status, ob es bereits u
 - [ ] • Aktienverfolgung: Erhalten Sie Echtzeit-Updates zu Aktienkursen und -performance.
 - [ ] • Aktiendetails: Sehen Sie sich detaillierte Informationen zu einzelnen Aktien an, einschließlich historischer Daten, Performancediagrammen und relevanter Nachrichten.
 - [ ] • Newsfeed: Bleiben Sie mit den neuesten Nachrichtenartikeln zu den Aktien, die Sie interessieren, auf dem Laufenden.
-- [ ] • Social Feed: Engagieren Sie sich in der Community, indem Sie an öffentlichen Gesprächen über verschiedene Aktien teilnehmen.
-- [ ] Erstellen Sie Diskussionen, antworten Sie anderen und teilen Sie Ihre Gedanken.
+- [ ] • Social Feed: Engagieren Sie sich in der Community, indem Sie an öffentlichen Gesprächen über verschiedene Aktien teilnehmen.Erstellen Sie Diskussionen, antworten Sie anderen und teilen Sie Ihre Gedanken.
 
 ## Technischer Aufbau
 
 #### Projektaufbau
-Eine kurze Beschreibung deiner Ordnerstruktur und Architektur (MVVM, Repositories?) um Außenstehenden zu helfen, sich in deinem Projekt zurecht zu finden.
+MVVM Architektur 
 
 #### Datenspeicherung
-Welche Daten speicherst du? Wo und wie (Firebase, Core Data)?
+Nur Firebase.Firestore benutzen wurde.
 
 #### API Calls
-Welche APIs verwendest du?
+Financial Modeling Prep API #1
+Noch eine wurde benutzen aber noch nicht sicher welches.
 
 #### 3rd-Party Frameworks
 Verwendest du Frameworks, die nicht von dir stammen? Bspw. Swift Packages für Firebase, fertige SwiftUI-Views o.Ä.? Gib diese hier an.
