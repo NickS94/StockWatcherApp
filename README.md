@@ -1,14 +1,14 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/oXOEvXHr)
-# Name der App
+# Stock Watcher
 
-**(Optional) Füge hier einen kurzen, knackigen Slogan ein, um deine App zu bewerben.**
 
-Beschreibe hier in ein paar Sätzen, was deine App bietet.
 
-Für wen ist sie geeignet? Welches Problem löst sie? Was macht deine App anders / besser als andere Apps?
-Vermeide es, hier allzusehr in technische Details zu gehen.
+Stock Watcher ist eine mobile Anwendung, mit der die Aktienmärkte in Echtzeit verfolgt werden können.
+Die App bietet Benutzern detaillierte Informationen zu bestimmten Aktien, darunter die neuesten Kurse, historische Daten und relevante Nachrichtenartikel.
+Darüber hinaus enthält Stock Watcher eine einzigartige Social-Feed-Funktion, mit der Benutzer Diskussionen über Aktien erstellen und daran teilnehmen können.
 
 ## Geplantes Design
+
 Füge hier einige repräsentative Designs deiner App ein (z.B. aus Figma)
 <p>
   <img src="./img/app_design_1.png" width="200">
@@ -19,10 +19,11 @@ Füge hier einige repräsentative Designs deiner App ein (z.B. aus Figma)
 ## Features
 Hier kommen alle geplanten Features der App rein mit dem Status, ob es bereits umgesetzt wurde.
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] ...
-
+- [ ] • Aktienverfolgung: Erhalten Sie Echtzeit-Updates zu Aktienkursen und -performance.
+- [ ] • Aktiendetails: Sehen Sie sich detaillierte Informationen zu einzelnen Aktien an, einschließlich historischer Daten, Performancediagrammen und relevanter Nachrichten.
+- [ ] • Newsfeed: Bleiben Sie mit den neuesten Nachrichtenartikeln zu den Aktien, die Sie interessieren, auf dem Laufenden.
+- [ ] • Social Feed: Engagieren Sie sich in der Community, indem Sie an öffentlichen Gesprächen über verschiedene Aktien teilnehmen.
+- [ ] Erstellen Sie Diskussionen, antworten Sie anderen und teilen Sie Ihre Gedanken.
 
 ## Technischer Aufbau
 
