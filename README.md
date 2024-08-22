@@ -13,7 +13,6 @@ Füge hier einige repräsentative Designs deiner App ein (z.B. aus Figma)
 <p>
   <img src="./img/app_design_1.png" width="200">
   <img src="./img/app_design_2.png" width="200">
-  <img src="./img/app_design_3.png" width="200">
 </p>
 
 ## Features
