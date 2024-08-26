@@ -3,7 +3,7 @@
 
 
 
-<p>Stock Watcher ist eine mobile Anwendung, mit der die Aktienmärkte in Echtzeit verfolgt werden können.
+<p>Stock Watcher ist eine mobile App, mit der die Aktienmärkte in Echtzeit verfolgt werden können.
 Die App bietet Benutzern detaillierte Informationen zu bestimmten Aktien, darunter die neuesten Kurse, historische Daten und relevante Nachrichtenartikel.
 Darüber hinaus enthält Stock Watcher eine einzigartige Social-Feed-Funktion, mit der Benutzer Diskussionen über Aktien erstellen und daran teilnehmen können.</p>
 
@@ -26,17 +26,23 @@ Hier kommen alle geplanten Features der App rein mit dem Status, ob es bereits u
 ## Technischer Aufbau
 
 #### Projektaufbau
-MVVM Architektur 
+MVVM Architektur und auf features aufgeteilt.
 
 #### Datenspeicherung
-Nur Firebase.Firestore benutzen wurde.
+Firebase.Firestore benutzen wurde fur watchlist items speicherung 
+Firebase.Authentication wurde benutzen fur registrierung und authentifizierung der Nutzer.
 
 #### API Calls
 Financial Modeling Prep API #1
-Noch eine wurde benutzen aber noch nicht sicher welches.
+Endpoint #1: https://financialmodelingprep.com/api/v3/quote/{AAPL,MSFT} 
+Endpoint #2: https://financialmodelingprep.com/api/v3/search-ticker?query={AA}&limit={10}&exchange={NASDAQ}
+Endpoint #3: https://financialmodelingprep.com/api/v3/profile/{AAPL}
+Endpoint #4: https://financialmodelingprep.com/api/v3/historical-chart/{5min}/{AAPL}?from={2023-08-10}&to={2023-09-10}
+Endpoint #5: https://www.alphavantage.co/query?function=NEWS_SENTIMENT&tickers={AAPL}&apikey={demo}
+Endpoint #6: https://www.alphavantage.co/query?function=TOP_GAINERS_LOSERS&apikey={demo}
 
 #### 3rd-Party Frameworks
-Verwendest du Frameworks, die nicht von dir stammen? Bspw. Swift Packages für Firebase, fertige SwiftUI-Views o.Ä.? Gib diese hier an.
+ Die eine Framework das ich verwende wurde Firebase Package sein . 
 
 
 ## Ausblick
