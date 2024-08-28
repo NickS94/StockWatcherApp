@@ -62,6 +62,9 @@ class ApiClient{
             
             let (data,response) =  try await URLSession.shared.data(for: request)
             
+            let decoder = JSONDecoder()
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
+            
             guard let  statusCode = (response as? HTTPURLResponse)?.statusCode else{
                 throw ApiErrors.unknownError
             }

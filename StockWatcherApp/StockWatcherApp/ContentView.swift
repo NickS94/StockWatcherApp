@@ -17,7 +17,8 @@ struct ContentView: View {
             Text("Hello, world!")
         }
         .onAppear{
-            viewModel.fetchMyTickerList()
+            
+//            viewModel.fetchMyTickerList()
         }
         
         .padding()

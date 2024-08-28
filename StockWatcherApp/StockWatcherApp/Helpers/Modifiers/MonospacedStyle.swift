@@ -16,6 +16,7 @@ struct MonospacedStyle:ViewModifier{
     func body(content: Content) -> some View {
         content
             .font(.system(size: size,weight: weight,design: .monospaced))
+            
     }
     
 }

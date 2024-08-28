@@ -31,7 +31,7 @@ struct TickerQuoteRow: View {
             VStack(alignment:.leading,spacing: 8){
                 Text(tickerQuote.symbol)
                     .monospacedStyle(size: 16, weight: .bold)
-                Text(tickerQuote.name)
+                Text(tickerQuote.name.prefix(12))
                     .monospacedStyle(size: 12, weight: .light)
             }
             

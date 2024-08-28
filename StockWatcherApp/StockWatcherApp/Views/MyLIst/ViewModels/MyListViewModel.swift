@@ -79,7 +79,7 @@ class MyListViewModel:ObservableObject{
         Task{
             do{
                 
-                let quotePath = Paths.fmpQuote(tickersList:[])
+                let quotePath = Paths.fmpQuote(tickersList:["AAPL","NKLA"])
                 
                 let results:[TickerQuote]? = try await apiClient
                     .makeRequest(
@@ -92,6 +92,8 @@ class MyListViewModel:ObservableObject{
                 if let results = results {
                     myTickersList = results
                 }
+                
+                print(results ?? "")
             }catch{
                 print(error.localizedDescription)
             }
