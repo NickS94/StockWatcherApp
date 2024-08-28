@@ -29,7 +29,7 @@ enum Paths{
         case .fmpQuote(let tickersList):
             return "/api/v3/quote/\(tickersList.joined(separator: ","))"
         case .fmpSearchTicker:
-           return "/api/v3/search-ticker"
+            return "/api/v3/search-ticker"
         case .fmpProfile(let ticker):
             return "/api/v3/profile/\(ticker)"
         case .fmpCharts(let range,let ticker):
@@ -54,4 +54,16 @@ enum QueriesNames:String{
 enum QueryValues:String{
     case avGainersAndLosers = "TOP_GAINERS_LOSERS"
     case avNews = "NEWS_SENTIMENT"
+}
+
+enum ImageUrls{
+    case fmpTickerImage(ticker:String)
+    
+    
+    var urlString:String{
+        switch self{
+        case.fmpTickerImage(let ticker):
+            return "https://financialmodelingprep.com/image-stock/\(ticker).png"
+        }
+    }
 }
