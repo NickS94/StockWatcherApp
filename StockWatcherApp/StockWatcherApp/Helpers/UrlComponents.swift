@@ -44,6 +44,8 @@ enum QueriesNames:String{
     case fmpSearch = "query"
     case fmpFromDate = "from"
     case fmpToDate = "to"
+    case fmpLimit = "limit"
+    case fmpExchange = "exchange"
     case avQuery = "function"
     case avTickers = "tickers"
     case apiKey = "apikey"

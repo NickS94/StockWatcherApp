@@ -17,6 +17,8 @@
 		03718EF82C7E4E01007284CB /* ApiErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03718EF72C7E4E01007284CB /* ApiErrors.swift */; };
 		03718EFC2C7E8E2C007284CB /* MyListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03718EFB2C7E8E2C007284CB /* MyListViewModel.swift */; };
 		03718EFF2C7E9057007284CB /* TickerProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03718EFE2C7E9057007284CB /* TickerProfile.swift */; };
+		03967A572C7F29D800707163 /* TickerSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03967A562C7F29D800707163 /* TickerSearch.swift */; };
+		03967A592C7F5D1800707163 /* TickerQuote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03967A582C7F5D1800707163 /* TickerQuote.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,8 @@
 		03718EF72C7E4E01007284CB /* ApiErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiErrors.swift; sourceTree = "<group>"; };
 		03718EFB2C7E8E2C007284CB /* MyListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListViewModel.swift; sourceTree = "<group>"; };
 		03718EFE2C7E9057007284CB /* TickerProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerProfile.swift; sourceTree = "<group>"; };
+		03967A562C7F29D800707163 /* TickerSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerSearch.swift; sourceTree = "<group>"; };
+		03967A582C7F5D1800707163 /* TickerQuote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerQuote.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +141,8 @@
 			isa = PBXGroup;
 			children = (
 				03718EFE2C7E9057007284CB /* TickerProfile.swift */,
+				03967A562C7F29D800707163 /* TickerSearch.swift */,
+				03967A582C7F5D1800707163 /* TickerQuote.swift */,
 			);
 			path = FmpServiceModels;
 			sourceTree = "<group>";
@@ -213,9 +219,11 @@
 			files = (
 				03718EE22C7D1969007284CB /* ContentView.swift in Sources */,
 				03718EFF2C7E9057007284CB /* TickerProfile.swift in Sources */,
+				03967A572C7F29D800707163 /* TickerSearch.swift in Sources */,
 				03718EE02C7D1969007284CB /* StockWatcherAppApp.swift in Sources */,
 				03718EFC2C7E8E2C007284CB /* MyListViewModel.swift in Sources */,
 				03718EF22C7E003C007284CB /* ApiClient.swift in Sources */,
+				03967A592C7F5D1800707163 /* TickerQuote.swift in Sources */,
 				03718EF42C7E1110007284CB /* UrlComponents.swift in Sources */,
 				03718EF62C7E4D45007284CB /* ApiKeys.swift in Sources */,
 				03718EF82C7E4E01007284CB /* ApiErrors.swift in Sources */,

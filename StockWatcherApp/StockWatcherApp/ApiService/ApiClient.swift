@@ -13,7 +13,6 @@ class ApiClient{
     static let shared = ApiClient()
     
     //API Call
-    
     func makeRequest <T:Codable> (
         scheme:String,
         host:String,
@@ -22,9 +21,10 @@ class ApiClient{
         queryItemSecond:String? = nil,
         queryItemThird:String? = nil,
         queryItemFourth:String? = nil,
-        header:String? = nil  ,
+        headers:[String:String]? = nil ,
+        body:[String:Any]? = nil ,
         method:String? = nil ,
-        userInput:String? = nil ,
+        userFirstInput:String? = nil ,
         userSecondInput:String? = nil,
         userThirdInput:String? = nil,
         userFourthInput:String? = nil )  async throws  -> T? {
@@ -36,10 +36,10 @@ class ApiClient{
             
             
             urlComponents.queryItems = [
-                URLQueryItem(name: queryItemFirst ?? "", value: userInput),
+                URLQueryItem(name: queryItemFirst ?? "", value: userFirstInput),
                 URLQueryItem(name:queryItemSecond ?? "",value: userSecondInput),
                 URLQueryItem(name:queryItemThird ?? "",value: userThirdInput),
-                URLQueryItem(name: queryItemFourth ?? "", value: userFourthInput)
+                URLQueryItem(name: queryItemFourth ?? "",value: userFourthInput)
             ]
             
             
@@ -49,8 +49,18 @@ class ApiClient{
             
             var request = URLRequest(url: url)
             request.httpMethod  = method ?? "GET"
+            request.allHTTPHeaderFields = headers
             
-            let (data,response) =  try await URLSession.shared.data(from: url)
+            if method == "POST" , let body = body{
+                do{
+                    request.httpBody = try JSONSerialization.data(withJSONObject: body, options: [])
+                    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+                }catch{
+                    throw ApiErrors.badResponse
+                }
+            }
+            
+            let (data,response) =  try await URLSession.shared.data(for: request)
             
             guard let  statusCode = (response as? HTTPURLResponse)?.statusCode else{
                 throw ApiErrors.unknownError
