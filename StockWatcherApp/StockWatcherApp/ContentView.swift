@@ -8,20 +8,19 @@
 import SwiftUI
 
 struct ContentView: View {	
-    @StateObject var viewModel = MyListViewModel()
+//    @StateObject var viewModel = MyListViewModel()
+//    @StateObject var hotListsViewModel = HotTickersViewModel()
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
+       NavigationStack{
+           HotListsView()
+       }
         .onAppear{
             
 //            viewModel.fetchMyTickerList()
+            
+            
         }
-        
-        .padding()
+        .padding(5)
     }
 }
 

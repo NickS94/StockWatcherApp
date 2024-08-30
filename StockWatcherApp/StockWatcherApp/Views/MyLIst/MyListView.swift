@@ -21,6 +21,7 @@ struct MyListView: View {
                 }
             }
         }
+        .listStyle(.inset)
     }
 }
 

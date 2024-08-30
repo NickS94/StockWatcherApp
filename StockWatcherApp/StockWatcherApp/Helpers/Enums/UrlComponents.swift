@@ -67,3 +67,24 @@ enum ImageUrls{
         }
     }
 }
+
+
+enum MockEndpoints:String{
+    // Hot list
+    case mockHostHotList = "http://localhost:3001/TOP_GAINERS_LOSERS"
+
+    // News
+    case mockHostNews = " http://localhost:3002/NEWS_SENTIMENT"
+
+    // Quote list
+    case mockHostQuoteList = "http://localhost:3003/api/v3/quote/AAPL,MSFT"
+
+    // Search ticker
+    case mockHostSearchTicker = "http://localhost:3004/api/v3/search-ticker"
+
+    // Company profile
+    case mockHostCompanyProfile = "http://localhost:3005/api/v3/profile/AAPL"
+
+    // Ticker Chart
+    case mockHostChart = "http://localhost:3006/api/v3/historical-chart/5min/AAPL"
+}

@@ -46,31 +46,31 @@ class MyListViewModel:ObservableObject{
     /**
      Use this method to call the ticker SEARCH results from API
      */
-//    func fetchSearchTickers(){
-//        Task{
-//            do{
-//                let results:[TickerSearch]? = try await apiClient
-//                    .makeRequest(
-//                        scheme: Schemas.https.rawValue,
-//                        host: Hosts.fmp.rawValue,
-//                        path: Paths.fmpSearchTicker.urlString,
-//                        queryItemFirst: QueriesNames.fmpSearch.rawValue,
-//                        queryItemSecond: QueriesNames.fmpLimit.rawValue,
-//                        queryItemThird: QueriesNames.fmpExchange.rawValue,
-//                        queryItemFourth: QueriesNames.apiKey.rawValue,
-//                        userFirstInput: "a",
-//                        userSecondInput: "",
-//                        userThirdInput: "AMEX",
-//                        userFourthInput: ApiKeys.fmpApiKey)
-//                
-//                print(results ?? "")
-//
-//                
-//            }catch{
-//                print(error.localizedDescription)
-//            }
-//        }
-//    }
+    func fetchSearchTickers(){
+        Task{
+            do{
+                let results:[TickerSearch]? = try await apiClient
+                    .makeRequest(
+                        scheme: Schemas.https.rawValue,
+                        host: Hosts.fmp.rawValue,
+                        path: Paths.fmpSearchTicker.urlString,
+                        queryItemFirst: QueriesNames.fmpSearch.rawValue,
+                        queryItemSecond: QueriesNames.fmpLimit.rawValue,
+                        queryItemThird: QueriesNames.fmpExchange.rawValue,
+                        queryItemFourth: QueriesNames.apiKey.rawValue,
+                        userFirstInput: "a",
+                        userSecondInput: "10",
+                        userThirdInput: "AMEX",
+                        userFourthInput: ApiKeys.fmpApiKey)
+                
+                print(results ?? "")
+
+                
+            }catch{
+                print(error.localizedDescription)
+            }
+        }
+    }
     
     /**
      Use this method to call tha Butch ticker quote list so you can create your watchlist just
@@ -79,7 +79,7 @@ class MyListViewModel:ObservableObject{
         Task{
             do{
                 
-                let quotePath = Paths.fmpQuote(tickersList:["AAPL","NKLA"])
+                let quotePath = Paths.fmpQuote(tickersList:["AAPL","NKLA","TSLA"])
                 
                 let results:[TickerQuote]? = try await apiClient
                     .makeRequest(
@@ -93,7 +93,7 @@ class MyListViewModel:ObservableObject{
                     myTickersList = results
                 }
                 
-                print(results ?? "")
+                print(myTickersList)
             }catch{
                 print(error.localizedDescription)
             }

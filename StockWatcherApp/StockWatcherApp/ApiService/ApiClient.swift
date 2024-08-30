@@ -29,6 +29,7 @@ class ApiClient{
         userThirdInput:String? = nil,
         userFourthInput:String? = nil )  async throws  -> T? {
             
+            
             var urlComponents = URLComponents()
             urlComponents.scheme = scheme
             urlComponents.host = host
@@ -62,6 +63,8 @@ class ApiClient{
             
             let (data,response) =  try await URLSession.shared.data(for: request)
             
+            
+            
             let decoder = JSONDecoder()
             decoder.keyDecodingStrategy = .convertFromSnakeCase
             
@@ -76,7 +79,7 @@ class ApiClient{
             switch statusCode{
             case 200:
                 do{
-                    return try JSONDecoder().decode(T.self, from: data)
+                    return try decoder.decode(T.self, from: data)
                 }catch{
                     print(error)
                     throw ApiErrors.decodingError
@@ -94,4 +97,18 @@ class ApiClient{
             }
         }
     
+    
+    
+    func makeMockRequest<T:Codable>(url:String) async throws ->T? {
+        
+        let url =  URL(string: url)!
+        
+        let data = try await URLSession.shared.data(from: url).0
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        
+        let results = try decoder.decode(T.self, from: data)
+        
+        return results
+    }
 }
