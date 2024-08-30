@@ -17,57 +17,11 @@ class HotTickersViewModel:ObservableObject{
     @Published var losersList:[TickerQuoteAv] = []
     @Published var mostTradedList:[TickerQuoteAv] = []
     
-    private let apiClient = ApiClient.shared
+    let repository:RepositoryProtocol
     
-    
-    //MARK: Methods
-    
-    
-//    func fetchHotTickers (){
-//        Task{
-//            do{
-//                let results:AlphaAvantageResponse? = try await apiClient
-//                    .makeRequest(
-//                        scheme: Schemas.https.rawValue,
-//                        host: Hosts.av.rawValue,
-//                        path: Paths.avQuery.urlString,
-//                        queryItemFirst: QueriesNames.avQuery.rawValue,
-//                        queryItemSecond: QueriesNames.apiKey.rawValue,
-//                        userFirstInput: QueryValues.avGainersAndLosers.rawValue,
-//                        userSecondInput: ApiKeys.avApiKey
-//                    )
-//                if let results = results{
-//                    
-//
-//                    gainersList = results.topGainers
-//                    losersList = results.topLosers
-//                    mostTradedList = results.mostActivelyTraded
-//               
-//                }
-//              
-//            }catch{
-//                print(error)
-//            }
-//        }
-//    }
-    
-    
-    func fetchMock (){
-        Task{
-            do{
-                let results:AlphaAvantageResponse? = try await apiClient
-                    .makeMockRequest(url: MockEndpoints.mockHostHotList.rawValue)
-                if let results = results{
-                    gainersList = results.topGainers
-                    losersList = results.topLosers
-                    mostTradedList = results.mostActivelyTraded
-               
-                }
-              
-            }catch{
-                print(error)
-            }
-        }
+    init(repository:RepositoryProtocol){
+        self.repository = repository
     }
     
+    //MARK: Methods
 }

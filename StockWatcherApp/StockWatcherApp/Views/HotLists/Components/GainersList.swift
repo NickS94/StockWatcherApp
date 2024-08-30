@@ -14,9 +14,11 @@ struct GainersList: View {
             .monospacedStyle(size: 22, weight: .bold)
         List{
             ForEach(gainersList,id:\.ticker){ ticker in
-                
-                TickerAvQuoteRow(tickerQuoteAv: ticker)
-                
+                NavigationLink {
+                    EmptyView()
+                } label: {
+                    TickerAvQuoteRow(tickerQuoteAv: ticker)
+                }
             }
         }
         .listStyle(.inset)
@@ -24,5 +26,5 @@ struct GainersList: View {
 }
 
 #Preview {
-    GainersList(gainersList: [])
+    GainersList(gainersList: [TickerQuoteAv(ticker: "AAPL", price: "23", changeAmount: "12", changePercentage: "3423", volume: "123")])
 }

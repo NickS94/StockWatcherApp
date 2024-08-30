@@ -8,18 +8,17 @@
 import SwiftUI
 
 struct HotListsView: View {
-    @StateObject var hotTickersViewModel = HotTickersViewModel()
-    
+    @ObservedObject var hotListViewModel:HotTickersViewModel
     var body: some View {
         NavigationStack{
             VStack {
                 VStack(alignment:.leading){
-                    GainersList(gainersList: hotTickersViewModel.gainersList)
-                    LosersList(losersList: hotTickersViewModel.losersList)
-                    MostTradedList(mostTradedList: hotTickersViewModel.mostTradedList)
+                    GainersList(gainersList: hotListViewModel.gainersList)
+                    LosersList(losersList: hotListViewModel.losersList)
+                    MostTradedList(mostTradedList: hotListViewModel.mostTradedList)
                 }
                 .onAppear{
-                    hotTickersViewModel.fetchMock()
+                  
                 }
             }
             .navigationTitle("Todays Hot")
@@ -30,5 +29,5 @@ struct HotListsView: View {
 }
 
 #Preview {
-    HotListsView(hotTickersViewModel: HotTickersViewModel())
+    HotListsView(hotListViewModel: HotTickersViewModel(repository: MockRepository()))
 }

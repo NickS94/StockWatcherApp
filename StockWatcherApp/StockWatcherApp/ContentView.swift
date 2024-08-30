@@ -7,24 +7,15 @@
 
 import SwiftUI
 
-struct ContentView: View {	
-//    @StateObject var viewModel = MyListViewModel()
-//    @StateObject var hotListsViewModel = HotTickersViewModel()
+struct ContentView: View {
     var body: some View {
-       NavigationStack{
-           HotListsView()
-       }
-        .onAppear{
-            
-//            viewModel.fetchMyTickerList()
-            
+        TabView {
             
         }
-        .padding(5)
     }
 }
 
 #Preview {
     ContentView()
 }
-    
+

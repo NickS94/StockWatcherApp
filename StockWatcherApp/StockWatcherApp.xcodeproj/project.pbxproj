@@ -36,6 +36,9 @@
 		03B59C6D2C81F63E002DB53A /* MainRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B59C6C2C81F63E002DB53A /* MainRepository.swift */; };
 		03B59C6F2C81F661002DB53A /* MockRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B59C6E2C81F661002DB53A /* MockRepository.swift */; };
 		03B59C712C81F693002DB53A /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B59C702C81F693002DB53A /* Protocols.swift */; };
+		03B59C732C820A07002DB53A /* TickerNews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B59C722C820A07002DB53A /* TickerNews.swift */; };
+		03B59C752C820BE6002DB53A /* TickerSentiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B59C742C820BE6002DB53A /* TickerSentiment.swift */; };
+		03B59C772C820C17002DB53A /* ChartQuote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B59C762C820C17002DB53A /* ChartQuote.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +73,9 @@
 		03B59C6C2C81F63E002DB53A /* MainRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRepository.swift; sourceTree = "<group>"; };
 		03B59C6E2C81F661002DB53A /* MockRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRepository.swift; sourceTree = "<group>"; };
 		03B59C702C81F693002DB53A /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		03B59C722C820A07002DB53A /* TickerNews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerNews.swift; sourceTree = "<group>"; };
+		03B59C742C820BE6002DB53A /* TickerSentiment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerSentiment.swift; sourceTree = "<group>"; };
+		03B59C762C820C17002DB53A /* ChartQuote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartQuote.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +190,7 @@
 				03718EFE2C7E9057007284CB /* TickerProfile.swift */,
 				03967A562C7F29D800707163 /* TickerSearch.swift */,
 				03967A582C7F5D1800707163 /* TickerQuote.swift */,
+				03B59C762C820C17002DB53A /* ChartQuote.swift */,
 			);
 			path = FmpServiceModels;
 			sourceTree = "<group>";
@@ -250,6 +257,8 @@
 			children = (
 				03967A6B2C7FE2E700707163 /* TickerQuoteAv.swift */,
 				03967A6E2C7FE47700707163 /* AlphaAvantageResponse.swift */,
+				03B59C722C820A07002DB53A /* TickerNews.swift */,
+				03B59C742C820BE6002DB53A /* TickerSentiment.swift */,
 			);
 			path = AlphaAvantageModels;
 			sourceTree = "<group>";
@@ -352,6 +361,8 @@
 				03967A7C2C809B9E00707163 /* MostTradedList.swift in Sources */,
 				03718EFC2C7E8E2C007284CB /* MyListViewModel.swift in Sources */,
 				03B59C6D2C81F63E002DB53A /* MainRepository.swift in Sources */,
+				03B59C752C820BE6002DB53A /* TickerSentiment.swift in Sources */,
+				03B59C732C820A07002DB53A /* TickerNews.swift in Sources */,
 				03967A6F2C7FE47700707163 /* AlphaAvantageResponse.swift in Sources */,
 				03967A612C7FB3FF00707163 /* MonospacedStyle.swift in Sources */,
 				03718EF22C7E003C007284CB /* ApiClient.swift in Sources */,
@@ -361,6 +372,7 @@
 				03967A5C2C7FABE400707163 /* MyListView.swift in Sources */,
 				03718EF82C7E4E01007284CB /* ApiErrors.swift in Sources */,
 				03967A7E2C809C4A00707163 /* TabsView.swift in Sources */,
+				03B59C772C820C17002DB53A /* ChartQuote.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
