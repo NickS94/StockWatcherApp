@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var hotListsViewModel = HotTickersViewModel(repository: MainRepository())
+    @StateObject var newsViewModel = NewsViewModel(repository: MainRepository())
     var body: some View {
-        TabsView()
+        TabsView(hotListsViewModel: hotListsViewModel, newsViewModel: newsViewModel)
     }
 }
 

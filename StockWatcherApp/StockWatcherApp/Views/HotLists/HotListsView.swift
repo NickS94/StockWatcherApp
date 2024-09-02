@@ -12,21 +12,22 @@ struct HotListsView: View {
     var body: some View {
         
         NavigationStack{
-            VStack(alignment:.leading){
-                // Picker to change the hotList value when the listSelection variable changes value.
-                Picker("", selection: $hotListViewModel.listSelection) {
-                    ForEach(HotListsPickerItems.allCases,id:\.rawValue){listItem in
-                        Text(listItem.rawValue).tag(listItem)
-                    }
+            // Picker to change the hotList value when the listSelection variable changes value.
+            Picker("List Selection", selection: $hotListViewModel.listSelection) {
+                ForEach(HotListsPickerItems.allCases,id:\.rawValue){listItem in
+                    Text(listItem.rawValue).tag(listItem)
                 }
-                .pickerStyle(.segmented)
+            }
+            .pickerStyle(.segmented)
+            .padding()
+    
+            VStack(alignment:.leading){
                 // Set the header text depending on the rawValue of the listSelection.
                 Text(hotListViewModel.listSelection.rawValue)
                     .monospacedStyle(size: 22, weight: .bold)
                 // Used one list component and set the hotList from view model inside,
                 //so the outcome is what the hotList have as a value.
                 HotListComponent(hotList: hotListViewModel.hotList)
-                    
             }
             .onAppear{
                 // on appear of this view we load the list that is set as default . In this case is the most traded tickers.
@@ -37,6 +38,7 @@ struct HotListsView: View {
                 hotListViewModel.getHotLists()
             }
             .navigationTitle("Todays Hot")
+            .navigationBarTitleDisplayMode(.inline)
             .padding()
             
         }

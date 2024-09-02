@@ -117,7 +117,7 @@ class MainRepository:RepositoryProtocol{
     /**
      Use this method to call the NEWS list from API and also with a query parameter you can find the news that are relevant for a specific ticker.
      */
-    func fetchNews(_ ticker: String) async throws -> AlphaAvantageResponse? {
+    func fetchNews(_ ticker: String) async throws -> AlphaAvantageNewsResponse? {
         do{
             return try await apiClient
                 .makeRequest(

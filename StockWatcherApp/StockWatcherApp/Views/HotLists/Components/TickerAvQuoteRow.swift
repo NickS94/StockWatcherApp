@@ -16,22 +16,26 @@ struct TickerAvQuoteRow: View {
             AsyncImage(url: URL(string: ImageUrls.fmpTickerImage(ticker:tickerQuoteAv.ticker).urlString)){ image in
                 ZStack(alignment:.center){
                     Rectangle()
-                        .frame(width: 48,height: 48)
+                        .frame(width: 55,height: 55)
                         .clipShape(RoundedRectangle(cornerRadius: 12))
-                        .foregroundStyle(.gray.opacity(0.5))
+                        .shadow(radius: 10)
+                        .opacity(0.25)
+                        
                     image
                         .resizable()
-                        .frame(width: 36,height: 36)
+                        .frame(width: 42,height: 42)
                         .clipShape(RoundedRectangle(cornerRadius: 12))
+                        
                         
                 }
                 
             }placeholder: {
                 ZStack(alignment:.center){
                     Rectangle()
-                        .frame(width: 48,height: 48)
+                        .frame(width: 55,height: 55)
                         .clipShape(RoundedRectangle(cornerRadius: 12))
-                        .foregroundStyle(.gray.opacity(0.5))
+                        .shadow(radius: 10)
+                        .opacity(0.25)
                     Text(tickerQuoteAv.ticker.prefix(2).uppercased())
                         .frame(width: 36,height: 36)
                         .clipShape(RoundedRectangle(cornerRadius: 12))

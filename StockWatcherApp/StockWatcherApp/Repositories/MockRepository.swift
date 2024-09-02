@@ -33,7 +33,7 @@ class MockRepository:RepositoryProtocol{
         try await apiClient.makeMockRequest(url: MockEndpoints.mockHostHotList.rawValue)
     }
     
-    func fetchNews(_ ticker:String) async throws -> AlphaAvantageResponse? {
+    func fetchNews(_ ticker:String) async throws -> AlphaAvantageNewsResponse? {
         try await apiClient.makeMockRequest(url: MockEndpoints.mockHostNews.rawValue)
     }
 }

@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		033372D92C85B396009A611A /* PickerItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033372D82C85B396009A611A /* PickerItems.swift */; };
+		033372DF2C85E5F3009A611A /* NewsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033372DE2C85E5F3009A611A /* NewsListView.swift */; };
+		033372E12C85E65F009A611A /* TickersNewsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033372E02C85E65F009A611A /* TickersNewsRow.swift */; };
+		033372E32C85E9CF009A611A /* DateFormatterHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033372E22C85E9CF009A611A /* DateFormatterHelper.swift */; };
+		033372E52C85EF0C009A611A /* TickerSentimentItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033372E42C85EF0C009A611A /* TickerSentimentItem.swift */; };
+		033372E72C85F64E009A611A /* NewsDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033372E62C85F64E009A611A /* NewsDetails.swift */; };
+		033372E92C85F676009A611A /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033372E82C85F676009A611A /* NewsViewModel.swift */; };
+		033372EB2C85FDE9009A611A /* AlphaAvantageNewsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033372EA2C85FDE9009A611A /* AlphaAvantageNewsResponse.swift */; };
 		03718EE02C7D1969007284CB /* StockWatcherAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03718EDF2C7D1969007284CB /* StockWatcherAppApp.swift */; };
 		03718EE22C7D1969007284CB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03718EE12C7D1969007284CB /* ContentView.swift */; };
 		03718EE42C7D196A007284CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03718EE32C7D196A007284CB /* Assets.xcassets */; };
@@ -42,6 +49,13 @@
 
 /* Begin PBXFileReference section */
 		033372D82C85B396009A611A /* PickerItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerItems.swift; sourceTree = "<group>"; };
+		033372DE2C85E5F3009A611A /* NewsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListView.swift; sourceTree = "<group>"; };
+		033372E02C85E65F009A611A /* TickersNewsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickersNewsRow.swift; sourceTree = "<group>"; };
+		033372E22C85E9CF009A611A /* DateFormatterHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterHelper.swift; sourceTree = "<group>"; };
+		033372E42C85EF0C009A611A /* TickerSentimentItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerSentimentItem.swift; sourceTree = "<group>"; };
+		033372E62C85F64E009A611A /* NewsDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetails.swift; sourceTree = "<group>"; };
+		033372E82C85F676009A611A /* NewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewModel.swift; sourceTree = "<group>"; };
+		033372EA2C85FDE9009A611A /* AlphaAvantageNewsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphaAvantageNewsResponse.swift; sourceTree = "<group>"; };
 		03718EDC2C7D1969007284CB /* StockWatcherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StockWatcherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03718EDF2C7D1969007284CB /* StockWatcherAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockWatcherAppApp.swift; sourceTree = "<group>"; };
 		03718EE12C7D1969007284CB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -92,6 +106,34 @@
 			children = (
 			);
 			path = DetailsTicker;
+			sourceTree = "<group>";
+		};
+		033372DB2C85E5B4009A611A /* News */ = {
+			isa = PBXGroup;
+			children = (
+				033372DD2C85E5D3009A611A /* ViewModels */,
+				033372DC2C85E5CA009A611A /* Components */,
+				033372DE2C85E5F3009A611A /* NewsListView.swift */,
+				033372E62C85F64E009A611A /* NewsDetails.swift */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
+		033372DC2C85E5CA009A611A /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				033372E02C85E65F009A611A /* TickersNewsRow.swift */,
+				033372E42C85EF0C009A611A /* TickerSentimentItem.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		033372DD2C85E5D3009A611A /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				033372E82C85F676009A611A /* NewsViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		03718ED32C7D1969007284CB = {
@@ -164,8 +206,9 @@
 		03718EF02C7DFFA2007284CB /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				033372DA2C85E34A009A611A /* DetailsTicker */,
 				03967A7D2C809C4A00707163 /* TabsView.swift */,
+				033372DB2C85E5B4009A611A /* News */,
+				033372DA2C85E34A009A611A /* DetailsTicker */,
 				03B59C7A2C822277002DB53A /* Authentication */,
 				03B59C792C82226F002DB53A /* Profile */,
 				03B59C782C822250002DB53A /* SocialFeed */,
@@ -225,6 +268,7 @@
 		03967A642C7FDBF300707163 /* Enums */ = {
 			isa = PBXGroup;
 			children = (
+				033372E22C85E9CF009A611A /* DateFormatterHelper.swift */,
 				03718EF32C7E1110007284CB /* UrlComponents.swift */,
 				03718EF52C7E4D45007284CB /* ApiKeys.swift */,
 				03718EF72C7E4E01007284CB /* ApiErrors.swift */,
@@ -265,6 +309,7 @@
 			children = (
 				03967A6B2C7FE2E700707163 /* TickerQuoteAv.swift */,
 				03967A6E2C7FE47700707163 /* AlphaAvantageResponse.swift */,
+				033372EA2C85FDE9009A611A /* AlphaAvantageNewsResponse.swift */,
 				03B59C722C820A07002DB53A /* TickerNews.swift */,
 				03B59C742C820BE6002DB53A /* TickerSentiment.swift */,
 			);
@@ -372,6 +417,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				033372E32C85E9CF009A611A /* DateFormatterHelper.swift in Sources */,
 				03967A632C7FCA4D00707163 /* ColouredValue.swift in Sources */,
 				03967A782C809AF900707163 /* HotListComponent.swift in Sources */,
 				03967A692C7FE27500707163 /* HotListsView.swift in Sources */,
@@ -379,7 +425,10 @@
 				03718EFF2C7E9057007284CB /* TickerProfile.swift in Sources */,
 				03967A712C805F0400707163 /* HotTickersViewModel.swift in Sources */,
 				03967A752C808F3F00707163 /* ColouredValuesStrings.swift in Sources */,
+				033372DF2C85E5F3009A611A /* NewsListView.swift in Sources */,
+				033372E72C85F64E009A611A /* NewsDetails.swift in Sources */,
 				03967A572C7F29D800707163 /* TickerSearch.swift in Sources */,
+				033372E12C85E65F009A611A /* TickersNewsRow.swift in Sources */,
 				03967A6C2C7FE2E700707163 /* TickerQuoteAv.swift in Sources */,
 				03718EE02C7D1969007284CB /* StockWatcherAppApp.swift in Sources */,
 				03B59C6F2C81F661002DB53A /* MockRepository.swift in Sources */,
@@ -394,13 +443,16 @@
 				03967A612C7FB3FF00707163 /* MonospacedStyle.swift in Sources */,
 				03718EF22C7E003C007284CB /* ApiClient.swift in Sources */,
 				03967A592C7F5D1800707163 /* TickerQuote.swift in Sources */,
+				033372E52C85EF0C009A611A /* TickerSentimentItem.swift in Sources */,
 				03718EF42C7E1110007284CB /* UrlComponents.swift in Sources */,
 				03718EF62C7E4D45007284CB /* ApiKeys.swift in Sources */,
 				03967A5C2C7FABE400707163 /* MyListView.swift in Sources */,
 				03718EF82C7E4E01007284CB /* ApiErrors.swift in Sources */,
 				03967A7E2C809C4A00707163 /* TabsView.swift in Sources */,
+				033372E92C85F676009A611A /* NewsViewModel.swift in Sources */,
 				033372D92C85B396009A611A /* PickerItems.swift in Sources */,
 				03B59C772C820C17002DB53A /* ChartQuote.swift in Sources */,
+				033372EB2C85FDE9009A611A /* AlphaAvantageNewsResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -530,7 +582,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = Primary;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"StockWatcherApp/Preview Content\"";
@@ -560,7 +612,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = Primary;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"StockWatcherApp/Preview Content\"";

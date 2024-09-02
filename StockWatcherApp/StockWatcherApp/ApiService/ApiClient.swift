@@ -101,9 +101,14 @@ class ApiClient{
     
     func makeMockRequest<T:Codable>(url:String) async throws ->T? {
         
-        let url =  URL(string: url)!
-        
+        let url =  URL(string: url)
+
+        guard let url = url else{
+            throw ApiErrors.invalidUrl
+        }
+       
         let data = try await URLSession.shared.data(from: url).0
+       
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         

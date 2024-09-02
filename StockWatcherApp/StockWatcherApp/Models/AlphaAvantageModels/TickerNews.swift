@@ -13,7 +13,7 @@ struct TickerNews:Codable{
     let timePublished:String
     let authors:[String]
     let summary:String
-    let bannerImage:String
+    let bannerImage:String?
     let source:String
     let sourceDomain:String
     let tickerSentiment:[TickerSentiment]

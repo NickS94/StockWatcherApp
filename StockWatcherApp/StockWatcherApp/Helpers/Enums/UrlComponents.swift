@@ -74,7 +74,7 @@ enum MockEndpoints:String{
     case mockHostHotList = "http://localhost:3001/TOP_GAINERS_LOSERS"
 
     // News
-    case mockHostNews = " http://localhost:3002/NEWS_SENTIMENT"
+    case mockHostNews = "http://localhost:3002/NEWS_SENTIMENT"
 
     // Quote list
     case mockHostQuoteList = "http://localhost:3003/api/v3/quote/AAPL,MSFT"

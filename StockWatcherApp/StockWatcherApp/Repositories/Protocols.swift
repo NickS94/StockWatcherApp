@@ -19,6 +19,6 @@ protocol RepositoryProtocol {
     
     func fetchHotLists() async throws  ->AlphaAvantageResponse?
     
-    func fetchNews(_ ticker:String) async throws ->AlphaAvantageResponse?
+    func fetchNews(_ ticker:String) async throws ->AlphaAvantageNewsResponse?
     
 }
