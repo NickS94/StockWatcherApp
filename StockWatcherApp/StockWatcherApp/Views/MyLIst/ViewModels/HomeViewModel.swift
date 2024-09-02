@@ -8,12 +8,19 @@
 import Foundation
 
 @MainActor
-class MyListViewModel:ObservableObject{
+class HomeViewModel:ObservableObject{
     //MARK: Properties
     
     private let apiClient = ApiClient.shared
     
+    
     @Published var myTickersList:[TickerQuote] = []
+    
+    let repository:RepositoryProtocol
+    
+    init(repository:RepositoryProtocol) {
+        self.repository = repository
+    }
     
     //MARK: Api Fetching Methods
     

@@ -27,7 +27,15 @@ struct TickerAvQuoteRow: View {
                 }
                 
             }placeholder: {
-                ProgressView()
+                ZStack(alignment:.center){
+                    Rectangle()
+                        .frame(width: 48,height: 48)
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .foregroundStyle(.gray.opacity(0.5))
+                    Text(tickerQuoteAv.ticker.prefix(2).uppercased())
+                        .frame(width: 36,height: 36)
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                }
             }
             
             VStack(alignment:.leading,spacing: 8){
@@ -61,6 +69,6 @@ struct TickerAvQuoteRow: View {
     
 
 
-//#Preview {
-//    TickerAvQuoteRow(tickerQuoteAv: TickerQuoteAv(ticker: "NKLA", price: "215.0", change_amount: "1.40", change_percentage: "0.82%", volume: "2039035"))
-//}
+#Preview {
+    TickerAvQuoteRow(tickerQuoteAv: TickerQuoteAv(ticker: "NKLA", price: "215.0", changeAmount: "1.40", changePercentage: "0.82%", volume: "2039035"))
+}

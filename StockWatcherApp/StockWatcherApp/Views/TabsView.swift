@@ -8,11 +8,10 @@
 import SwiftUI
 
 struct TabsView: View {
-//    @ObservedObject var hotTickersViewModel: HotTickersViewModel
+
     var body: some View {
         TabView{
-//            HotListsView(hotTickersViewModel: hotTickersViewModel)
-         
+
         }
     }
 }

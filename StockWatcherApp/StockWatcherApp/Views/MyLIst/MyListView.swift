@@ -9,11 +9,11 @@ import SwiftUI
 
 struct MyListView: View {
     
-    @ObservedObject var myListViewModel:MyListViewModel
+    @ObservedObject var homeViewModel:HomeViewModel
     
     var body: some View {
         List {
-            ForEach(myListViewModel.myTickersList, id:\.symbol){ticker in
+            ForEach(homeViewModel.myTickersList, id:\.symbol){ticker in
                 NavigationLink {
                     Text("This will be detail view")
                 } label: {
@@ -26,5 +26,5 @@ struct MyListView: View {
 }
 
 #Preview {
-    MyListView(myListViewModel: MyListViewModel())
+    MyListView(homeViewModel: HomeViewModel(repository: MockRepository()))
 }
