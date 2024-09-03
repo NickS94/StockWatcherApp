@@ -38,5 +38,4 @@ struct TickerProfile:Codable{
     let dcf:Double?
     let image:String?
     let ipoDate:String?
-    
 }

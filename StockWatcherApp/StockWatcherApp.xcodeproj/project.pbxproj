@@ -15,6 +15,9 @@
 		033372E72C85F64E009A611A /* NewsDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033372E62C85F64E009A611A /* NewsDetails.swift */; };
 		033372E92C85F676009A611A /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033372E82C85F676009A611A /* NewsViewModel.swift */; };
 		033372EB2C85FDE9009A611A /* AlphaAvantageNewsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033372EA2C85FDE9009A611A /* AlphaAvantageNewsResponse.swift */; };
+		033372F02C870E27009A611A /* TickerProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033372EF2C870E27009A611A /* TickerProfileViewModel.swift */; };
+		033372F22C8711D4009A611A /* TickerProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033372F12C8711D4009A611A /* TickerProfileView.swift */; };
+		033372F42C874CAD009A611A /* CompanyInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033372F32C874CAD009A611A /* CompanyInfo.swift */; };
 		03718EE02C7D1969007284CB /* StockWatcherAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03718EDF2C7D1969007284CB /* StockWatcherAppApp.swift */; };
 		03718EE22C7D1969007284CB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03718EE12C7D1969007284CB /* ContentView.swift */; };
 		03718EE42C7D196A007284CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03718EE32C7D196A007284CB /* Assets.xcassets */; };
@@ -56,6 +59,9 @@
 		033372E62C85F64E009A611A /* NewsDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetails.swift; sourceTree = "<group>"; };
 		033372E82C85F676009A611A /* NewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewModel.swift; sourceTree = "<group>"; };
 		033372EA2C85FDE9009A611A /* AlphaAvantageNewsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphaAvantageNewsResponse.swift; sourceTree = "<group>"; };
+		033372EF2C870E27009A611A /* TickerProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerProfileViewModel.swift; sourceTree = "<group>"; };
+		033372F12C8711D4009A611A /* TickerProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerProfileView.swift; sourceTree = "<group>"; };
+		033372F32C874CAD009A611A /* CompanyInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyInfo.swift; sourceTree = "<group>"; };
 		03718EDC2C7D1969007284CB /* StockWatcherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StockWatcherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03718EDF2C7D1969007284CB /* StockWatcherAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockWatcherAppApp.swift; sourceTree = "<group>"; };
 		03718EE12C7D1969007284CB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -136,6 +142,32 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		033372EC2C870DE4009A611A /* TickerProfile */ = {
+			isa = PBXGroup;
+			children = (
+				033372EE2C870E0E009A611A /* Components */,
+				033372ED2C870DEC009A611A /* ViewModels */,
+				033372F12C8711D4009A611A /* TickerProfileView.swift */,
+			);
+			path = TickerProfile;
+			sourceTree = "<group>";
+		};
+		033372ED2C870DEC009A611A /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				033372EF2C870E27009A611A /* TickerProfileViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		033372EE2C870E0E009A611A /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				033372F32C874CAD009A611A /* CompanyInfo.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		03718ED32C7D1969007284CB = {
 			isa = PBXGroup;
 			children = (
@@ -207,10 +239,11 @@
 			isa = PBXGroup;
 			children = (
 				03967A7D2C809C4A00707163 /* TabsView.swift */,
+				033372EC2C870DE4009A611A /* TickerProfile */,
 				033372DB2C85E5B4009A611A /* News */,
 				033372DA2C85E34A009A611A /* DetailsTicker */,
 				03B59C7A2C822277002DB53A /* Authentication */,
-				03B59C792C82226F002DB53A /* Profile */,
+				03B59C792C82226F002DB53A /* UserProfile */,
 				03B59C782C822250002DB53A /* SocialFeed */,
 				03967A652C7FE21700707163 /* HotLists */,
 				03718EF92C7E8E06007284CB /* MyLIst */,
@@ -333,11 +366,11 @@
 			path = SocialFeed;
 			sourceTree = "<group>";
 		};
-		03B59C792C82226F002DB53A /* Profile */ = {
+		03B59C792C82226F002DB53A /* UserProfile */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = Profile;
+			path = UserProfile;
 			sourceTree = "<group>";
 		};
 		03B59C7A2C822277002DB53A /* Authentication */ = {
@@ -418,6 +451,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				033372E32C85E9CF009A611A /* DateFormatterHelper.swift in Sources */,
+				033372F02C870E27009A611A /* TickerProfileViewModel.swift in Sources */,
 				03967A632C7FCA4D00707163 /* ColouredValue.swift in Sources */,
 				03967A782C809AF900707163 /* HotListComponent.swift in Sources */,
 				03967A692C7FE27500707163 /* HotListsView.swift in Sources */,
@@ -428,6 +462,8 @@
 				033372DF2C85E5F3009A611A /* NewsListView.swift in Sources */,
 				033372E72C85F64E009A611A /* NewsDetails.swift in Sources */,
 				03967A572C7F29D800707163 /* TickerSearch.swift in Sources */,
+				033372F22C8711D4009A611A /* TickerProfileView.swift in Sources */,
+				033372F42C874CAD009A611A /* CompanyInfo.swift in Sources */,
 				033372E12C85E65F009A611A /* TickersNewsRow.swift in Sources */,
 				03967A6C2C7FE2E700707163 /* TickerQuoteAv.swift in Sources */,
 				03718EE02C7D1969007284CB /* StockWatcherAppApp.swift in Sources */,

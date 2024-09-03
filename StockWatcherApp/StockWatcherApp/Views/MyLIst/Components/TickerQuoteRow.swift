@@ -15,18 +15,29 @@ struct TickerQuoteRow: View {
             AsyncImage(url: URL(string: ImageUrls.fmpTickerImage(ticker:tickerQuote.symbol).urlString)){ image in
                 ZStack(alignment:.center){
                     Rectangle()
-                        .frame(width: 48,height: 48)
+                        .frame(width: 55,height: 55)
                         .clipShape(RoundedRectangle(cornerRadius: 12))
-                        .foregroundStyle(.blue.opacity(0.5))
+                        .shadow(radius: 10)
+                        .opacity(0.25)
+                        
                     image
                         .resizable()
-                        .frame(width: 24,height: 24)
+                        .frame(width: 42,height: 42)
                         .clipShape(RoundedRectangle(cornerRadius: 12))
                         
                 }
                 
             }placeholder: {
-                ProgressView()
+                ZStack(alignment:.center){
+                    Rectangle()
+                        .frame(width: 55,height: 55)
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .shadow(radius: 10)
+                        .opacity(0.25)
+                    Text(tickerQuote.symbol.prefix(2).uppercased())
+                        .frame(width: 36,height: 36)
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                }
             }
             
             VStack(alignment:.leading,spacing: 8){

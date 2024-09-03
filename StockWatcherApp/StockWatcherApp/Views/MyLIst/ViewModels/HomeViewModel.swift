@@ -22,6 +22,6 @@ class HomeViewModel:ObservableObject{
         self.repository = repository
     }
     
-    //MARK: Api Fetching Methods
+    //MARK: Methods
     
 }

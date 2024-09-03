@@ -23,7 +23,7 @@ struct NewsListView: View {
                 }
             }
             .listStyle(.inset)
-            .navigationTitle(ticker == "" ? " Latest news" : "\(ticker)'s news")
+            .navigationTitle(ticker == "" ? "Latest news" : "\(ticker)'s news")
             .navigationBarTitleDisplayMode(.inline)
         }
         .onAppear{
