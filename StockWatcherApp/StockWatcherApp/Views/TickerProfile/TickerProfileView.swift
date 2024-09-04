@@ -8,57 +8,45 @@
 import SwiftUI
 
 struct TickerProfileView: View {
-    @ObservedObject var tickerProfileViewModel:TickerProfileViewModel
+    @ObservedObject var tickerProfileViewModel : TickerProfileViewModel
+    let tickerQuote:TickerQuote
+    @Binding var showFullDescription :Bool
+    @Binding var lineLimit :Int
     let tickerSymbol:String
     var body: some View {
         ScrollView {
             VStack(alignment:.leading){
-                HStack{
-                    Text(tickerProfileViewModel.tickerProfile?.symbol ?? "nodata")
-                        .monospacedStyle(size: 18, weight: .semibold)
-                    
-                    Spacer()
-                    AsyncImage(url: URL(string:tickerProfileViewModel.tickerProfile?.image ?? "")){ image in
-                        ZStack(alignment:.center){
-                            Rectangle()
-                                .frame(width: 55,height: 55)
-                                .clipShape(RoundedRectangle(cornerRadius: 12))
-                                .shadow(radius: 10)
-                                .opacity(0.25)
-                            
-                            image
-                                .resizable()
-                                .frame(width: 42,height: 42)
-                                .clipShape(RoundedRectangle(cornerRadius: 12))
-                        }
-                    }placeholder: {
-                        ZStack(alignment:.center){
-                            Rectangle()
-                                .frame(width: 55,height: 55)
-                                .clipShape(RoundedRectangle(cornerRadius: 12))
-                                .shadow(radius: 10)
-                                .opacity(0.25)
-                            Text(tickerProfileViewModel.tickerProfile?.symbol?.prefix(2).uppercased() ?? "GB")
-                                .frame(width: 36,height: 36)
-                                .clipShape(RoundedRectangle(cornerRadius: 12))
-                        }
-                    }
-                }
-                .padding()
+                ProfileHeaderItems( tickerQuote: tickerQuote)
                 // this will going to be the chart.!
                 Rectangle()
-                    
                 
-                Text(String(tickerProfileViewModel.tickerProfile?.price ?? 0.0))
-                    .monospacedStyle(size: 18, weight: .semibold)
-                    .padding()
-                
-                
+                GeneralInformation(tickerProfile: tickerProfileViewModel.tickerProfile , tickerProfileViewModel: tickerProfileViewModel, showFullDescription: $showFullDescription, lineLimit: $lineLimit)
             }
+        }
+        .onAppear{
+            tickerProfileViewModel.fetchTickerProfile(tickerSymbol)
         }
     }
 }
 
 #Preview {
-    TickerProfileView(tickerProfileViewModel: TickerProfileViewModel(repository: MockRepository()), tickerSymbol: "")
+    TickerProfileView(tickerProfileViewModel: TickerProfileViewModel(repository: MainRepository()), tickerQuote: TickerQuote(
+        
+        symbol: "AAPL",
+        name: "Apple Inc.",
+        price: 229.97,
+        changesPercentage: 0.0783,
+        change: 0.18,
+        dayLow: 229.345,
+        dayHigh: 230.4,
+        yearHigh: 237.23,
+        yearLow: 164.08,
+        marketCap: 3496486877000,
+        priceAvg50: 221.2112,
+        priceAvg200: 193.88576,
+        exchange: "NASDAQ",
+        eps: 6.57,
+        pe: 35,
+        sharesOutstanding: 15204100000
+    ),showFullDescription: .constant(false),lineLimit: .constant(6), tickerSymbol: "")
 }

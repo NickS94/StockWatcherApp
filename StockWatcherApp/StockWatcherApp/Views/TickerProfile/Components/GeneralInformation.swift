@@ -7,10 +7,11 @@
 
 import SwiftUI
 
-struct CompanyInfo: View {
+struct GeneralInformation: View {
     let tickerProfile:TickerProfile
-    @State var showFullDescription = false
-    @State var lineLimit = 6
+    @ObservedObject var tickerProfileViewModel:TickerProfileViewModel
+    @Binding var showFullDescription :Bool
+    @Binding var lineLimit :Int
     var body: some View {
         ScrollView{
             
@@ -20,7 +21,7 @@ struct CompanyInfo: View {
                 Text(tickerProfile.description ?? "")
                     .monospacedStyle(size: 14, weight: .regular)
                     .lineLimit(lineLimit)
-                    
+                
                 Text(showFullDescription ? "Read less" : "Read more")
                     .underline()
                     .onTapGesture {
@@ -32,17 +33,28 @@ struct CompanyInfo: View {
                             lineLimit = 6
                         }
                     }
+                VStack{
+                    ForEach(tickerProfileViewModel.generateInformationTable(tickerProfile: tickerProfile),id:\.0) { label,info  in
+                        HStack{
+                            Text(label)
+                                .monospacedStyle(size: 14, weight: .thin)
+                                .foregroundStyle(.gray)
+                            Spacer()
+                            Text(info)
+                                .monospacedStyle(size: 18, weight: .regular)
+                           Divider()
+                        }
+                    }
+                }
             }
-            .padding()
-            
-            
         }
-        
+        .padding()
     }
 }
 
+
 #Preview {
-    CompanyInfo(tickerProfile: TickerProfile(
+    GeneralInformation(tickerProfile: TickerProfile(
         symbol: "AAPL",
         price: 230.28,
         beta: 1.244,
@@ -86,5 +98,5 @@ struct CompanyInfo: View {
         dcfDiff: 72.75592,
         dcf: 159.2440770263711,
         image: "https://financialmodelingprep.com/image-stock/AAPL.png",
-        ipoDate: "1980-12-12"))
+        ipoDate: "1980-12-12"), tickerProfileViewModel: TickerProfileViewModel(repository: MockRepository()),showFullDescription:.constant(false),lineLimit: .constant(6))
 }

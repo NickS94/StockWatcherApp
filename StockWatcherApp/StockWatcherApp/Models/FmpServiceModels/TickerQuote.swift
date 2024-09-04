@@ -13,4 +13,15 @@ struct TickerQuote:Codable{
     let price:Double
     let changesPercentage:Double
     let change:Double
+    let dayLow:Double
+    let dayHigh:Double
+    let yearHigh:Double
+    let yearLow:Double
+    let marketCap:Int
+    let priceAvg50:Double
+    let priceAvg200:Double
+    let exchange:String
+    let eps:Double
+    let pe:Double
+    let sharesOutstanding:Int
 }

@@ -17,9 +17,12 @@ struct TickerAvQuoteRow: View {
                 ZStack(alignment:.center){
                     Rectangle()
                         .frame(width: 55,height: 55)
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
-                        .shadow(radius: 10)
+                        .clipShape(RoundedRectangle(cornerRadius: 15))
                         .opacity(0.25)
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 15 )
+                                .stroke(lineWidth: 0.5)
+                        }
                         
                     image
                         .resizable()
@@ -36,7 +39,7 @@ struct TickerAvQuoteRow: View {
                         .clipShape(RoundedRectangle(cornerRadius: 12))
                         .shadow(radius: 10)
                         .opacity(0.25)
-                    Text(tickerQuoteAv.ticker.prefix(2).uppercased())
+                    Text(tickerQuoteAv.ticker)
                         .frame(width: 36,height: 36)
                         .clipShape(RoundedRectangle(cornerRadius: 12))
                 }

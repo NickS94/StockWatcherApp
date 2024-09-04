@@ -69,5 +69,22 @@ struct TickerQuoteRow: View {
 }
 
 #Preview {
-    TickerQuoteRow(tickerQuote: TickerQuote(symbol: "AAPL", name: "Apple Inc.", price: 197.54, changesPercentage: 0.43, change: 0.1))
+    TickerQuoteRow(tickerQuote: TickerQuote(
+        symbol: "AAPL",
+        name: "Apple Inc.",
+        price: 229.97,
+        changesPercentage: 0.0783,
+        change: 0.18,
+        dayLow: 229.345,
+        dayHigh: 230.4,
+        yearHigh: 237.23,
+        yearLow: 164.08,
+        marketCap: 3496486877000,
+        priceAvg50: 221.2112,
+        priceAvg200: 193.88576,
+        exchange: "NASDAQ",
+        eps: 6.57,
+        pe: 35,
+        sharesOutstanding: 15204100000
+    ))
 }
