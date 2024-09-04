@@ -10,9 +10,11 @@ import SwiftUI
 struct TabsView: View {
     @ObservedObject var hotListsViewModel:HotTickersViewModel
     @ObservedObject var newsViewModel:NewsViewModel
+    @ObservedObject var tickerProfileViewModel:TickerProfileViewModel
+    @ObservedObject var homeViewModel:HomeViewModel
     var body: some View {
         TabView{
-            HotListsView(hotListViewModel: hotListsViewModel)
+            HotListsView(hotListViewModel: hotListsViewModel, tickerProfileViewModel: tickerProfileViewModel, homeViewModel: homeViewModel)
                 .tabItem {
                     VStack {
                         Image(systemName: "flame")
@@ -32,5 +34,5 @@ struct TabsView: View {
 }
 
 #Preview {
-    TabsView(hotListsViewModel: HotTickersViewModel(repository: MockRepository()), newsViewModel: NewsViewModel(repository: MockRepository()))
+    TabsView(hotListsViewModel: HotTickersViewModel(repository: MockRepository()), newsViewModel: NewsViewModel(repository: MockRepository()), tickerProfileViewModel: TickerProfileViewModel(repository: MockRepository()), homeViewModel: HomeViewModel(repository: MockRepository()))
 }

@@ -19,10 +19,7 @@ struct ProfileHeaderItems: View {
                 VStack(alignment:.leading){
                     Text("\(String(tickerQuote.price))$")
                         .monospacedStyle(size: 25, weight: .semibold)
-                    
-                    
                     HStack {
-                        
                         Text(String(tickerQuote.change))
                             .monospacedStyle(size: 16, weight: .regular)
                             .colouredValue(value: tickerQuote.change)
@@ -63,9 +60,9 @@ struct ProfileHeaderItems: View {
             }
         }
         .padding()
-        
     }
 }
+
 
 #Preview {
     ProfileHeaderItems(tickerQuote: TickerQuote(
