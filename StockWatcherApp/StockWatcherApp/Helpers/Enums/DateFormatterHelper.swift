@@ -17,11 +17,10 @@ enum DateFormatterHelper {
         dateFormatter.dateFormat = format
         
         if let date = dateFormatter.date(from: dateString) {
-            let outputFormatter = DateFormatter()
-            outputFormatter.dateStyle = .medium
-            outputFormatter.timeStyle = .none
+            dateFormatter.dateStyle = .medium
+            dateFormatter.timeStyle = .none
             
-            return outputFormatter.string(from: date)
+            return dateFormatter.string(from: date)
         } else {
             return "Invalid Date"
         }

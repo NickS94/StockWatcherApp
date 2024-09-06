@@ -13,7 +13,7 @@ struct PriceRangeTable: View {
         VStack(spacing: 50){
             Group{
                 Gauge(value:tickerQuote.price ?? 0, in: (tickerQuote.dayLow ?? 0)...(tickerQuote.dayHigh ?? 0)){
-                    Text("Today Range")
+                    Text("Today's Range")
                         .padding()
                 } currentValueLabel: {
                     Text("")
@@ -24,9 +24,8 @@ struct PriceRangeTable: View {
                 }
                 .gaugeTintByValue(tickerQuote.dayLow ?? 0, tickerQuote.dayHigh ?? 0, tickerQuote.price ?? 0)
                 
-                
                 Gauge(value: tickerQuote.price ?? 0, in: (tickerQuote.yearLow ?? 0)...(tickerQuote.yearHigh ?? 0)){
-                        Text("Year Range")
+                        Text("Year's Range")
                         .padding()
                 }currentValueLabel: {
                     Text("")
@@ -39,9 +38,8 @@ struct PriceRangeTable: View {
                 
             }
             .gaugeStyle(.accessoryLinearCapacity)
-            .monospacedStyle(size: 16, weight: .light)
+            .monospacedStyle(size: 14, weight: .semibold)
         }
-        .padding()
     }
 }
 

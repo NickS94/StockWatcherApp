@@ -21,10 +21,14 @@ struct TickerDetailsView: View {
             
             ProfileHeaderItems(tickerQuote: homeViewModel.tickerQuote)
             
+            KeyRatiosTable(tickerQuote: homeViewModel.tickerQuote, dividend: tickerProfileViewModel.tickerProfile.lastDiv ?? 0, beta: tickerProfileViewModel.tickerProfile.beta ?? 0, homeViewModel: homeViewModel)
+            
             PriceRangeTable(tickerQuote: homeViewModel.tickerQuote)
             
             CompanyProfileView(tickerProfileViewModel: tickerProfileViewModel, showFullDescription: $showFullDescription, lineLimit: $lineLimit)
         }
+        .padding()
+
         .onAppear{
             tickerProfileViewModel.fetchTickerProfile(tickerSymbol)
             homeViewModel.getTickerQuote(tickerSymbol: tickerSymbol)

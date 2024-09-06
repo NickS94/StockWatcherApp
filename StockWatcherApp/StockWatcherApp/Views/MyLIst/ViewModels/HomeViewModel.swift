@@ -79,4 +79,18 @@ class HomeViewModel:ObservableObject{
             }
         }
     }
+    
+    func generateTickerKeyRatios(ticker:TickerQuote,divident:Double,beta:Double)->[(String,Double)]{
+        
+        var resultList:[(String,Double)] = []
+        
+        resultList.append(("MARKET CAP", Double(ticker.marketCap ?? 0)))
+        resultList.append(("EPS", ticker.eps ?? 0))
+        resultList.append(("P/E RATIO", ticker.pe ?? 0))
+        resultList.append(("DIVIDEND", divident))
+        resultList.append(("BETA", beta))
+        resultList.append(("SHARES OUTSTANDING", Double(ticker.sharesOutstanding ?? 0)))
+        
+        return resultList
+    }
 }
