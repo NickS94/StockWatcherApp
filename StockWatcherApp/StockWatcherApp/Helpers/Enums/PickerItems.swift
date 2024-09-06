@@ -14,3 +14,8 @@ enum HotListsPickerItems:String,CaseIterable{
     case losers = "Losers"
     
 }
+
+enum DetailsViewPickerItems:String,CaseIterable{
+    case profile = "Profile"
+    case news = "News"
+}

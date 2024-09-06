@@ -9,9 +9,8 @@ import SwiftUI
 
 struct TickerDetailsView: View {
     
-    //This view is created like this only for testing because i had some problems with the information table i wanted to implement.
     @ObservedObject var tickerProfileViewModel : TickerProfileViewModel
-    @ObservedObject var homeViewModel : HomeViewModel
+    @ObservedObject var detailsViewModel : DetailsViewModel
     @State var showFullDescription = false
     @State var lineLimit = 6
     let tickerSymbol:String
@@ -19,11 +18,11 @@ struct TickerDetailsView: View {
     var body: some View {
         ScrollView{
             
-            ProfileHeaderItems(tickerQuote: homeViewModel.tickerQuote)
+            ProfileHeaderItems(tickerQuote: detailsViewModel.tickerQuote)
             
-            KeyRatiosTable(tickerQuote: homeViewModel.tickerQuote, dividend: tickerProfileViewModel.tickerProfile.lastDiv ?? 0, beta: tickerProfileViewModel.tickerProfile.beta ?? 0, homeViewModel: homeViewModel)
+            KeyRatiosTable(dividend: tickerProfileViewModel.tickerProfile.lastDiv ?? 0, beta: tickerProfileViewModel.tickerProfile.beta ?? 0, detailsViewModel: detailsViewModel)
             
-            PriceRangeTable(tickerQuote: homeViewModel.tickerQuote)
+            PriceRangeTable(tickerQuote: detailsViewModel.tickerQuote)
             
             CompanyProfileView(tickerProfileViewModel: tickerProfileViewModel, showFullDescription: $showFullDescription, lineLimit: $lineLimit)
         }
@@ -31,11 +30,11 @@ struct TickerDetailsView: View {
 
         .onAppear{
             tickerProfileViewModel.fetchTickerProfile(tickerSymbol)
-            homeViewModel.getTickerQuote(tickerSymbol: tickerSymbol)
+            detailsViewModel.getTickerQuote(tickerSymbol: tickerSymbol)
         }
     }
 }
 
 #Preview {
-    TickerDetailsView(tickerProfileViewModel: TickerProfileViewModel(repository: MockRepository()), homeViewModel: HomeViewModel(repository: MockRepository()), tickerSymbol: "AAPL")
+    TickerDetailsView(tickerProfileViewModel: TickerProfileViewModel(repository: MockRepository()), detailsViewModel: DetailsViewModel(repository: MockRepository()), tickerSymbol: "AAPL")
 }

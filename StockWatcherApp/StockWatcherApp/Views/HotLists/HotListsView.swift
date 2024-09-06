@@ -10,7 +10,7 @@ import SwiftUI
 struct HotListsView: View {
     @ObservedObject var hotListViewModel:HotTickersViewModel
     @ObservedObject var tickerProfileViewModel:TickerProfileViewModel
-    @ObservedObject var homeViewModel:HomeViewModel
+    @ObservedObject var detailsViewModel:DetailsViewModel
     var body: some View {
         
         NavigationStack{
@@ -29,7 +29,7 @@ struct HotListsView: View {
                     .monospacedStyle(size: 22, weight: .bold)
                 // Used one list component and set the hotList from view model inside,
                 //so the outcome is what the hotList have as a value.
-                HotListComponent(tickerProfileViewModel: tickerProfileViewModel, homeViewModel: homeViewModel, hotList: hotListViewModel.hotList)
+                HotListComponent(tickerProfileViewModel: tickerProfileViewModel, detailsViewModel: detailsViewModel, hotList: hotListViewModel.hotList)
             }
             .onAppear{
                 // on appear of this view we load the list that is set as default . In this case is the most traded tickers.
@@ -49,5 +49,5 @@ struct HotListsView: View {
 
 #Preview {
     // Using mock repository in our view so we are efficient with our API calls and not overloading the server for no reason .
-    HotListsView(hotListViewModel: HotTickersViewModel(repository: MockRepository()), tickerProfileViewModel: TickerProfileViewModel(repository: MockRepository()), homeViewModel: HomeViewModel(repository:MockRepository()))
+    HotListsView(hotListViewModel: HotTickersViewModel(repository: MockRepository()), tickerProfileViewModel: TickerProfileViewModel(repository: MockRepository()), detailsViewModel:DetailsViewModel(repository:MockRepository()))
 }

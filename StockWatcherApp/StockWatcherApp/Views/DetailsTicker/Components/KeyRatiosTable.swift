@@ -8,10 +8,9 @@
 import SwiftUI
 
 struct KeyRatiosTable: View {
-    let tickerQuote:TickerQuote
     let dividend:Double
     let beta:Double
-    @ObservedObject var homeViewModel:HomeViewModel
+    @ObservedObject var detailsViewModel:DetailsViewModel
     
     
     var body: some View {
@@ -20,10 +19,10 @@ struct KeyRatiosTable: View {
                 .font(.title2.bold())
                 .padding(.bottom)
             
-            ForEach(homeViewModel.generateTickerKeyRatios(ticker: tickerQuote, divident: dividend,beta: beta),id: \.0){ label , value in
+            ForEach(detailsViewModel.generateTickerKeyRatios(divident: dividend,beta: beta),id: \.0){ label , value in
                 HStack{
                     Text(label)
-                        .monospacedStyle(size: 12, weight: .regular)
+                        .monospacedStyle(size: 14, weight: .regular)
                         .foregroundStyle(.gray)
                     Spacer()
                     Text("\(NumberFormatterToString.formattedNumber(number:Int(value)))")
@@ -37,22 +36,5 @@ struct KeyRatiosTable: View {
 
 
 #Preview {
-    KeyRatiosTable(tickerQuote: TickerQuote(
-        symbol: "AAPL",
-        name: "Apple Inc.",
-        price: 229.30,
-        changesPercentage: 0.0783,
-        change: 0.18,
-        dayLow: 199.5,
-        dayHigh: 285.3,
-        yearHigh: 237.23,
-        yearLow: 164.08,
-        marketCap: 3496486877000,
-        priceAvg50: 221.2112,
-        priceAvg200: 193.88576,
-        exchange: "NASDAQ",
-        eps: 6.57,
-        pe: 35,
-        sharesOutstanding: 15204100000
-    ),dividend: 2,beta: 6 , homeViewModel: HomeViewModel(repository: MockRepository()))
+    KeyRatiosTable(dividend: 2,beta: 6 , detailsViewModel: DetailsViewModel(repository: MockRepository()))
 }

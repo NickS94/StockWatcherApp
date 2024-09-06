@@ -18,9 +18,9 @@ struct PriceRangeTable: View {
                 } currentValueLabel: {
                     Text("")
                 } minimumValueLabel: {
-                    Text(String(tickerQuote.dayLow ?? 0))
+                    Text(String(tickerQuote.dayLow ?? 0) + "$")
                 } maximumValueLabel: {
-                    Text(String(tickerQuote.dayHigh ?? 0))
+                    Text(String(tickerQuote.dayHigh ?? 0) + "$")
                 }
                 .gaugeTintByValue(tickerQuote.dayLow ?? 0, tickerQuote.dayHigh ?? 0, tickerQuote.price ?? 0)
                 
@@ -30,9 +30,9 @@ struct PriceRangeTable: View {
                 }currentValueLabel: {
                     Text("")
                 }minimumValueLabel: {
-                        Text(String(tickerQuote.yearLow ?? 0))
+                        Text(String(tickerQuote.yearLow ?? 0) + "$")
                 }maximumValueLabel: {
-                        Text(String(tickerQuote.yearHigh ?? 0))
+                        Text(String(tickerQuote.yearHigh ?? 0) + "$")
                 }
                 .gaugeTintByValue(tickerQuote.yearLow ?? 0, tickerQuote.yearHigh ?? 0, tickerQuote.price ?? 0)
                 

@@ -15,26 +15,7 @@ class HomeViewModel:ObservableObject{
     
     
     @Published var myTickersList:[TickerQuote] = []
-    
-    @Published var tickerQuote = TickerQuote(
-        symbol: "",
-        name: "",
-        price: 0,
-        changesPercentage: 0,
-        change: 0,
-        dayLow: 0,
-        dayHigh: 0,
-        yearHigh: 0,
-        yearLow: 0,
-        marketCap: 0,
-        priceAvg50: 0,
-        priceAvg200: 0,
-        exchange: "",
-        eps: 0,
-        pe: 0,
-        sharesOutstanding: 0
-    )
-    
+ 
     @Published var tickerListInput:[String] = []
     
     let repository:RepositoryProtocol
@@ -62,35 +43,5 @@ class HomeViewModel:ObservableObject{
     
     
     
-    func getTickerQuote(tickerSymbol:String){
-        Task{
-            do{
-                let temporaryList = [tickerSymbol]
-                let results = try await repository.fetchQuoteList(temporaryList)
-                
-                if let results = results{
-                    
-                    if let ticker = results.first{
-                        tickerQuote = ticker
-                    }
-                }
-            }catch{
-                print(error)
-            }
-        }
-    }
-    
-    func generateTickerKeyRatios(ticker:TickerQuote,divident:Double,beta:Double)->[(String,Double)]{
-        
-        var resultList:[(String,Double)] = []
-        
-        resultList.append(("MARKET CAP", Double(ticker.marketCap ?? 0)))
-        resultList.append(("EPS", ticker.eps ?? 0))
-        resultList.append(("P/E RATIO", ticker.pe ?? 0))
-        resultList.append(("DIVIDEND", divident))
-        resultList.append(("BETA", beta))
-        resultList.append(("SHARES OUTSTANDING", Double(ticker.sharesOutstanding ?? 0)))
-        
-        return resultList
-    }
+  
 }
