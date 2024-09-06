@@ -13,7 +13,7 @@ struct CompanyProfileView: View {
     @Binding var lineLimit :Int
     var body: some View {
         VStack(alignment:.leading){
-            GeneralInformation(tickerProfile: tickerProfileViewModel.tickerProfile , tickerProfileViewModel: tickerProfileViewModel, showFullDescription: $showFullDescription, lineLimit: $lineLimit)
+            GeneralInformation(tickerProfileViewModel: tickerProfileViewModel, showFullDescription: $showFullDescription, lineLimit: $lineLimit)
         }
     }
     

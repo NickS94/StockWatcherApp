@@ -71,7 +71,7 @@ class TickerProfileViewModel:ObservableObject{
     /**
      Use this method to create an array from tuples to use it for the table in the details view to show the general information of the company.
      */
-    func generateInformationTable(tickerProfile:TickerProfile)->[(String,String)]{
+    func generateInformationTable()->[(String,String)]{
         
         var resultArray :[(String,String)] = []
         
