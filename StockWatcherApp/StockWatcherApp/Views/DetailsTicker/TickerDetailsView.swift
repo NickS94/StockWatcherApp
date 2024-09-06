@@ -18,17 +18,20 @@ struct TickerDetailsView: View {
     
     var body: some View {
         ScrollView{
+            
             ProfileHeaderItems(tickerQuote: homeViewModel.tickerQuote)
+            
+            PriceRangeTable(tickerQuote: homeViewModel.tickerQuote)
             
             CompanyProfileView(tickerProfileViewModel: tickerProfileViewModel, showFullDescription: $showFullDescription, lineLimit: $lineLimit)
         }
         .onAppear{
             tickerProfileViewModel.fetchTickerProfile(tickerSymbol)
-            homeViewModel.fetchFmpTickersList(tickerSymbol: tickerSymbol)
+            homeViewModel.getTickerQuote(tickerSymbol: tickerSymbol)
         }
     }
 }
 
 #Preview {
-    TickerDetailsView(tickerProfileViewModel: TickerProfileViewModel(repository: MockRepository()), homeViewModel: HomeViewModel(repository: MockRepository()), tickerSymbol: "")
+    TickerDetailsView(tickerProfileViewModel: TickerProfileViewModel(repository: MockRepository()), homeViewModel: HomeViewModel(repository: MockRepository()), tickerSymbol: "AAPL")
 }

@@ -17,22 +17,22 @@ class HomeViewModel:ObservableObject{
     @Published var myTickersList:[TickerQuote] = []
     
     @Published var tickerQuote = TickerQuote(
-        symbol: "AAPL",
-        name: "Apple Inc.",
-        price: 229.97,
-        changesPercentage: 0.0783,
-        change: 0.18,
-        dayLow: 229.345,
-        dayHigh: 230.4,
-        yearHigh: 237.23,
-        yearLow: 164.08,
-        marketCap: 3496486877000,
-        priceAvg50: 221.2112,
-        priceAvg200: 193.88576,
-        exchange: "NASDAQ",
-        eps: 6.57,
-        pe: 35,
-        sharesOutstanding: 15204100000
+        symbol: "",
+        name: "",
+        price: 0,
+        changesPercentage: 0,
+        change: 0,
+        dayLow: 0,
+        dayHigh: 0,
+        yearHigh: 0,
+        yearLow: 0,
+        marketCap: 0,
+        priceAvg50: 0,
+        priceAvg200: 0,
+        exchange: "",
+        eps: 0,
+        pe: 0,
+        sharesOutstanding: 0
     )
     
     @Published var tickerListInput:[String] = []
@@ -45,24 +45,34 @@ class HomeViewModel:ObservableObject{
     
     //MARK: Methods
     
-    func fetchFmpTickersList(tickerSymbol:String){
+    func fetchFmpTickersList(){
         Task{
             do{
                 let results = try await repository.fetchQuoteList(tickerListInput)
                 
                 if let results = results{
                     myTickersList = results
+                }
+            }catch{
+                print(error)
+            }
+        }
+    }
+    
+    
+    
+    
+    func getTickerQuote(tickerSymbol:String){
+        Task{
+            do{
+                let temporaryList = [tickerSymbol]
+                let results = try await repository.fetchQuoteList(temporaryList)
+                
+                if let results = results{
                     
-                    tickerListInput.append(tickerSymbol)
-                    
-                    let filteredTickers = results.filter { ticker in
-                        ticker.symbol == tickerSymbol
+                    if let ticker = results.first{
+                        tickerQuote = ticker
                     }
-                    
-                    if let resultFilter = filteredTickers.first{
-                        tickerQuote = resultFilter
-                    }
-                    
                 }
             }catch{
                 print(error)

@@ -72,7 +72,6 @@ class ApiClient{
                 throw ApiErrors.unknownError
             }
             
-            
             print(statusCode)
             
             //Here we handle the errors from API with the most common status codes.
@@ -82,17 +81,23 @@ class ApiClient{
                     return try decoder.decode(T.self, from: data)
                 }catch{
                     print(error)
+                    print(ApiErrors.decodingError.rawValue)
                     throw ApiErrors.decodingError
                 }
             case 400:
+                print(ApiErrors.badResponse.rawValue)
                 throw ApiErrors.badResponse
             case 401:
+                print(ApiErrors.authenticationMissing.rawValue)
                 throw ApiErrors.authenticationMissing
             case 404:
+                print(ApiErrors.notFound.rawValue)
                 throw ApiErrors.notFound
             case 429:
+                print(ApiErrors.tooManyRequests.rawValue)
                 throw ApiErrors.tooManyRequests
             default:
+                print(ApiErrors.unknownError.rawValue)
                 throw ApiErrors.unknownError
             }
         }

@@ -12,7 +12,7 @@ struct TickerQuoteRow: View {
     
     var body: some View {
         HStack{
-            AsyncImage(url: URL(string: ImageUrls.fmpTickerImage(ticker:tickerQuote.symbol).urlString)){ image in
+            AsyncImage(url: URL(string: ImageUrls.fmpTickerImage(ticker:tickerQuote.symbol ?? "").urlString)){ image in
                 ZStack(alignment:.center){
                     Rectangle()
                         .frame(width: 55,height: 55)
@@ -34,32 +34,32 @@ struct TickerQuoteRow: View {
                         .clipShape(RoundedRectangle(cornerRadius: 12))
                         .shadow(radius: 10)
                         .opacity(0.25)
-                    Text(tickerQuote.symbol.prefix(2).uppercased())
+                    Text(tickerQuote.symbol ?? "")
                         .frame(width: 36,height: 36)
                         .clipShape(RoundedRectangle(cornerRadius: 12))
                 }
             }
             
             VStack(alignment:.leading,spacing: 8){
-                Text(tickerQuote.symbol)
+                Text(tickerQuote.symbol ?? "")
                     .monospacedStyle(size: 16, weight: .bold)
-                Text(tickerQuote.name.prefix(12))
+                Text(tickerQuote.name?.prefix(12) ?? "")
                     .monospacedStyle(size: 12, weight: .light)
             }
             
             Spacer()
             
             VStack(alignment:.trailing,spacing: 8){
-                Text(String(tickerQuote.price)+"$")
+                Text(String(tickerQuote.price ?? 0)+"$")
                     .monospacedStyle(size: 14, weight: .semibold)
                 
                 HStack {
-                    Text(String(format: "%.2f", tickerQuote.change))
+                    Text(String(format: "%.2f", tickerQuote.change ?? 0))
                         .monospacedStyle(size: 12, weight: .regular)
-                        .colouredValue(value: tickerQuote.change)
-                    Text("(\(String(tickerQuote.changesPercentage))%)")
+                        .colouredValue(value: tickerQuote.change ?? 0)
+                    Text("(\(String(tickerQuote.changesPercentage ?? 0))%)")
                         .monospacedStyle(size: 12, weight: .regular)
-                        .colouredValue(value: tickerQuote.changesPercentage)
+                        .colouredValue(value: tickerQuote.changesPercentage ?? 0)
                 }
             }
         }

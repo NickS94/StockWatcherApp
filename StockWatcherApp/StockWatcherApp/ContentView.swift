@@ -8,14 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject var hotListsViewModel = HotTickersViewModel(repository: MainRepository())
-    @StateObject var newsViewModel = NewsViewModel(repository: MainRepository())
+    @StateObject var hotListsViewModel = HotTickersViewModel(repository: MockRepository())
+    @StateObject var newsViewModel = NewsViewModel(repository: MockRepository())
     @StateObject var tickerProfileViewModel = TickerProfileViewModel(repository: MainRepository())
     @StateObject var homeViewModel = HomeViewModel(repository: MainRepository())
     var body: some View {
         TabsView(hotListsViewModel: hotListsViewModel, newsViewModel: newsViewModel, tickerProfileViewModel: tickerProfileViewModel, homeViewModel: homeViewModel)
     }
 }
+
 
 #Preview {
     ContentView()
