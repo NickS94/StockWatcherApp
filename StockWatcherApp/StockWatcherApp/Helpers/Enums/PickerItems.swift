@@ -19,3 +19,29 @@ enum DetailsViewPickerItems:String,CaseIterable{
     case profile = "Profile"
     case news = "News"
 }
+
+enum ChartTimeframes:String,CaseIterable{
+    case oneMinute = "1min"
+    case fiveMinutes = "5min"
+    case fifthteenMinutes = "15m"
+    case thirtyMinutes = "30m"
+    case oneHour = "1hour"
+    case fourHours = "4hour"
+    
+    var buttonLabels:String{
+        switch self {
+        case .oneMinute:
+            "1m"
+        case .fiveMinutes:
+            "5m"
+        case .fifthteenMinutes:
+            "15m"
+        case .thirtyMinutes:
+            "30m"
+        case .oneHour:
+            "1H"
+        case .fourHours:
+            "4H"
+        }
+    }
+}

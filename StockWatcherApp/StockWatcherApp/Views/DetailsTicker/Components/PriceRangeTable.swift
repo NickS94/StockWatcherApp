@@ -57,7 +57,8 @@ struct PriceRangeTable: View {
         marketCap: 3496486877000,
         priceAvg50: 221.2112,
         priceAvg200: 193.88576,
-        exchange: "NASDAQ",
+        exchange: "NASDAQ", 
+        previousClose: 226.5 ,
         eps: 6.57,
         pe: 35,
         sharesOutstanding: 15204100000

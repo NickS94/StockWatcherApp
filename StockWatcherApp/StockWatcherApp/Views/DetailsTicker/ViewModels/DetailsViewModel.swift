@@ -7,12 +7,10 @@
 
 import Foundation
 
-
+@MainActor
 class DetailsViewModel:ObservableObject{
     
-    
     //MARK: Properties
-    
     
     @Published var tickerQuote = TickerQuote(
         symbol: "",
@@ -28,21 +26,24 @@ class DetailsViewModel:ObservableObject{
         priceAvg50: 0,
         priceAvg200: 0,
         exchange: "",
+        previousClose: 0,
         eps: 0,
         pe: 0,
         sharesOutstanding: 0
     )
     
+    @Published var chartTimestampsList:[ChartQuote] = []
     
+    @Published var chartRange:ChartTimeframes = .fiveMinutes
+    
+    @Published var fromDate = ""
+    @Published var toDate = ""
     
     let repository:RepositoryProtocol
     
     init( repository: RepositoryProtocol) {
         self.repository = repository
     }
-    
-    
-    
     
     //MARK: Methods
     
@@ -77,6 +78,24 @@ class DetailsViewModel:ObservableObject{
         
         return resultList
     }
+    
+    
+    func fetchTickerChart(tickerSymbol:String){
+        Task{
+            do{
+                let results = try await repository.fetchChart(chartRange.rawValue, tickerSymbol, fromDate, toDate)
+                
+                if let results = results{
+                
+                    chartTimestampsList = results
+                }
+            }catch{
+                print(error)
+            }
+        }
+    }
+    
+    
     
 }
 

@@ -83,6 +83,7 @@ struct TickerQuoteRow: View {
         priceAvg50: 221.2112,
         priceAvg200: 193.88576,
         exchange: "NASDAQ",
+        previousClose: 226.5,
         eps: 6.57,
         pe: 35,
         sharesOutstanding: 15204100000

@@ -7,11 +7,7 @@
 
 import Foundation
 
-struct TickerQuote:Codable,Identifiable{
-    
-    var id:String{
-        return symbol ?? ""
-    }
+struct TickerQuote:Codable{
 
     let symbol:String?
     let name:String?
@@ -26,6 +22,7 @@ struct TickerQuote:Codable,Identifiable{
     let priceAvg50:Double?
     let priceAvg200:Double?
     let exchange:String?
+    let previousClose:Double?
     let eps:Double?
     let pe:Double?
     let sharesOutstanding:Int?

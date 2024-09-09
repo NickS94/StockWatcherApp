@@ -13,7 +13,7 @@ enum NumberFormatterToString{
            
            var formattedValue: String {
                
-               switch number {
+               switch self {
                    
                case _ where number >= 1000000000000:
                    return "\(String(format: "%.2f", Double(number) / 1000000000000)) T."

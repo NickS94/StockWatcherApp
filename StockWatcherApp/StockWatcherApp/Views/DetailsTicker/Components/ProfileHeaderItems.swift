@@ -20,11 +20,11 @@ struct ProfileHeaderItems: View {
                     Text("\(String(tickerQuote.price ?? 0))$")
                         .monospacedStyle(size: 25, weight: .semibold)
                     HStack {
-                        Text(String(tickerQuote.change ?? 0))
+                        Text(String(format:"%.2f",tickerQuote.change ?? 0))
                             .monospacedStyle(size: 16, weight: .regular)
                             .colouredValue(value: tickerQuote.change ?? 0)
                         
-                        Text("(\(String(tickerQuote.changesPercentage ?? 0)) %)")
+                        Text("(\(String(format:"%.2f",tickerQuote.changesPercentage ?? 0)) %)")
                             .monospacedStyle(size: 16, weight: .regular)
                             .colouredValue(value: tickerQuote.changesPercentage ?? 0)
                     }
@@ -79,6 +79,7 @@ struct ProfileHeaderItems: View {
         priceAvg50: 221.2112,
         priceAvg200: 193.88576,
         exchange: "NASDAQ",
+        previousClose: 226.5,
         eps: 6.57,
         pe: 35,
         sharesOutstanding: 15204100000

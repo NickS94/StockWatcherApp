@@ -12,7 +12,6 @@ struct KeyRatiosTable: View {
     let beta:Double
     @ObservedObject var detailsViewModel:DetailsViewModel
     
-    
     var body: some View {
         VStack(alignment:.leading,spacing: 10){
             Text("Key Ratios")
@@ -27,13 +26,11 @@ struct KeyRatiosTable: View {
                     Spacer()
                     Text("\(NumberFormatterToString.formattedNumber(number:Int(value)))")
                         .monospacedStyle(size: 16, weight: .regular)
-                    
                 }
             }
         }
     }
 }
-
 
 #Preview {
     KeyRatiosTable(dividend: 2,beta: 6 , detailsViewModel: DetailsViewModel(repository: MockRepository()))

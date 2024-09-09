@@ -14,7 +14,7 @@ struct TabsView: View {
     @ObservedObject var detailsViewModel:DetailsViewModel
     var body: some View {
         TabView{
-            HotListsView(hotListViewModel: hotListsViewModel, tickerProfileViewModel: tickerProfileViewModel, detailsViewModel: detailsViewModel)
+            HotListsView(hotListViewModel: hotListsViewModel, tickerProfileViewModel: tickerProfileViewModel, detailsViewModel: detailsViewModel, newsViewModel: newsViewModel)
                 .tabItem {
                     VStack {
                         Image(systemName: "flame")

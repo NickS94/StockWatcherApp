@@ -50,6 +50,8 @@
 		03AF61D02C8B2A38006B1143 /* NumberFormatterHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF61CF2C8B2A38006B1143 /* NumberFormatterHelper.swift */; };
 		03AF61D22C8B7EFE006B1143 /* InfoTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF61D12C8B7EFE006B1143 /* InfoTable.swift */; };
 		03AF61D42C8B829B006B1143 /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF61D32C8B829B006B1143 /* DetailsViewModel.swift */; };
+		03AF61D62C8F11DE006B1143 /* TickerChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF61D52C8F11DE006B1143 /* TickerChart.swift */; };
+		03AF61D82C8F74A1006B1143 /* ChartLineColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF61D72C8F74A1006B1143 /* ChartLineColor.swift */; };
 		03B59C6D2C81F63E002DB53A /* MainRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B59C6C2C81F63E002DB53A /* MainRepository.swift */; };
 		03B59C6F2C81F661002DB53A /* MockRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B59C6E2C81F661002DB53A /* MockRepository.swift */; };
 		03B59C712C81F693002DB53A /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B59C702C81F693002DB53A /* Protocols.swift */; };
@@ -103,6 +105,8 @@
 		03AF61CF2C8B2A38006B1143 /* NumberFormatterHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatterHelper.swift; sourceTree = "<group>"; };
 		03AF61D12C8B7EFE006B1143 /* InfoTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTable.swift; sourceTree = "<group>"; };
 		03AF61D32C8B829B006B1143 /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
+		03AF61D52C8F11DE006B1143 /* TickerChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerChart.swift; sourceTree = "<group>"; };
+		03AF61D72C8F74A1006B1143 /* ChartLineColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartLineColor.swift; sourceTree = "<group>"; };
 		03B59C6A2C81C7B0002DB53A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		03B59C6C2C81F63E002DB53A /* MainRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRepository.swift; sourceTree = "<group>"; };
 		03B59C6E2C81F661002DB53A /* MockRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRepository.swift; sourceTree = "<group>"; };
@@ -328,6 +332,7 @@
 				03718EF52C7E4D45007284CB /* ApiKeys.swift */,
 				03718EF72C7E4E01007284CB /* ApiErrors.swift */,
 				033372D82C85B396009A611A /* PickerItems.swift */,
+				03AF61D72C8F74A1006B1143 /* ChartLineColor.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -377,6 +382,7 @@
 				03AF61C32C885483006B1143 /* ProfileHeaderItems.swift */,
 				03AF61C92C8AF782006B1143 /* PriceRangeTable.swift */,
 				03AF61CD2C8B1D7D006B1143 /* KeyRatiosTable.swift */,
+				03AF61D52C8F11DE006B1143 /* TickerChart.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -502,6 +508,7 @@
 				03967A752C808F3F00707163 /* ColouredValuesStrings.swift in Sources */,
 				03AF61CE2C8B1D7D006B1143 /* KeyRatiosTable.swift in Sources */,
 				033372DF2C85E5F3009A611A /* NewsListView.swift in Sources */,
+				03AF61D82C8F74A1006B1143 /* ChartLineColor.swift in Sources */,
 				033372E72C85F64E009A611A /* NewsDetails.swift in Sources */,
 				03967A572C7F29D800707163 /* TickerSearch.swift in Sources */,
 				033372F22C8711D4009A611A /* CompanyProfileView.swift in Sources */,
@@ -522,6 +529,7 @@
 				03B59C732C820A07002DB53A /* TickerNews.swift in Sources */,
 				03967A6F2C7FE47700707163 /* AlphaAvantageResponse.swift in Sources */,
 				03967A612C7FB3FF00707163 /* MonospacedStyle.swift in Sources */,
+				03AF61D62C8F11DE006B1143 /* TickerChart.swift in Sources */,
 				03718EF22C7E003C007284CB /* ApiClient.swift in Sources */,
 				03AF61CA2C8AF782006B1143 /* PriceRangeTable.swift in Sources */,
 				03967A592C7F5D1800707163 /* TickerQuote.swift in Sources */,

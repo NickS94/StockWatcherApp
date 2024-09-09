@@ -12,24 +12,29 @@ struct TickersNewsRow: View {
     var body: some View {
         HStack(alignment:.top){
             VStack(alignment:.leading,spacing: 10){
-                Text(tickerNews.title)
-                    .monospacedStyle(size: 14, weight: .regular)
+                Group {
+                    Text(tickerNews.title)
+                        .monospacedStyle(size: 14, weight: .regular)
                     .lineLimit(3)
-                HStack{
-                    Text(tickerNews.source)
-                        .monospacedStyle(size: 12, weight: .bold)
-                    
-                    Text(DateFormatterHelper.formattedDate(from: tickerNews.timePublished,with: "yyyyMMdd'T'HHmmss"))
-                        .monospacedStyle(size: 10, weight: .semibold)
-                }
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack {
-                        ForEach(tickerNews.tickerSentiment, id: \.ticker) { ticker in
-                            TickerSentimentItem(tickerSentiment: ticker, size: 9)
+                    HStack{
+                        Text(tickerNews.source)
+                            .monospacedStyle(size: 12, weight: .bold)
+                        
+                        Text(DateFormatterHelper.formattedDate(from: tickerNews.timePublished,with: "yyyyMMdd'T'HHmmss"))
+                            .monospacedStyle(size: 10, weight: .semibold)
+                    }
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack {
+                            ForEach(tickerNews.tickerSentiment, id: \.ticker) { ticker in
+                                TickerSentimentItem(tickerSentiment: ticker, size: 9)
+                            }
                         }
                     }
+                    .scrollIndicators(.hidden)
                 }
-                .scrollIndicators(.hidden)
+                .foregroundStyle(.mainApp)
+                .multilineTextAlignment(.leading) 
+                
             }
             Spacer()
             AsyncImage(url: URL(string: tickerNews.bannerImage ?? "")){ image in
@@ -45,6 +50,7 @@ struct TickersNewsRow: View {
             
         }
         .padding()
+        Divider()
     }
 }
 

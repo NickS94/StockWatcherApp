@@ -18,16 +18,17 @@ struct NewsListView: View {
                         NewsDetails(tickerNews: newsItem)
                     } label: {
                         TickersNewsRow(tickerNews: newsItem)
-
+                        
                     }
                 }
+                
+                .navigationTitle(ticker == "" ? "Latest news" : "\(ticker)'s news")
+                .navigationBarTitleDisplayMode(.inline)
             }
             .listStyle(.inset)
-            .navigationTitle(ticker == "" ? "Latest news" : "\(ticker)'s news")
-            .navigationBarTitleDisplayMode(.inline)
-        }
-        .onAppear{
-            newsViewModel.fetchNews(ticker: ticker)
+            .onAppear{
+                newsViewModel.fetchNews(ticker: ticker)
+            }
         }
     }
 }

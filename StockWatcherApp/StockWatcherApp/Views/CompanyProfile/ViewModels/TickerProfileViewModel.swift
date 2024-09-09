@@ -45,6 +45,8 @@ class TickerProfileViewModel:ObservableObject{
         
     let repository:RepositoryProtocol
     
+    @Published var detailsPickerSelection:DetailsViewPickerItems = .profile
+    
     init(repository: RepositoryProtocol) {
         self.repository = repository
     }
@@ -53,13 +55,15 @@ class TickerProfileViewModel:ObservableObject{
     func fetchTickerProfile(_ tickerInput:String){
         Task{
             do{
-                let result = try await repository.fetchCompanyProfile(tickerInput)
-                if let result = result {
-                    let filteredResults = result.filter{
-                        $0.symbol == tickerInput
-                    }
-                    if let resultFilter = filteredResults.first{
-                        tickerProfile = resultFilter
+                if detailsPickerSelection == .profile{
+                    let result = try await repository.fetchCompanyProfile(tickerInput)
+                    if let result = result {
+                        let filteredResults = result.filter{
+                            $0.symbol == tickerInput
+                        }
+                        if let resultFilter = filteredResults.first{
+                            tickerProfile = resultFilter
+                        }
                     }
                 }
             }catch{

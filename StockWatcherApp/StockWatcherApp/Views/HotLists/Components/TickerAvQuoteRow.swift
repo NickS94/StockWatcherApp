@@ -23,13 +23,10 @@ struct TickerAvQuoteRow: View {
                             RoundedRectangle(cornerRadius: 15 )
                                 .stroke(lineWidth: 0.5)
                         }
-                        
                     image
                         .resizable()
                         .frame(width: 42,height: 42)
                         .clipShape(RoundedRectangle(cornerRadius: 12))
-                        
-                        
                 }
                 
             }placeholder: {
@@ -48,7 +45,6 @@ struct TickerAvQuoteRow: View {
             VStack(alignment:.leading,spacing: 8){
                 Text(tickerQuoteAv.ticker)
                     .monospacedStyle(size: 16, weight: .bold)
-               
             }
             
             Spacer()
@@ -56,13 +52,10 @@ struct TickerAvQuoteRow: View {
             VStack(alignment:.trailing,spacing: 8){
                 Text(String(tickerQuoteAv.price)+"$")
                     .monospacedStyle(size: 14, weight: .semibold)
-                
                 HStack {
-                    
                     Text(tickerQuoteAv.changeAmount)
                         .monospacedStyle(size: 12, weight: .regular)
                         .colouredValuesStrings(input: tickerQuoteAv.changeAmount)
-                    
                     Text("(\(tickerQuoteAv.changePercentage))")
                         .monospacedStyle(size: 12, weight: .regular)
                         .colouredValuesStrings(input: tickerQuoteAv.changePercentage)
@@ -74,8 +67,6 @@ struct TickerAvQuoteRow: View {
     }
 }
     
-
-
 #Preview {
     TickerAvQuoteRow(tickerQuoteAv: TickerQuoteAv(ticker: "NKLA", price: "215.0", changeAmount: "1.40", changePercentage: "0.82%", volume: "2039035"))
 }
