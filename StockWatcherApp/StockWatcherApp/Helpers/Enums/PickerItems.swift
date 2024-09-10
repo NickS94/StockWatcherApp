@@ -23,8 +23,8 @@ enum DetailsViewPickerItems:String,CaseIterable{
 enum ChartTimeframes:String,CaseIterable{
     case oneMinute = "1min"
     case fiveMinutes = "5min"
-    case fifthteenMinutes = "15m"
-    case thirtyMinutes = "30m"
+    case fifthteenMinutes = "15min"
+    case thirtyMinutes = "30min"
     case oneHour = "1hour"
     case fourHours = "4hour"
     

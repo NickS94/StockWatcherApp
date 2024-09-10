@@ -9,34 +9,40 @@ import SwiftUI
 import Charts
 
 struct TickerChart: View {
+    @ObservedObject var detailsViewModel:DetailsViewModel
     let chartTimeStampList:[ChartQuote]
     let lastClose:Double
-    
     var body: some View {
-        
-        Chart {
-            ForEach(chartTimeStampList,id:\.date) { chartQuote in
-                
-                LineMark(x: .value("Time", chartQuote.date), y:.value("Close", chartQuote.close))
-                    .foregroundStyle(ChartLineColor.chartLineColor (lastClose: lastClose, chartQuoteList: chartTimeStampList))
-                
-                AreaMark(x: .value("Time", chartQuote.date), yStart: .value("Min",chartTimeStampList.map{$0.close}.min() ?? 0),yEnd: .value("Max", chartQuote.close))
-                    .foregroundStyle(LinearGradient(
-                        gradient: Gradient(colors: [
-                            ChartLineColor.chartLineColor(lastClose: lastClose, chartQuoteList: chartTimeStampList)
-                            ,.clear]),
-                        startPoint: .top,
-                        endPoint: .bottom))
-                
+        VStack {
+            Chart {
+                ForEach(chartTimeStampList,id:\.date) { chartQuote in
+                    
+                    LineMark(x: .value("Time",chartQuote.date), y:.value("Close", chartQuote.close))
+                        .foregroundStyle(ChartLineColor.chartLineColor (lastClose: lastClose, chartQuoteList: chartTimeStampList))
+                    
+                    AreaMark(x: .value("Time", chartQuote.date), yStart: .value("Min",detailsViewModel.priceMapping().min() ?? 0),yEnd: .value("Max", chartQuote.close))
+                        .foregroundStyle(LinearGradient(
+                            gradient: Gradient(colors: [
+                                ChartLineColor.chartLineColor(lastClose: lastClose, chartQuoteList: chartTimeStampList)
+                                ,.clear]),
+                            startPoint: .top,
+                            endPoint: .bottom)).opacity(0.6)
+                    
+                    RuleMark(y:.value("Previous Close", lastClose))
+                        .lineStyle(.init(lineWidth: 1,dash: [2]))
+                        .foregroundStyle(.gray.opacity(0.8))
+                }
             }
+            .chartYScale(domain: (detailsViewModel.priceMapping().min() ?? 0)...(detailsViewModel.priceMapping().max() ?? 0))
+            .chartXAxis(.hidden)
         }
-        .frame(maxWidth: .infinity,maxHeight: 400)
-        .chartYScale(domain: (chartTimeStampList.map{$0.close}.min() ?? 0)...(chartTimeStampList.map{$0.close}.max() ?? 0))
-        .chartXAxis(.hidden)
+        .frame(height: 200)
     }
 }
+
+
 #Preview {
-    TickerChart(chartTimeStampList: [ ChartQuote(date: "2023-09-08 09:30:00", open: 177.50, low: 177.50, high: 178.20, close: 178.90, volume: 1200000),
+    TickerChart(detailsViewModel: DetailsViewModel(repository: MockRepository()), chartTimeStampList: [ ChartQuote(date: "2023-09-08 09:30:00", open: 177.50, low: 177.50, high: 178.20, close: 178.90, volume: 1200000),
                                       ChartQuote(date: "2023-09-08 09:35:00", open: 177.80, low: 177.60, high: 178.00, close: 177.90, volume: 1500000),
                                       ChartQuote(date: "2023-09-08 09:40:00", open: 177.90, low: 177.50, high: 178.10, close: 177.70, volume: 1700000),
                                       ChartQuote(date: "2023-09-08 09:45:00", open: 177.70, low: 177.40, high: 178.00, close: 177.50, volume: 1800000),
@@ -61,3 +67,6 @@ struct TickerChart: View {
                                       ChartQuote(date: "2023-09-08 11:20:00", open: 176.50, low: 176.30, high: 176.70, close: 177.55, volume: 420000),
                                       ChartQuote(date: "2023-09-08 11:25:00", open: 176.40, low: 176.20, high: 176.60, close: 176.30, volume: 410000)], lastClose: 168.5)
 }
+
+
+

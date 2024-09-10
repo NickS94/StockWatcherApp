@@ -12,7 +12,7 @@ enum DateFormatterHelper {
         guard let dateString = dateString else {
             return "Unknown Date"
         }
-
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = format
         
@@ -25,4 +25,17 @@ enum DateFormatterHelper {
             return "Invalid Date"
         }
     }
+}
+
+extension String{
+    var toDate:Date?{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyyMMdd'T'HHmmss"
+     
+        if let date = dateFormatter.date(from: self){
+          return date
+        }
+        return nil
+    }
+    
 }

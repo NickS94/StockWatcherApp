@@ -19,9 +19,18 @@ struct TickerDetailsView: View {
     var body: some View {
         NavigationStack{
             ScrollView{
+               
                 ProfileHeaderItems(tickerQuote: detailsViewModel.tickerQuote)
                 
-                TickerChart(chartTimeStampList: detailsViewModel.chartTimestampsList, lastClose: detailsViewModel.tickerQuote.previousClose ?? 0)
+                Picker("", selection: $detailsViewModel.chartRange) {
+                    ForEach(ChartTimeframes.allCases,id:\.rawValue){ frame in
+                        Text(frame.buttonLabels).tag(frame)
+                    }
+                }
+                .pickerStyle(.segmented)
+
+                TickerChart(detailsViewModel: detailsViewModel, chartTimeStampList: detailsViewModel.chartTimestampsList, lastClose: detailsViewModel.tickerQuote.previousClose ?? 0)
+                
                 KeyRatiosTable(dividend: tickerProfileViewModel.tickerProfile.lastDiv ?? 0, beta: tickerProfileViewModel.tickerProfile.beta ?? 0, detailsViewModel: detailsViewModel)
                 
                 PriceRangeTable(tickerQuote: detailsViewModel.tickerQuote)
@@ -47,19 +56,22 @@ struct TickerDetailsView: View {
                     }
                 }
             }
+            .scrollIndicators(.hidden)
         }
-        .scrollIndicators(.hidden)
         .padding()
         .onAppear{
             tickerProfileViewModel.fetchTickerProfile(tickerSymbol)
             detailsViewModel.getTickerQuote(tickerSymbol: tickerSymbol)
             detailsViewModel.fetchTickerChart(tickerSymbol: tickerSymbol)
         }
+        .onChange(of: detailsViewModel.chartRange, {
+            detailsViewModel.fetchTickerChart(tickerSymbol: tickerSymbol)
+        })
         .onChange(of: tickerProfileViewModel.detailsPickerSelection) {
-            if tickerProfileViewModel.detailsPickerSelection == .profile{
-                tickerProfileViewModel.fetchTickerProfile(tickerSymbol)
-            }else{
+            if tickerProfileViewModel.detailsPickerSelection == .news{
                 newsViewModel.fetchNews(ticker: tickerSymbol)
+            }else{
+                tickerProfileViewModel.fetchTickerProfile(tickerSymbol)
             }
         }
     }
