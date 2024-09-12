@@ -36,8 +36,8 @@ class DetailsViewModel:ObservableObject{
     
     @Published var chartRange:ChartTimeframes = .fiveMinutes
     
-    @Published var fromDate = "2024-09-09"
-    @Published var toDate = "2024-08-09"
+    @Published var fromDate = Date.now
+    @Published var toDate = Date.now
     
     let repository:RepositoryProtocol
     
@@ -83,14 +83,12 @@ class DetailsViewModel:ObservableObject{
     func fetchTickerChart(tickerSymbol:String){
         Task{
             do{
-                let results = try await repository.fetchChart(chartRange.rawValue, tickerSymbol, fromDate,toDate )
+                let results = try await repository.fetchChart(chartRange.rawValue, tickerSymbol, fromDate.ISO8601Format(),toDate.ISO8601Format() )
                 
                 if let results = results{
                 
                     chartTimestampsList = results
                 }
-                
-                print(chartTimestampsList)
             }catch{
                 print(error)
             }

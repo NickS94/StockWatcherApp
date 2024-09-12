@@ -30,7 +30,7 @@
 		03718EFF2C7E9057007284CB /* TickerProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03718EFE2C7E9057007284CB /* TickerProfile.swift */; };
 		03967A572C7F29D800707163 /* TickerSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03967A562C7F29D800707163 /* TickerSearch.swift */; };
 		03967A592C7F5D1800707163 /* TickerQuote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03967A582C7F5D1800707163 /* TickerQuote.swift */; };
-		03967A5C2C7FABE400707163 /* MyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03967A5B2C7FABE400707163 /* MyListView.swift */; };
+		03967A5C2C7FABE400707163 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03967A5B2C7FABE400707163 /* HomeView.swift */; };
 		03967A5E2C7FB04000707163 /* TickerQuoteRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03967A5D2C7FB04000707163 /* TickerQuoteRow.swift */; };
 		03967A612C7FB3FF00707163 /* MonospacedStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03967A602C7FB3FF00707163 /* MonospacedStyle.swift */; };
 		03967A632C7FCA4D00707163 /* ColouredValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03967A622C7FCA4D00707163 /* ColouredValue.swift */; };
@@ -42,6 +42,9 @@
 		03967A752C808F3F00707163 /* ColouredValuesStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03967A742C808F3F00707163 /* ColouredValuesStrings.swift */; };
 		03967A782C809AF900707163 /* HotListComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03967A772C809AF900707163 /* HotListComponent.swift */; };
 		03967A7E2C809C4A00707163 /* TabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03967A7D2C809C4A00707163 /* TabsView.swift */; };
+		03A3701C2C91A5F700F13A39 /* SearchTickerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3701B2C91A5F700F13A39 /* SearchTickerRow.swift */; };
+		03A3701E2C91D5C900F13A39 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3701D2C91D5C900F13A39 /* SearchView.swift */; };
+		03A370202C91D63200F13A39 /* MyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3701F2C91D63200F13A39 /* MyList.swift */; };
 		03AF61C42C885483006B1143 /* ProfileHeaderItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF61C32C885483006B1143 /* ProfileHeaderItems.swift */; };
 		03AF61C62C88DBE7006B1143 /* TickerDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF61C52C88DBE7006B1143 /* TickerDetailsView.swift */; };
 		03AF61CA2C8AF782006B1143 /* PriceRangeTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF61C92C8AF782006B1143 /* PriceRangeTable.swift */; };
@@ -85,7 +88,7 @@
 		03718EFE2C7E9057007284CB /* TickerProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerProfile.swift; sourceTree = "<group>"; };
 		03967A562C7F29D800707163 /* TickerSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerSearch.swift; sourceTree = "<group>"; };
 		03967A582C7F5D1800707163 /* TickerQuote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerQuote.swift; sourceTree = "<group>"; };
-		03967A5B2C7FABE400707163 /* MyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListView.swift; sourceTree = "<group>"; };
+		03967A5B2C7FABE400707163 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		03967A5D2C7FB04000707163 /* TickerQuoteRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerQuoteRow.swift; sourceTree = "<group>"; };
 		03967A602C7FB3FF00707163 /* MonospacedStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonospacedStyle.swift; sourceTree = "<group>"; };
 		03967A622C7FCA4D00707163 /* ColouredValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColouredValue.swift; sourceTree = "<group>"; };
@@ -97,6 +100,9 @@
 		03967A742C808F3F00707163 /* ColouredValuesStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColouredValuesStrings.swift; sourceTree = "<group>"; };
 		03967A772C809AF900707163 /* HotListComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotListComponent.swift; sourceTree = "<group>"; };
 		03967A7D2C809C4A00707163 /* TabsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsView.swift; sourceTree = "<group>"; };
+		03A3701B2C91A5F700F13A39 /* SearchTickerRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTickerRow.swift; sourceTree = "<group>"; };
+		03A3701D2C91D5C900F13A39 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		03A3701F2C91D63200F13A39 /* MyList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyList.swift; sourceTree = "<group>"; };
 		03AF61C32C885483006B1143 /* ProfileHeaderItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderItems.swift; sourceTree = "<group>"; };
 		03AF61C52C88DBE7006B1143 /* TickerDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerDetailsView.swift; sourceTree = "<group>"; };
 		03AF61C92C8AF782006B1143 /* PriceRangeTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceRangeTable.swift; sourceTree = "<group>"; };
@@ -270,19 +276,19 @@
 				03B59C792C82226F002DB53A /* UserProfile */,
 				03B59C782C822250002DB53A /* SocialFeed */,
 				03967A652C7FE21700707163 /* HotLists */,
-				03718EF92C7E8E06007284CB /* MyLIst */,
+				03718EF92C7E8E06007284CB /* Home */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		03718EF92C7E8E06007284CB /* MyLIst */ = {
+		03718EF92C7E8E06007284CB /* Home */ = {
 			isa = PBXGroup;
 			children = (
 				03967A5A2C7FA59300707163 /* Components */,
 				03718EFA2C7E8E1B007284CB /* ViewModels */,
-				03967A5B2C7FABE400707163 /* MyListView.swift */,
+				03967A5B2C7FABE400707163 /* HomeView.swift */,
 			);
-			path = MyLIst;
+			path = Home;
 			sourceTree = "<group>";
 		};
 		03718EFA2C7E8E1B007284CB /* ViewModels */ = {
@@ -308,6 +314,9 @@
 			isa = PBXGroup;
 			children = (
 				03967A5D2C7FB04000707163 /* TickerQuoteRow.swift */,
+				03A3701B2C91A5F700F13A39 /* SearchTickerRow.swift */,
+				03A3701D2C91D5C900F13A39 /* SearchView.swift */,
+				03A3701F2C91D63200F13A39 /* MyList.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -525,6 +534,7 @@
 				03718EFC2C7E8E2C007284CB /* HomeViewModel.swift in Sources */,
 				03B59C6D2C81F63E002DB53A /* MainRepository.swift in Sources */,
 				03B59C752C820BE6002DB53A /* TickerSentiment.swift in Sources */,
+				03A370202C91D63200F13A39 /* MyList.swift in Sources */,
 				03AF61D02C8B2A38006B1143 /* NumberFormatterHelper.swift in Sources */,
 				03B59C732C820A07002DB53A /* TickerNews.swift in Sources */,
 				03967A6F2C7FE47700707163 /* AlphaAvantageResponse.swift in Sources */,
@@ -536,14 +546,16 @@
 				033372E52C85EF0C009A611A /* TickerSentimentItem.swift in Sources */,
 				03AF61D22C8B7EFE006B1143 /* InfoTable.swift in Sources */,
 				03718EF42C7E1110007284CB /* UrlComponents.swift in Sources */,
+				03A3701E2C91D5C900F13A39 /* SearchView.swift in Sources */,
 				03718EF62C7E4D45007284CB /* ApiKeys.swift in Sources */,
-				03967A5C2C7FABE400707163 /* MyListView.swift in Sources */,
+				03967A5C2C7FABE400707163 /* HomeView.swift in Sources */,
 				03718EF82C7E4E01007284CB /* ApiErrors.swift in Sources */,
 				03967A7E2C809C4A00707163 /* TabsView.swift in Sources */,
 				033372E92C85F676009A611A /* NewsViewModel.swift in Sources */,
 				033372D92C85B396009A611A /* PickerItems.swift in Sources */,
 				03B59C772C820C17002DB53A /* ChartQuote.swift in Sources */,
 				033372EB2C85FDE9009A611A /* AlphaAvantageNewsResponse.swift in Sources */,
+				03A3701C2C91A5F700F13A39 /* SearchTickerRow.swift in Sources */,
 				03AF61CC2C8B029F006B1143 /* GaugeTintByValue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

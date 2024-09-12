@@ -12,8 +12,17 @@ struct TabsView: View {
     @ObservedObject var newsViewModel:NewsViewModel
     @ObservedObject var tickerProfileViewModel:TickerProfileViewModel
     @ObservedObject var detailsViewModel:DetailsViewModel
+    @ObservedObject var homeViewModel:HomeViewModel
+    @State var showSearchSheet = false
     var body: some View {
         TabView{
+            HomeView(homeViewModel: homeViewModel, tickerProfileViewModel: tickerProfileViewModel, detailsViewModel: detailsViewModel, newsViewModel: newsViewModel, showSearchSheet: $showSearchSheet)
+                .tabItem {
+                    VStack {
+                        Image(systemName: "house")
+                        Text("Home")
+                    }
+                }
             HotListsView(hotListViewModel: hotListsViewModel, tickerProfileViewModel: tickerProfileViewModel, detailsViewModel: detailsViewModel, newsViewModel: newsViewModel)
                 .tabItem {
                     VStack {
@@ -34,5 +43,5 @@ struct TabsView: View {
 }
 
 #Preview {
-    TabsView(hotListsViewModel: HotTickersViewModel(repository: MockRepository()), newsViewModel: NewsViewModel(repository: MockRepository()), tickerProfileViewModel: TickerProfileViewModel(repository: MockRepository()), detailsViewModel: DetailsViewModel(repository: MockRepository()))
+    TabsView(hotListsViewModel: HotTickersViewModel(repository: MockRepository()), newsViewModel: NewsViewModel(repository: MockRepository()), tickerProfileViewModel: TickerProfileViewModel(repository: MockRepository()), detailsViewModel: DetailsViewModel(repository: MockRepository()), homeViewModel: HomeViewModel(repository: MockRepository()))
 }

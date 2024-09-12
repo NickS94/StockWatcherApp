@@ -23,25 +23,25 @@ enum DetailsViewPickerItems:String,CaseIterable{
 enum ChartTimeframes:String,CaseIterable{
     case oneMinute = "1min"
     case fiveMinutes = "5min"
-    case fifthteenMinutes = "15min"
     case thirtyMinutes = "30min"
+    case fifthteenMinutes = "15min"
     case oneHour = "1hour"
     case fourHours = "4hour"
     
     var buttonLabels:String{
         switch self {
         case .oneMinute:
-            "1m"
+            "1D"
         case .fiveMinutes:
-            "5m"
-        case .fifthteenMinutes:
-            "15m"
+            "1W"
         case .thirtyMinutes:
-            "30m"
+            "1M"
+        case .fifthteenMinutes:
+            "3M"
         case .oneHour:
-            "1H"
+            "4M"
         case .fourHours:
-            "4H"
+            "6M"
         }
     }
 }

@@ -13,10 +13,15 @@ class HomeViewModel:ObservableObject{
     
     private let apiClient = ApiClient.shared
     
+    @Published var searchList:[TickerSearch] = []
     
     @Published var myTickersList:[TickerQuote] = []
- 
+    
     @Published var tickerListInput:[String] = []
+    
+    @Published var userSearchInput = ""
+    
+    @Published var userExchangeInput = ""
     
     let repository:RepositoryProtocol
     
@@ -41,7 +46,27 @@ class HomeViewModel:ObservableObject{
     }
     
     
+    func fetchSearchList(){
+        Task{
+            do{
+                let results = try await repository.fetchSearchTickers(userSearchInput, "15", userExchangeInput)
+                
+                if let results = results{
+                    searchList = results
+                }
+            }catch{
+                print(error)
+            }
+        }
+    }
+    
+    func checkList(tickerSymbol:String)->Bool{
+        
+        return myTickersList.contains { tickerQuote in
+            tickerQuote.symbol == tickerSymbol
+        }
+    }
     
     
-  
+    
 }
