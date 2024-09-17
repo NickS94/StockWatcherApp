@@ -27,8 +27,9 @@ struct TextFields: View {
                 .background(.gray.opacity(0.4))
                 .clipShape(RoundedRectangle(cornerRadius: 12))
                 .textInputAutocapitalization(.never)
-            HStack{
-                Group{
+            
+            Group{
+                ZStack(alignment:.trailing) {
                     
                     if isHidden {
                         SecureField("Password", text: $viewModel.password)
@@ -36,12 +37,12 @@ struct TextFields: View {
                     }else{
                         TextField("Password",text: $viewModel.password)
                             .textInputAutocapitalization(.never)
-                            
-                    }
+                }
                     Image(systemName: isHidden ? "eye.slash.fill" : "eye.fill")
                         .onTapGesture {
                             isHidden.toggle()
                         }
+      
                 }
                 .padding()
                 .background(.gray.opacity(0.4))

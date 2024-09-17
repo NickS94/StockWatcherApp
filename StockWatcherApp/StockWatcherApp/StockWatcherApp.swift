@@ -11,14 +11,13 @@ import Firebase
 @main
 struct StockWatcherApp: App {
     
-    init(){
-        FirebaseApp.configure()
-        print("Firebase configured")
-    }
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+          AuthenticationView()
         }
     }
+    
+    
 }

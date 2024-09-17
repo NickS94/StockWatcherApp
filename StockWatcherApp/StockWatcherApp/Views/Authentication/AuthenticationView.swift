@@ -8,17 +8,23 @@
 import SwiftUI
 
 struct AuthenticationView: View {
+    
     @State var loginMode = true
-    @State var isHidden = true
+    @State var isHidden = true   
     @StateObject var viewModel = AuthenticationViewModel()
     
     var body: some View {
         NavigationStack{
-            VStack(spacing:40){
+            VStack(spacing:20){
                 LoginLogo()
+                
                 TextFields(loginMode: $loginMode, isHidden: $isHidden, viewModel: viewModel)
                 ConfigurationButton(viewModel: viewModel, loginMode: $loginMode)
+                Text("Or")
+                GoogleSignInButton(authenticationViewModel: viewModel)
+                Spacer()
                 SignInToggleText(loginMode: $loginMode, viewModel: viewModel)
+               
             }
             .navigationTitle(loginMode ? "Login" : "Register")
         }
@@ -33,7 +39,7 @@ struct AuthenticationView: View {
         }
         .alert(viewModel.errorMessage, isPresented: $viewModel.showAlert){}
         .fullScreenCover(isPresented: $viewModel.showMainView){
-//            TabsView(authenticationViewModel: viewModel)
+                ContentView()
         }
     }
 }

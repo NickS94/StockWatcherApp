@@ -17,6 +17,8 @@ struct ContentView: View {
     
     var body: some View {
         TabsView(hotListsViewModel: hotListsViewModel, newsViewModel: newsViewModel, tickerProfileViewModel: tickerProfileViewModel, detailsViewModel: detailsViewModel, homeViewModel: homeViewModel)
+        
+        
     }
 }
 
