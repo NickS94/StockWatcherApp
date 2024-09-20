@@ -16,23 +16,24 @@ struct ConfigurationButton: View {
         HStack{
             Button {
                 if loginMode{
-                  
+                    viewModel.loginUser()
+                    print(viewModel.authenticationUser?.email ?? "")
                     
                 }else{
-              
+                    viewModel.registerUser()
                     loginMode = true
                 }
             } label: {
-                    Text(loginMode ? "Login" : "Register")
-                .font(.title2)
-                .foregroundStyle(.white)
+                Text(loginMode ? "Login" : "Register")
+                    .monospacedStyle(size: 20, weight: .semibold)
+                    .foregroundStyle(.mainApp)
             }
             .frame(maxWidth: .infinity)
             .frame(height: 55)
             .background(.blue)
-            .clipShape(RoundedRectangle(cornerRadius: 25.0))
+            .clipShape(RoundedRectangle(cornerRadius: 15))
+            .padding(.horizontal, 40)
         }
-        .padding()
     }
 }
 

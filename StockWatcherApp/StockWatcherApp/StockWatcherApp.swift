@@ -17,7 +17,5 @@ struct StockWatcherApp: App {
         WindowGroup {
           AuthenticationView()
         }
-    }
-    
-    
+    }    
 }

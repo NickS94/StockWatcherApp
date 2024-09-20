@@ -13,6 +13,7 @@ struct TabsView: View {
     @ObservedObject var tickerProfileViewModel:TickerProfileViewModel
     @ObservedObject var detailsViewModel:DetailsViewModel
     @ObservedObject var homeViewModel:HomeViewModel
+    @ObservedObject var authenticationViewModel:AuthenticationViewModel
     @State var showSearchSheet = false
     var body: some View {
         TabView{
@@ -38,10 +39,18 @@ struct TabsView: View {
                         Text("News")
                     }
                 }
+            
+            ProfileView(authenticationViewModel: authenticationViewModel)
+                .tabItem {
+                    VStack{
+                        Image(systemName: "person")
+                        Text("Profile")
+                    }
+                }
         }
     }
 }
 
 #Preview {
-    TabsView(hotListsViewModel: HotTickersViewModel(repository: MockRepository()), newsViewModel: NewsViewModel(repository: MockRepository()), tickerProfileViewModel: TickerProfileViewModel(repository: MockRepository()), detailsViewModel: DetailsViewModel(repository: MockRepository()), homeViewModel: HomeViewModel(repository: MockRepository()))
+    TabsView(hotListsViewModel: HotTickersViewModel(repository: MockRepository()), newsViewModel: NewsViewModel(repository: MockRepository()), tickerProfileViewModel: TickerProfileViewModel(repository: MockRepository()), detailsViewModel: DetailsViewModel(repository: MockRepository()), homeViewModel: HomeViewModel(repository: MockRepository()), authenticationViewModel: AuthenticationViewModel())
 }

@@ -9,13 +9,17 @@ import SwiftUI
 
 struct LoginLogo: View {
     var body: some View {
-        Image("AppLogo")
-            .resizable()
-            .scaledToFill()
-            .frame(width: 150,height: 150)
-            .clipShape(RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*/25.0/*@END_MENU_TOKEN@*/))
-            .shadow(color:.mainApp,radius: 15)
-            .padding()
+        VStack{
+            Image("AppLogo")
+                .resizable()
+                .scaledToFill()
+                .frame(width: 150,height: 150)
+                .clipShape(RoundedRectangle(cornerRadius: 25.0))
+                .shadow(color:.mainApp,radius: 15)
+            Text("Stock Watcher")
+                .monospacedStyle(size: 30, weight: .heavy)
+        }
+        .padding()
     }
 }
 

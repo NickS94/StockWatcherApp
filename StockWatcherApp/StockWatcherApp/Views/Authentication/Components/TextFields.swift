@@ -17,7 +17,7 @@ struct TextFields: View {
     var body: some View {
         VStack{
             if !loginMode{
-                TextField("Name",text: $viewModel.username)
+                TextField("Username",text: $viewModel.username)
                     .padding()
                     .background(.gray.opacity(0.4))
                     .clipShape(RoundedRectangle(cornerRadius: 12))
@@ -28,7 +28,7 @@ struct TextFields: View {
                 .clipShape(RoundedRectangle(cornerRadius: 12))
                 .textInputAutocapitalization(.never)
             
-            Group{
+  
                 ZStack(alignment:.trailing) {
                     
                     if isHidden {
@@ -47,12 +47,12 @@ struct TextFields: View {
                 .padding()
                 .background(.gray.opacity(0.4))
                 .clipShape(RoundedRectangle(cornerRadius: 12))
-            }
+            
         }
         .padding()
     }
 }
 
 #Preview {
-    TextFields(loginMode: .constant(true), isHidden: .constant(true), viewModel: AuthenticationViewModel())
+    TextFields(loginMode: .constant(false), isHidden: .constant(true), viewModel: AuthenticationViewModel())
 }

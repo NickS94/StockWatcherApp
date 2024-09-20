@@ -11,35 +11,32 @@ struct AuthenticationView: View {
     
     @State var loginMode = true
     @State var isHidden = true   
-    @StateObject var viewModel = AuthenticationViewModel()
+    @StateObject var authenticationViewModel = AuthenticationViewModel()
     
     var body: some View {
         NavigationStack{
             VStack(spacing:20){
                 LoginLogo()
-                
-                TextFields(loginMode: $loginMode, isHidden: $isHidden, viewModel: viewModel)
-                ConfigurationButton(viewModel: viewModel, loginMode: $loginMode)
-                Text("Or")
-                GoogleSignInButton(authenticationViewModel: viewModel)
-                Spacer()
-                SignInToggleText(loginMode: $loginMode, viewModel: viewModel)
-               
+                TextFields(loginMode: $loginMode, isHidden: $isHidden, viewModel: authenticationViewModel)
+                ConfigurationButton(viewModel: authenticationViewModel, loginMode: $loginMode)
+                Text(loginMode ? "Or" : "")
+                GoogleSignInButton(authenticationViewModel: authenticationViewModel, loginMode: $loginMode)
+                SignInToggleText(loginMode: $loginMode, viewModel: authenticationViewModel)
             }
             .navigationTitle(loginMode ? "Login" : "Register")
         }
         .onAppear{
-            viewModel.resetFields()
+            authenticationViewModel.resetFields()
         }
         .onChange(of: loginMode) {
-            viewModel.resetFields()
+            authenticationViewModel.resetFields()
         }
-        .onChange(of: viewModel.showMainView){
-            viewModel.resetFields()
+        .onChange(of: authenticationViewModel.showMainView){
+            authenticationViewModel.resetFields()
         }
-        .alert(viewModel.errorMessage, isPresented: $viewModel.showAlert){}
-        .fullScreenCover(isPresented: $viewModel.showMainView){
-                ContentView()
+        .alert(authenticationViewModel.errorMessage, isPresented: $authenticationViewModel.showAlert){}
+        .fullScreenCover(isPresented: $authenticationViewModel.showMainView){
+            ContentView( authenticationViewModel: authenticationViewModel)
         }
     }
 }

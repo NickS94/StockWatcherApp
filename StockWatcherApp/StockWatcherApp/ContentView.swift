@@ -14,15 +14,16 @@ struct ContentView: View {
     @StateObject var tickerProfileViewModel = TickerProfileViewModel(repository: MainRepository())
     @StateObject var detailsViewModel = DetailsViewModel(repository: MainRepository())
     @StateObject var homeViewModel = HomeViewModel(repository: MainRepository())
+    @ObservedObject var authenticationViewModel : AuthenticationViewModel
     
     var body: some View {
-        TabsView(hotListsViewModel: hotListsViewModel, newsViewModel: newsViewModel, tickerProfileViewModel: tickerProfileViewModel, detailsViewModel: detailsViewModel, homeViewModel: homeViewModel)
+        TabsView(hotListsViewModel: hotListsViewModel, newsViewModel: newsViewModel, tickerProfileViewModel: tickerProfileViewModel, detailsViewModel: detailsViewModel, homeViewModel: homeViewModel, authenticationViewModel: authenticationViewModel)
         
         
     }
 }
 
 #Preview {
-    ContentView()
+    ContentView( authenticationViewModel: AuthenticationViewModel())
 }
 

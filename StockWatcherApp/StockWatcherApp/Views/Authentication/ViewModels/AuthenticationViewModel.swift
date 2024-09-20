@@ -12,7 +12,7 @@ import FirebaseAuth
 class AuthenticationViewModel:ObservableObject{
     
     
-    private let firebaseRepository = FirebaseRepository.shared
+    private let firebaseClient = FirebaseRepository.shared
     
     //MARK: Properties
     
@@ -26,19 +26,49 @@ class AuthenticationViewModel:ObservableObject{
     
     
     init(){
-        showMainView = firebaseRepository.checkAuth() != nil
+        showMainView = firebaseClient.checkAuth() != nil
     }
     
     //MARK: Methods
     
-    func signInWithGoogle(){
+    
+    func registerUser(){
         Task{
             do{
-                let result =  await firebaseRepository.signInWithGoogle()
-                
-                showMainView = result != nil
-                print(showMainView)
+                let results = try await firebaseClient.newUserRegister(email, password, username)
+                authenticationUser = results
+                if let authUser =  authenticationUser   {
+                    try  firebaseClient.createNewFirestoreUser(user: authUser)
+                }
+                showMainView = true
+            }catch{
+                errorMessage = error.localizedDescription
+                showAlert = true
             }
+        }
+    }
+    
+    func loginUser(){
+        Task{
+            do{
+                let result = try await firebaseClient.userSignIn(email, password)
+                authenticationUser = result
+                showMainView = true
+            }catch{
+                errorMessage = error.localizedDescription
+                showAlert = true
+            }
+        }
+    }
+    
+    func signInWithGoogle() {
+        Task{
+            let result =  await firebaseClient.signInWithGoogle()
+            authenticationUser = result
+            if let authUser =  authenticationUser   {
+                try  firebaseClient.createNewFirestoreUser(user: authUser)
+            }
+            showMainView = result != nil
         }
     }
     

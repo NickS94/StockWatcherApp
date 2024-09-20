@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct HomeView: View {
+    
     @ObservedObject var homeViewModel: HomeViewModel
     @ObservedObject var tickerProfileViewModel:TickerProfileViewModel
     @ObservedObject var detailsViewModel:DetailsViewModel
     @ObservedObject var newsViewModel:NewsViewModel
     @Binding var showSearchSheet:Bool
+    
     var body: some View {
         NavigationStack{
             VStack{
@@ -41,6 +43,7 @@ struct HomeView: View {
         }
         .onAppear{
             homeViewModel.fetchFmpTickersList()
+            
         }
     }
 }

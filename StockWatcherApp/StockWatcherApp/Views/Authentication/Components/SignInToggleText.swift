@@ -24,18 +24,16 @@ struct SignInToggleText: View {
                         loginMode = false
                     }
             }else{
-                Button(action: {
+                Button{
                     loginMode = true
-                }, label: {
-                    HStack{
+                } label: {
+                    HStack{ 
                         Image(systemName: "arrow.left")
                         Text("Back")
                     }
-                })
+                }
             }
-            
         }
-        .padding()
     }
 }
 
