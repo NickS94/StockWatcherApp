@@ -119,7 +119,34 @@ class FirebaseRepository{
         
     }
     
-    func createWatchlist(ticker:String)async throws{
-        
+    func createWatchlist(ticker:String) throws {
+      
+        let newTicker = WatchlistTicker(id: ticker, tickerSymbol: ticker)
+        try firestoreInstance
+            .collection("users")
+            .document(uid ?? "")
+            .collection("watchlist")
+            .document(ticker)
+            .setData(from: newTicker)
     }
+    
+    func deleteFromWatchlist(ticker:String)async throws{
+        try await firestoreInstance
+            .collection("users")
+            .document(uid ?? "")
+            .collection("watchlist")
+            .document(ticker)
+            .delete()
+    }
+    
+    func fetchUserWatchlist() async throws -> [WatchlistTicker]{
+        return try await firestoreInstance
+            .collection("users")
+            .document(uid ?? "")
+            .collection("watchlist")
+            .getDocuments()
+            .documents
+            .map{try $0.data(as: WatchlistTicker.self)}
+    }
+    
 }

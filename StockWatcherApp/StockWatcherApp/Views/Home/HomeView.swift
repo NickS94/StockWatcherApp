@@ -39,11 +39,7 @@ struct HomeView: View {
             }
         }
         .sheet(isPresented: $showSearchSheet){
-            SearchView(homeViewModel: homeViewModel, showSearchSheet: $showSearchSheet)
-        }
-        .onAppear{
-            homeViewModel.fetchFmpTickersList()
-            
+            SearchView(homeViewModel: homeViewModel, tickerProfileViewModel: tickerProfileViewModel, detailsViewModel: detailsViewModel, newsViewModel: newsViewModel, showSearchSheet: $showSearchSheet)
         }
     }
 }

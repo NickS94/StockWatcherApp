@@ -11,7 +11,7 @@ import Foundation
 class HomeViewModel:ObservableObject{
     //MARK: Properties
     
-    private let apiClient = ApiClient.shared
+    private let firebaseClient = FirebaseRepository.shared
     
     @Published var searchList:[TickerSearch] = []
     
@@ -22,6 +22,8 @@ class HomeViewModel:ObservableObject{
     @Published var userSearchInput = ""
     
     @Published var userExchangeInput = ""
+    
+    @Published var existInWatchlist = false
     
     let repository:RepositoryProtocol
     
@@ -56,6 +58,48 @@ class HomeViewModel:ObservableObject{
                 }
             }catch{
                 print(error)
+            }
+        }
+    }
+    
+    func addToWatchlist(ticker:String){
+        do{
+            try firebaseClient.createWatchlist(ticker: ticker)
+            fetchWatchListFromDatabase()
+        }catch{
+            print(error.localizedDescription)
+        }
+        
+    }
+    
+    func deleteFromWatchlist(ticker:String){
+        Task{
+            do{
+                try await firebaseClient.deleteFromWatchlist(ticker: ticker)
+                fetchWatchListFromDatabase()
+            }catch{
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func fetchWatchListFromDatabase() {
+        Task{
+            do{
+                
+                let results = try await firebaseClient.fetchUserWatchlist()
+                let tickerList = results.compactMap{$0.tickerSymbol}
+                
+                tickerListInput = tickerList
+                
+                for ticker in tickerListInput{
+                   let result = checkList(tickerSymbol: ticker)
+                    existInWatchlist = result
+                }
+                
+                
+            }catch{
+                print(error.localizedDescription)
             }
         }
     }

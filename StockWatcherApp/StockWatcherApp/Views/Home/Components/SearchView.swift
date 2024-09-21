@@ -9,28 +9,52 @@ import SwiftUI
 
 struct SearchView: View {
     @ObservedObject var homeViewModel:HomeViewModel
+    @ObservedObject var tickerProfileViewModel:TickerProfileViewModel
+    @ObservedObject var detailsViewModel:DetailsViewModel
+    @ObservedObject var newsViewModel:NewsViewModel
     @Binding var showSearchSheet:Bool
     var body: some View {
         NavigationStack {
             VStack{
+                HStack{
+                    TextField("Search Ticker", text:$homeViewModel.userSearchInput )
+                        .padding(9)
+                        .background(.gray.opacity(0.4))
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .textInputAutocapitalization(.never)
+                    
+                    Button{
+                        homeViewModel.userSearchInput = ""
+                        showSearchSheet = false
+                    }label: {
+                        Text(homeViewModel.userSearchInput.isEmpty ? "Cancel" : "Done")
+                    }
+                    .padding()
+                }
+                    
                 List {
                     ForEach(homeViewModel.searchList, id:\.symbol){ticker in
-                        SearchTickerRow(tickerSearch: ticker, homeViewModel: homeViewModel)
+                        NavigationLink {
+                            TickerDetailsView(tickerProfileViewModel: tickerProfileViewModel, detailsViewModel: detailsViewModel, newsViewModel: newsViewModel, tickerSymbol: ticker.symbol)
+                        } label: {
+                            SearchTickerRow(tickerSearch: ticker, homeViewModel: homeViewModel)
+                        }
+
+  
                     }
                 }
                 .listStyle(.inset)
             }
-            .searchable(text: $homeViewModel.userSearchInput, prompt: "Search Ticker")
-            .toolbar{
-                ToolbarItem {
-                    Button("Done") {
-                        showSearchSheet = false
-                    }
-                }
-            }
+        }
+        .onAppear{
+            homeViewModel.fetchFmpTickersList()
+            homeViewModel.fetchWatchListFromDatabase()
         }
         .onChange(of: homeViewModel.userSearchInput) {
             homeViewModel.fetchSearchList()
+        }
+        .onDisappear {
+            homeViewModel.fetchFmpTickersList()
         }
         .overlay {
             if homeViewModel.userSearchInput.isEmpty,homeViewModel.searchList.isEmpty{
@@ -39,11 +63,10 @@ struct SearchView: View {
             }else if !homeViewModel.userSearchInput.isEmpty,homeViewModel.searchList.isEmpty{
                 ContentUnavailableView.search
             }
-            
         }
     }
-    
 }
+
 #Preview {
-    SearchView(homeViewModel: HomeViewModel(repository: MockRepository()), showSearchSheet: .constant(false))
+    SearchView(homeViewModel: HomeViewModel(repository: MockRepository()),tickerProfileViewModel: TickerProfileViewModel(repository: MockRepository()),detailsViewModel: DetailsViewModel(repository: MockRepository()),newsViewModel: NewsViewModel(repository: MockRepository()), showSearchSheet: .constant(false))
 }
