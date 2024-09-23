@@ -20,7 +20,7 @@ struct SearchTickerRow: View {
             }
             Spacer()
             
-            if true {
+            if !homeViewModel.checkList(tickerSymbol: tickerSearch.symbol) {
                 Image(systemName: "plus.circle.fill")
                     .symbolRenderingMode(.palette)
                     .foregroundStyle(Color.accentColor,Color.secondary.opacity(0.5))
@@ -38,6 +38,9 @@ struct SearchTickerRow: View {
                     }
             }
             
+        }
+        .onAppear{
+            homeViewModel.fetchWatchListFromDatabase()
         }
         .padding()
         

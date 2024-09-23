@@ -12,6 +12,7 @@ struct TickerDetailsView: View {
     @ObservedObject var tickerProfileViewModel: TickerProfileViewModel
     @ObservedObject var detailsViewModel: DetailsViewModel
     @ObservedObject var newsViewModel: NewsViewModel
+    @ObservedObject var homeViewModel: HomeViewModel
     @State var showFullDescription = false
     @State var lineLimit = 6
     let tickerSymbol:String
@@ -20,7 +21,7 @@ struct TickerDetailsView: View {
         NavigationStack{
             ScrollView{
                
-                ProfileHeaderItems(tickerQuote: detailsViewModel.tickerQuote)
+                ProfileHeaderItems(tickerQuote: detailsViewModel.tickerQuote, homeViewModel: homeViewModel)
                 
                 Picker("", selection: $detailsViewModel.chartRange) {
                     ForEach(ChartTimeframes.allCases,id:\.rawValue){ frame in
@@ -63,6 +64,7 @@ struct TickerDetailsView: View {
             tickerProfileViewModel.fetchTickerProfile(tickerSymbol)
             detailsViewModel.getTickerQuote(tickerSymbol: tickerSymbol)
             detailsViewModel.fetchTickerChart(tickerSymbol: tickerSymbol)
+            homeViewModel.fetchWatchListFromDatabase()
         }
         .onChange(of: detailsViewModel.chartRange, {
             detailsViewModel.fetchTickerChart(tickerSymbol: tickerSymbol)
@@ -78,5 +80,5 @@ struct TickerDetailsView: View {
 }
 
 #Preview {
-    TickerDetailsView(tickerProfileViewModel: TickerProfileViewModel(repository: MockRepository()), detailsViewModel: DetailsViewModel(repository: MockRepository()), newsViewModel: NewsViewModel(repository: MockRepository()), tickerSymbol: "AAPL")
+    TickerDetailsView(tickerProfileViewModel: TickerProfileViewModel(repository: MockRepository()), detailsViewModel: DetailsViewModel(repository: MockRepository()), newsViewModel: NewsViewModel(repository: MockRepository()), homeViewModel: HomeViewModel(repository: MockRepository()), tickerSymbol: "AAPL")
 }

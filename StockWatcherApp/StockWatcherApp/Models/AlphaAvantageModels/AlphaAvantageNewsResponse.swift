@@ -8,5 +8,5 @@
 import Foundation
 
 struct AlphaAvantageNewsResponse:Codable{
-    let feed:[TickerNews]
+    let feed:[TickerNews]?
 }

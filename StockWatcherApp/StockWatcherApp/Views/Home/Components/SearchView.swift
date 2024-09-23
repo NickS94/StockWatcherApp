@@ -14,6 +14,7 @@ struct SearchView: View {
     @ObservedObject var newsViewModel:NewsViewModel
     @Binding var showSearchSheet:Bool
     var body: some View {
+        
         NavigationStack {
             VStack{
                 HStack{
@@ -22,32 +23,28 @@ struct SearchView: View {
                         .background(.gray.opacity(0.4))
                         .clipShape(RoundedRectangle(cornerRadius: 12))
                         .textInputAutocapitalization(.never)
-                    
                     Button{
                         homeViewModel.userSearchInput = ""
                         showSearchSheet = false
                     }label: {
                         Text(homeViewModel.userSearchInput.isEmpty ? "Cancel" : "Done")
                     }
-                    .padding()
+                   
                 }
-                    
+                .padding(20)
                 List {
                     ForEach(homeViewModel.searchList, id:\.symbol){ticker in
                         NavigationLink {
-                            TickerDetailsView(tickerProfileViewModel: tickerProfileViewModel, detailsViewModel: detailsViewModel, newsViewModel: newsViewModel, tickerSymbol: ticker.symbol)
+                            TickerDetailsView(tickerProfileViewModel: tickerProfileViewModel, detailsViewModel: detailsViewModel, newsViewModel: newsViewModel, homeViewModel: homeViewModel, tickerSymbol: ticker.symbol)
                         } label: {
                             SearchTickerRow(tickerSearch: ticker, homeViewModel: homeViewModel)
                         }
-
-  
                     }
                 }
                 .listStyle(.inset)
             }
         }
         .onAppear{
-            homeViewModel.fetchFmpTickersList()
             homeViewModel.fetchWatchListFromDatabase()
         }
         .onChange(of: homeViewModel.userSearchInput) {

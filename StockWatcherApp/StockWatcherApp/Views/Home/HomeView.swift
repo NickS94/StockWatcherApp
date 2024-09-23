@@ -13,7 +13,7 @@ struct HomeView: View {
     @ObservedObject var tickerProfileViewModel:TickerProfileViewModel
     @ObservedObject var detailsViewModel:DetailsViewModel
     @ObservedObject var newsViewModel:NewsViewModel
-    @Binding var showSearchSheet:Bool
+    @State var showSearchSheet = false
     
     var body: some View {
         NavigationStack{
@@ -32,7 +32,7 @@ struct HomeView: View {
                 .tint(.mainApp).opacity(0.3)
                 .padding()
                 ScrollView{
-                    MyList(myTickersList: homeViewModel.myTickersList, tickerProfileViewModel: tickerProfileViewModel, detailsViewModel: detailsViewModel, newsViewModel: newsViewModel, showSearchSheet: $showSearchSheet)
+                    MyList(myTickersList: homeViewModel.myTickersList, tickerProfileViewModel: tickerProfileViewModel, detailsViewModel: detailsViewModel, newsViewModel: newsViewModel, homeViewModel: homeViewModel, showSearchSheet: $showSearchSheet)
                 }
                 .navigationTitle("Home")
                 .navigationBarTitleDisplayMode(.inline)
@@ -43,11 +43,10 @@ struct HomeView: View {
         }
         .onAppear{
             homeViewModel.fetchFmpTickersList()
-            homeViewModel.fetchWatchListFromDatabase()
         }
     }
 }
 
 #Preview {
-    HomeView(homeViewModel: HomeViewModel(repository: MockRepository()), tickerProfileViewModel: TickerProfileViewModel(repository: MockRepository()), detailsViewModel: DetailsViewModel(repository: MockRepository()), newsViewModel: NewsViewModel(repository: MockRepository()),showSearchSheet: .constant(false))
+    HomeView(homeViewModel: HomeViewModel(repository: MockRepository()), tickerProfileViewModel: TickerProfileViewModel(repository: MockRepository()), detailsViewModel: DetailsViewModel(repository: MockRepository()), newsViewModel: NewsViewModel(repository: MockRepository()))
 }

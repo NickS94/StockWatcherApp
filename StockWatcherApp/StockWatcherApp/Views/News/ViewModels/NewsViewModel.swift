@@ -33,7 +33,7 @@ class NewsViewModel:ObservableObject{
                 let results = try await repository.fetchNews(ticker)
                 
                 if let results = results{
-                    newsList = results.feed
+                    newsList = results.feed ?? []
                 }
             }catch{
                 print(error)

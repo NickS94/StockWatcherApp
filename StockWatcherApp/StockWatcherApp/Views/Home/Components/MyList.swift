@@ -12,6 +12,7 @@ struct MyList: View {
     @ObservedObject var tickerProfileViewModel:TickerProfileViewModel
     @ObservedObject var detailsViewModel:DetailsViewModel
     @ObservedObject var newsViewModel:NewsViewModel
+    @ObservedObject var homeViewModel:HomeViewModel
     @Binding var showSearchSheet:Bool
     let columns = [
         GridItem(),
@@ -36,7 +37,6 @@ struct MyList: View {
                             RoundedRectangle(cornerRadius: 10)
                                 .stroke(lineWidth: 0.2)
                                 .opacity(0.2)
-                            
                         }
                         .frame(width: 150,height: 150)
                     }
@@ -44,12 +44,11 @@ struct MyList: View {
                     LazyVGrid(columns: columns) {
                         ForEach(myTickersList,id:\.symbol) { ticker in
                             NavigationLink {
-                                TickerDetailsView(tickerProfileViewModel: tickerProfileViewModel, detailsViewModel: detailsViewModel, newsViewModel: newsViewModel, tickerSymbol: ticker.symbol ?? "")
+                                TickerDetailsView(tickerProfileViewModel: tickerProfileViewModel, detailsViewModel: detailsViewModel, newsViewModel: newsViewModel, homeViewModel: homeViewModel, tickerSymbol: ticker.symbol ?? "")
                             } label: {
                                 TickerQuoteRow(tickerQuote: ticker)
                                     .padding(8)
                             }
-                            
                         }
                     }
                     .overlay {
@@ -57,7 +56,6 @@ struct MyList: View {
                             .stroke(lineWidth: 0.2)
                     }
                 }
-                
             }
             .frame(maxWidth: .infinity)
         }
@@ -66,5 +64,5 @@ struct MyList: View {
 }
 
 #Preview {
-    MyList(myTickersList: [],tickerProfileViewModel: TickerProfileViewModel(repository: MockRepository()),detailsViewModel: DetailsViewModel(repository: MockRepository()),newsViewModel: NewsViewModel(repository: MockRepository()), showSearchSheet: .constant(false))
+    MyList(myTickersList: [],tickerProfileViewModel: TickerProfileViewModel(repository: MockRepository()),detailsViewModel: DetailsViewModel(repository: MockRepository()),newsViewModel: NewsViewModel(repository: MockRepository()), homeViewModel: HomeViewModel(repository: MockRepository()), showSearchSheet: .constant(false))
 }

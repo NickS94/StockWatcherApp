@@ -12,19 +12,18 @@ struct TabsView: View {
     @ObservedObject var newsViewModel:NewsViewModel
     @ObservedObject var tickerProfileViewModel:TickerProfileViewModel
     @ObservedObject var detailsViewModel:DetailsViewModel
-    @ObservedObject var homeViewModel:HomeViewModel
     @ObservedObject var authenticationViewModel:AuthenticationViewModel
-    @State var showSearchSheet = false
+    @ObservedObject var homeViewModel:HomeViewModel
     var body: some View {
         TabView{
-            HomeView(homeViewModel: homeViewModel, tickerProfileViewModel: tickerProfileViewModel, detailsViewModel: detailsViewModel, newsViewModel: newsViewModel, showSearchSheet: $showSearchSheet)
+            HomeView( homeViewModel: homeViewModel, tickerProfileViewModel: tickerProfileViewModel, detailsViewModel: detailsViewModel, newsViewModel: newsViewModel)
                 .tabItem {
                     VStack {
                         Image(systemName: "house")
                         Text("Home")
                     }
                 }
-            HotListsView(hotListViewModel: hotListsViewModel, tickerProfileViewModel: tickerProfileViewModel, detailsViewModel: detailsViewModel, newsViewModel: newsViewModel)
+            HotListsView(hotListViewModel: hotListsViewModel, tickerProfileViewModel: tickerProfileViewModel, detailsViewModel: detailsViewModel, newsViewModel: newsViewModel, homeViewModel: homeViewModel)
                 .tabItem {
                     VStack {
                         Image(systemName: "flame")
@@ -52,5 +51,5 @@ struct TabsView: View {
 }
 
 #Preview {
-    TabsView(hotListsViewModel: HotTickersViewModel(repository: MockRepository()), newsViewModel: NewsViewModel(repository: MockRepository()), tickerProfileViewModel: TickerProfileViewModel(repository: MockRepository()), detailsViewModel: DetailsViewModel(repository: MockRepository()), homeViewModel: HomeViewModel(repository: MockRepository()), authenticationViewModel: AuthenticationViewModel())
+    TabsView(hotListsViewModel: HotTickersViewModel(repository: MockRepository()), newsViewModel: NewsViewModel(repository: MockRepository()), tickerProfileViewModel: TickerProfileViewModel(repository: MockRepository()), detailsViewModel: DetailsViewModel(repository: MockRepository()), authenticationViewModel: AuthenticationViewModel(), homeViewModel: HomeViewModel(repository: MockRepository()))
 }

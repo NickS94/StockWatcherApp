@@ -14,14 +14,11 @@ class HomeViewModel:ObservableObject{
     private let firebaseClient = FirebaseRepository.shared
     
     @Published var searchList:[TickerSearch] = []
-    
     @Published var myTickersList:[TickerQuote] = []
+    @Published var userSearchInput = ""
+    @Published var userExchangeInput = ""
     
     @Published var tickerListInput:[String] = []
-    
-    @Published var userSearchInput = ""
-    
-    @Published var userExchangeInput = ""
     
     let repository:RepositoryProtocol
     
@@ -34,8 +31,8 @@ class HomeViewModel:ObservableObject{
     func fetchFmpTickersList(){
         Task{
             do{
+                fetchWatchListFromDatabase()
                 let results = try await repository.fetchQuoteList(tickerListInput)
-                
                 if let results = results{
                     myTickersList = results
                 }
@@ -67,7 +64,6 @@ class HomeViewModel:ObservableObject{
         }catch{
             print(error.localizedDescription)
         }
-        
     }
     
     func deleteFromWatchlist(ticker:String){
@@ -85,8 +81,7 @@ class HomeViewModel:ObservableObject{
         Task{
             do{
                 let results = try await firebaseClient.fetchUserWatchlist()
-                let tickerList = results.compactMap{$0.tickerSymbol}
-                
+                let tickerList = results.map{$0.tickerSymbol}
                 tickerListInput = tickerList
                 
             }catch{
@@ -95,7 +90,6 @@ class HomeViewModel:ObservableObject{
         }
     }
     
-    
     func checkList(tickerSymbol:String)->Bool{
         
         return myTickersList.contains { tickerQuote in
@@ -103,7 +97,5 @@ class HomeViewModel:ObservableObject{
         }
         
     }
-    
-    
     
 }
