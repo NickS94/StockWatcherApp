@@ -23,8 +23,6 @@ class HomeViewModel:ObservableObject{
     
     @Published var userExchangeInput = ""
     
-    @Published var existInWatchlist = false
-    
     let repository:RepositoryProtocol
     
     init(repository:RepositoryProtocol) {
@@ -86,17 +84,10 @@ class HomeViewModel:ObservableObject{
     func fetchWatchListFromDatabase() {
         Task{
             do{
-                
                 let results = try await firebaseClient.fetchUserWatchlist()
                 let tickerList = results.compactMap{$0.tickerSymbol}
                 
                 tickerListInput = tickerList
-                
-                for ticker in tickerListInput{
-                   let result = checkList(tickerSymbol: ticker)
-                    existInWatchlist = result
-                }
-                
                 
             }catch{
                 print(error.localizedDescription)
@@ -104,11 +95,13 @@ class HomeViewModel:ObservableObject{
         }
     }
     
+    
     func checkList(tickerSymbol:String)->Bool{
         
         return myTickersList.contains { tickerQuote in
             tickerQuote.symbol == tickerSymbol
         }
+        
     }
     
     

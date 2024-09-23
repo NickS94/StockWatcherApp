@@ -41,6 +41,8 @@
 		0373BBED2C9B918B00C21627 /* LogoutButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0373BBEC2C9B918B00C21627 /* LogoutButton.swift */; };
 		0373BBEF2C9C448200C21627 /* DeleteAccountButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0373BBEE2C9C448200C21627 /* DeleteAccountButton.swift */; };
 		0373BBF12C9DC9CE00C21627 /* WatchlistTicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0373BBF02C9DC9CE00C21627 /* WatchlistTicker.swift */; };
+		0373BBF32CA1665B00C21627 /* SocialChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0373BBF22CA1665B00C21627 /* SocialChat.swift */; };
+		0373BBF52CA1858E00C21627 /* ChatComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0373BBF42CA1858E00C21627 /* ChatComment.swift */; };
 		03967A572C7F29D800707163 /* TickerSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03967A562C7F29D800707163 /* TickerSearch.swift */; };
 		03967A592C7F5D1800707163 /* TickerQuote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03967A582C7F5D1800707163 /* TickerQuote.swift */; };
 		03967A5C2C7FABE400707163 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03967A5B2C7FABE400707163 /* HomeView.swift */; };
@@ -120,6 +122,8 @@
 		0373BBEC2C9B918B00C21627 /* LogoutButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutButton.swift; sourceTree = "<group>"; };
 		0373BBEE2C9C448200C21627 /* DeleteAccountButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountButton.swift; sourceTree = "<group>"; };
 		0373BBF02C9DC9CE00C21627 /* WatchlistTicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistTicker.swift; sourceTree = "<group>"; };
+		0373BBF22CA1665B00C21627 /* SocialChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialChat.swift; sourceTree = "<group>"; };
+		0373BBF42CA1858E00C21627 /* ChatComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatComment.swift; sourceTree = "<group>"; };
 		03967A562C7F29D800707163 /* TickerSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerSearch.swift; sourceTree = "<group>"; };
 		03967A582C7F5D1800707163 /* TickerQuote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerQuote.swift; sourceTree = "<group>"; };
 		03967A5B2C7FABE400707163 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -364,6 +368,8 @@
 			children = (
 				0373BBE12C99C91B00C21627 /* FirestoreUser.swift */,
 				0373BBF02C9DC9CE00C21627 /* WatchlistTicker.swift */,
+				0373BBF22CA1665B00C21627 /* SocialChat.swift */,
+				0373BBF42CA1858E00C21627 /* ChatComment.swift */,
 			);
 			path = FirebaseModels;
 			sourceTree = "<group>";
@@ -656,6 +662,7 @@
 				03B59C712C81F693002DB53A /* Protocols.swift in Sources */,
 				03A370332C93691200F13A39 /* AuthenticationViewModel.swift in Sources */,
 				03967A732C808D4100707163 /* TickerAvQuoteRow.swift in Sources */,
+				0373BBF52CA1858E00C21627 /* ChatComment.swift in Sources */,
 				03967A5E2C7FB04000707163 /* TickerQuoteRow.swift in Sources */,
 				03718EFC2C7E8E2C007284CB /* HomeViewModel.swift in Sources */,
 				03B59C6D2C81F63E002DB53A /* MainRepository.swift in Sources */,
@@ -674,6 +681,7 @@
 				03AF61D22C8B7EFE006B1143 /* InfoTable.swift in Sources */,
 				03718EF42C7E1110007284CB /* UrlComponents.swift in Sources */,
 				03A3701E2C91D5C900F13A39 /* SearchView.swift in Sources */,
+				0373BBF32CA1665B00C21627 /* SocialChat.swift in Sources */,
 				0373BBD72C98DA1800C21627 /* FirebaseRepository.swift in Sources */,
 				03718EF62C7E4D45007284CB /* ApiKeys.swift in Sources */,
 				03967A5C2C7FABE400707163 /* HomeView.swift in Sources */,

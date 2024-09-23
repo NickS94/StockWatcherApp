@@ -24,10 +24,6 @@ struct TabsView: View {
                         Text("Home")
                     }
                 }
-                .onAppear{
-                    homeViewModel.fetchFmpTickersList()
-                    homeViewModel.fetchWatchListFromDatabase()
-                }
             HotListsView(hotListViewModel: hotListsViewModel, tickerProfileViewModel: tickerProfileViewModel, detailsViewModel: detailsViewModel, newsViewModel: newsViewModel)
                 .tabItem {
                     VStack {

@@ -149,4 +149,43 @@ class FirebaseRepository{
             .map{try $0.data(as: WatchlistTicker.self)}
     }
     
+    
+    func createSocialChat(user:User,content:String,like:Int,dislike:Int) throws{
+        
+        let chat = SocialChat(user:user , content: content, likes: like, dislikes: dislike)
+        
+        try firestoreInstance
+            .collection("SocialChats")
+            .document(chat.id ?? "")
+            .setData(from: chat)
+    }
+    
+    func fetchSocialChats()async throws->[SocialChat]{
+        return try await firestoreInstance
+            .collection("SocialChats")
+            .getDocuments()
+            .documents
+            .map{try $0.data(as: SocialChat.self)}
+    }
+    
+    func createChatComment(user:User,chat:SocialChat,content:String,like:Int,dislike:Int) throws {
+        
+        let chatComment = ChatComment(user: user, chat: chat, content: content, like: like, dislike: dislike)
+        
+        try firestoreInstance
+            .collection("ChatComments")
+            .document(chatComment.id ?? "")
+            .setData(from: chatComment)
+    }
+    
+    func fetchChatComments(with chatId:String) async throws -> [ChatComment] {
+        
+        return try await firestoreInstance
+            .collection("ChatComments")
+            .whereField("chatId", isEqualTo: chatId)
+            .getDocuments()
+            .documents
+            .map{try $0.data(as: ChatComment.self)}
+        
+    }
 }

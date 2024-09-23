@@ -20,7 +20,7 @@ struct SearchTickerRow: View {
             }
             Spacer()
             
-            if !homeViewModel.existInWatchlist{
+            if true {
                 Image(systemName: "plus.circle.fill")
                     .symbolRenderingMode(.palette)
                     .foregroundStyle(Color.accentColor,Color.secondary.opacity(0.5))
