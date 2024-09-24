@@ -9,7 +9,7 @@ import Foundation
 
 @MainActor
 class NewsViewModel:ObservableObject{
-    //MARK: Properties
+    //MARK: - Properties
     
     @Published var newsList:[TickerNews] = []
     
@@ -20,13 +20,14 @@ class NewsViewModel:ObservableObject{
     }
     
     
-    //MARK: Methods
+    //MARK: - Methods
     
     /**
      Use this method to call the news list from API.
      - Parameters:
         - ticker : Use this parameter to result in a list of news related on this ticker.
      */
+    
     func fetchNews(ticker:String){
         Task{
             do{
@@ -40,5 +41,4 @@ class NewsViewModel:ObservableObject{
             }
         }
     }
-    
 }

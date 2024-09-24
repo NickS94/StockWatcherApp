@@ -41,6 +41,9 @@ struct HomeView: View {
         .sheet(isPresented: $showSearchSheet){
             SearchView(homeViewModel: homeViewModel, tickerProfileViewModel: tickerProfileViewModel, detailsViewModel: detailsViewModel, newsViewModel: newsViewModel, showSearchSheet: $showSearchSheet)
         }
+        .onChange(of: homeViewModel.tickerListInput) {
+            homeViewModel.fetchFmpTickersList()
+        }
         .onAppear{
             homeViewModel.fetchFmpTickersList()
         }

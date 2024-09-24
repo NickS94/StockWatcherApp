@@ -10,45 +10,45 @@ import SwiftUI
 struct TickerQuoteRow: View {
     let tickerQuote:TickerQuote
     var body: some View {
-        VStack{
-            HStack{
-                AsyncImage(url: URL(string: ImageUrls.fmpTickerImage(ticker:tickerQuote.symbol ?? "").urlString)){ image in
-                    ZStack(alignment:.center){
-                        Rectangle()
-                            .frame(width: 55,height: 55)
-                            .clipShape(RoundedRectangle(cornerRadius: 12))
-                            .foregroundStyle(.mainApp)
-                            .opacity(0.15)
-                        image
-                            .resizable()
-                            .frame(width: 42,height: 42)
-                            .clipShape(RoundedRectangle(cornerRadius: 12))
-                    }
-                    
-                }placeholder: {
-                    ZStack(alignment:.center){
-                        Rectangle()
-                            .frame(width: 55,height: 55)
-                            .clipShape(RoundedRectangle(cornerRadius: 12))
-                            .foregroundStyle(.mainApp)
-                            .opacity(0.25)
-                        Text(tickerQuote.symbol ?? "")
-                            .frame(width: 36,height: 36)
-                            .foregroundStyle(.mainApp)
-                        
-                    }
+        
+        HStack(alignment:.bottom){
+            AsyncImage(url: URL(string: ImageUrls.fmpTickerImage(ticker:tickerQuote.symbol ?? "").urlString)){ image in
+                ZStack(alignment:.center){
+                    Rectangle()
+                        .frame(width: 55,height: 55)
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .foregroundStyle(.mainApp)
+                        .opacity(0.15)
+                    image
+                        .resizable()
+                        .frame(width: 42,height: 42)
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
                 }
                 
-                VStack(alignment:.leading,spacing: 8){
+            }placeholder: {
+                ZStack(alignment:.center){
+                    Rectangle()
+                        .frame(width: 55,height: 55)
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .foregroundStyle(.mainApp)
+                        .opacity(0.25)
                     Text(tickerQuote.symbol ?? "")
-                        .monospacedStyle(size: 16, weight: .bold)
-                    Text(tickerQuote.name?.prefix(12) ?? "")
-                        .monospacedStyle(size: 12, weight: .light)
+                        .frame(width: 36,height: 36)
+                        .foregroundStyle(.mainApp)
+                    
                 }
-                .foregroundStyle(.mainApp)
-                
             }
-            .padding(8)
+            VStack(alignment:.leading,spacing: 8){
+                Text(tickerQuote.symbol ?? "")
+                    .monospacedStyle(size: 16, weight: .bold)
+                Text(tickerQuote.name?.prefix(12) ?? "")
+                    .monospacedStyle(size: 12, weight: .light)
+            }
+            .foregroundStyle(.mainApp)
+            
+            Spacer()
+           
+            
             VStack(alignment:.trailing){
                 Text(String(tickerQuote.price ?? 0)+"$")
                     .monospacedStyle(size: 14, weight: .semibold)
@@ -63,15 +63,13 @@ struct TickerQuoteRow: View {
                         .colouredValue(value: tickerQuote.changesPercentage ?? 0)
                 }
             }
-            .padding(.leading,20)
-            .padding(5)
         }
+        .padding()
         .overlay {
             RoundedRectangle(cornerRadius: 10)
                 .opacity(0.15)
                 .colouredValue(value: tickerQuote.changesPercentage ?? 0)
         }
-        .fixedSize()
     }
 }
 

@@ -9,7 +9,7 @@ import Foundation
 
 @MainActor
 class HomeViewModel:ObservableObject{
-    //MARK: Properties
+    //MARK: - Properties
     
     private let firebaseClient = FirebaseRepository.shared
     
@@ -26,7 +26,7 @@ class HomeViewModel:ObservableObject{
         self.repository = repository
     }
     
-    //MARK: Methods
+    //MARK: - Methods
     
     func fetchFmpTickersList(){
         Task{
@@ -81,9 +81,7 @@ class HomeViewModel:ObservableObject{
         Task{
             do{
                 let results = try await firebaseClient.fetchUserWatchlist()
-                let tickerList = results.map{$0.tickerSymbol}
-                tickerListInput = tickerList
-                
+                tickerListInput = results
             }catch{
                 print(error.localizedDescription)
             }
@@ -91,11 +89,9 @@ class HomeViewModel:ObservableObject{
     }
     
     func checkList(tickerSymbol:String)->Bool{
-        
         return myTickersList.contains { tickerQuote in
             tickerQuote.symbol == tickerSymbol
         }
-        
     }
     
 }

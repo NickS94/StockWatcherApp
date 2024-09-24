@@ -87,6 +87,7 @@
 		03B59C732C820A07002DB53A /* TickerNews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B59C722C820A07002DB53A /* TickerNews.swift */; };
 		03B59C752C820BE6002DB53A /* TickerSentiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B59C742C820BE6002DB53A /* TickerSentiment.swift */; };
 		03B59C772C820C17002DB53A /* ChartQuote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B59C762C820C17002DB53A /* ChartQuote.swift */; };
+		03C170E42CA2C149008EC9E8 /* SocialChatRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C170E32CA2C149008EC9E8 /* SocialChatRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -166,6 +167,7 @@
 		03B59C722C820A07002DB53A /* TickerNews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerNews.swift; sourceTree = "<group>"; };
 		03B59C742C820BE6002DB53A /* TickerSentiment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerSentiment.swift; sourceTree = "<group>"; };
 		03B59C762C820C17002DB53A /* ChartQuote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartQuote.swift; sourceTree = "<group>"; };
+		03C170E32CA2C149008EC9E8 /* SocialChatRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialChatRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -523,6 +525,8 @@
 		03B59C782C822250002DB53A /* SocialFeed */ = {
 			isa = PBXGroup;
 			children = (
+				03C170E12CA2C0FF008EC9E8 /* ViewModels */,
+				03C170E02CA2C0F3008EC9E8 /* Components */,
 			);
 			path = SocialFeed;
 			sourceTree = "<group>";
@@ -545,6 +549,21 @@
 				03A3702E2C9365EC00F13A39 /* AuthenticationView.swift */,
 			);
 			path = Authentication;
+			sourceTree = "<group>";
+		};
+		03C170E02CA2C0F3008EC9E8 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				03C170E32CA2C149008EC9E8 /* SocialChatRow.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		03C170E12CA2C0FF008EC9E8 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -687,6 +706,7 @@
 				03A3701E2C91D5C900F13A39 /* SearchView.swift in Sources */,
 				0373BBF32CA1665B00C21627 /* SocialChat.swift in Sources */,
 				0373BBD72C98DA1800C21627 /* FirebaseRepository.swift in Sources */,
+				03C170E42CA2C149008EC9E8 /* SocialChatRow.swift in Sources */,
 				03718EF62C7E4D45007284CB /* ApiKeys.swift in Sources */,
 				03967A5C2C7FABE400707163 /* HomeView.swift in Sources */,
 				03718EF82C7E4E01007284CB /* ApiErrors.swift in Sources */,

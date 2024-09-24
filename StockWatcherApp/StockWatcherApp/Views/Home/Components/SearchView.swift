@@ -50,7 +50,11 @@ struct SearchView: View {
         .onChange(of: homeViewModel.userSearchInput) {
             homeViewModel.fetchSearchList()
         }
+        .onChange(of: homeViewModel.tickerListInput) {
+            homeViewModel.fetchWatchListFromDatabase()
+        }
         .onDisappear {
+            homeViewModel.fetchWatchListFromDatabase()
             homeViewModel.fetchFmpTickersList()
         }
         .overlay {

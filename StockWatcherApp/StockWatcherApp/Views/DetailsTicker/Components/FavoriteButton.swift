@@ -21,12 +21,12 @@ struct FavoriteButton: View {
             if !homeViewModel.checkList(tickerSymbol: tickerSymbol){
                 Image(systemName: "star")
                     .resizable()
-                    .frame(width: 40,height: 40)
+                    .frame(width: 36,height: 36)
                     .foregroundStyle(.yellow)
             }else{
                 Image(systemName: "star.fill")
                     .resizable()
-                    .frame(width: 48,height: 48)
+                    .frame(width: 36,height: 36)
                     .foregroundStyle(.yellow)
             }
         }

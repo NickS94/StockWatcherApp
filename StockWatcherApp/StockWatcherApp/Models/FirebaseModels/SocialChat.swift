@@ -19,10 +19,10 @@ struct SocialChat:Codable{
     let dislikes:Int
     var createdAt:Date = Date.now
     
-    init(user:User,content:String,likes:Int,dislikes:Int){
-        self.userId = user.uid
-        self.publisherName = user.displayName ?? "Anonymous"
-        self.publisherProfileIcon = user.photoURL
+    init(userId:String,publisherName:String,publisherProfileIcon:URL?,content:String,likes:Int,dislikes:Int){
+        self.userId = userId
+        self.publisherName = publisherName
+        self.publisherProfileIcon = publisherProfileIcon
         self.content = content
         self.likes = likes
         self.dislikes = dislikes

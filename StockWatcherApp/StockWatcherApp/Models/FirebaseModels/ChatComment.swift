@@ -18,10 +18,10 @@ struct ChatComment:Codable{
     let dislike:Int
     var createdAt:Date = Date.now
     
-    init(user:User,chat:SocialChat,content:String,like:Int,dislike:Int) {
+    init(userId:String,chat:SocialChat,content:String,like:Int,dislike:Int) {
         
         self.chatId = chat.id ?? ""
-        self.userId = user.uid
+        self.userId = userId
         self.content = content
         self.like = like
         self.dislike = dislike

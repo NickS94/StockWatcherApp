@@ -16,7 +16,7 @@ struct TickerDetailsView: View {
     @State var showFullDescription = false
     @State var lineLimit = 6
     let tickerSymbol:String
-    
+  
     var body: some View {
         NavigationStack{
             ScrollView{
@@ -66,9 +66,9 @@ struct TickerDetailsView: View {
             detailsViewModel.fetchTickerChart(tickerSymbol: tickerSymbol)
             homeViewModel.fetchWatchListFromDatabase()
         }
-        .onChange(of: detailsViewModel.chartRange, {
+        .onChange(of: detailsViewModel.chartRange) {
             detailsViewModel.fetchTickerChart(tickerSymbol: tickerSymbol)
-        })
+        }
         .onChange(of: tickerProfileViewModel.detailsPickerSelection) {
             if tickerProfileViewModel.detailsPickerSelection == .news{
                 newsViewModel.fetchNews(ticker: tickerSymbol)

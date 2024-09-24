@@ -120,7 +120,6 @@ class FirebaseRepository{
     }
     
     func createWatchlist(ticker:String) throws {
-      
         let newTicker = WatchlistTicker(id: ticker, tickerSymbol: ticker)
         try firestoreInstance
             .collection("users")
@@ -138,22 +137,28 @@ class FirebaseRepository{
             .document(ticker)
             .delete()
     }
-    
-    func fetchUserWatchlist() async throws -> [WatchlistTicker]{
-        return try await firestoreInstance
+        
+    func fetchUserWatchlist() async throws -> [String]{
+        var stringTickers:[String] = []
+        let firebaseWatchlistTickers = try await firestoreInstance
             .collection("users")
             .document(uid ?? "")
             .collection("watchlist")
             .getDocuments()
             .documents
             .map{try $0.data(as: WatchlistTicker.self)}
+        
+        
+        for ticker in firebaseWatchlistTickers{
+            stringTickers.append(ticker.tickerSymbol)
+        }
+        
+        return stringTickers
     }
     
     
-    func createSocialChat(user:User,content:String,like:Int,dislike:Int) throws{
-        
-        let chat = SocialChat(user:user , content: content, likes: like, dislikes: dislike)
-        
+    func createSocialChat(user:User,content:String,likes:Int,dislikes:Int) throws{
+        let chat = SocialChat(userId: user.uid, publisherName: user.displayName ?? "", publisherProfileIcon: user.photoURL, content: content, likes: likes, dislikes: dislikes)
         try firestoreInstance
             .collection("SocialChats")
             .document(chat.id ?? "")
@@ -169,9 +174,7 @@ class FirebaseRepository{
     }
     
     func createChatComment(user:User,chat:SocialChat,content:String,like:Int,dislike:Int) throws {
-        
-        let chatComment = ChatComment(user: user, chat: chat, content: content, like: like, dislike: dislike)
-        
+        let chatComment = ChatComment(userId:user.uid, chat: chat, content: content, like: like, dislike: dislike)
         try firestoreInstance
             .collection("ChatComments")
             .document(chatComment.id ?? "")
@@ -179,7 +182,6 @@ class FirebaseRepository{
     }
     
     func fetchChatComments(with chatId:String) async throws -> [ChatComment] {
-        
         return try await firestoreInstance
             .collection("ChatComments")
             .whereField("chatId", isEqualTo: chatId)

@@ -14,10 +14,7 @@ struct MyList: View {
     @ObservedObject var newsViewModel:NewsViewModel
     @ObservedObject var homeViewModel:HomeViewModel
     @Binding var showSearchSheet:Bool
-    let columns = [
-        GridItem(),
-        GridItem(),
-    ]
+    
     var body: some View {
         
         VStack(alignment:.leading){
@@ -41,25 +38,19 @@ struct MyList: View {
                         .frame(width: 150,height: 150)
                     }
                 }else{
-                    LazyVGrid(columns: columns) {
-                        ForEach(myTickersList,id:\.symbol) { ticker in
-                            NavigationLink {
-                                TickerDetailsView(tickerProfileViewModel: tickerProfileViewModel, detailsViewModel: detailsViewModel, newsViewModel: newsViewModel, homeViewModel: homeViewModel, tickerSymbol: ticker.symbol ?? "")
-                            } label: {
-                                TickerQuoteRow(tickerQuote: ticker)
-                                    .padding(8)
-                            }
+                    ForEach(myTickersList,id:\.symbol) { ticker in
+                        NavigationLink {
+                            TickerDetailsView(tickerProfileViewModel: tickerProfileViewModel, detailsViewModel: detailsViewModel, newsViewModel: newsViewModel, homeViewModel: homeViewModel, tickerSymbol: ticker.symbol ?? "")
+                        } label: {
+                            TickerQuoteRow(tickerQuote: ticker)
+                                .padding(8)
                         }
                     }
-                    .overlay {
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(lineWidth: 0.2)
-                    }
                 }
+               
             }
-            .frame(maxWidth: .infinity)
         }
-        .padding()
+        .frame(maxWidth: .infinity)
     }
 }
 
