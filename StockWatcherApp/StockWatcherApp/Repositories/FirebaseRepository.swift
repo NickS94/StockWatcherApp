@@ -190,4 +190,46 @@ class FirebaseRepository{
             .map{try $0.data(as: ChatComment.self)}
         
     }
+    
+    
+    func likeOrDislikeAPost(user:User,chatId:String,isLiked:Bool,isDisliked:Bool) throws{
+        
+        let interaction = LikedOrDislikedPost( id: chatId, userId: user.uid, isLiked: isLiked, isDisliked: isDisliked)
+        
+        try firestoreInstance
+            .collection("users")
+            .document(uid ?? "")
+            .collection("PostInteractions")
+            .document(interaction.id)
+            .setData(from: interaction)
+    }
+    
+    func deletePostInteraction( with chatId:String) async throws{
+        
+        try await firestoreInstance
+            .collection("users")
+            .document(uid ?? "")
+            .collection("PostInteractions")
+            .document(chatId)
+            .delete()
+    }
+    
+    
+    func fetchPostInteractions() async throws -> [LikedOrDislikedPost]{
+        var interactionsList:[LikedOrDislikedPost] = []
+        
+      let firebaseInteractionsList = try await firestoreInstance
+            .collection("users")
+            .document(uid ?? "")
+            .collection("PostInteractions")
+            .getDocuments()
+            .documents
+            .map{try $0.data(as: LikedOrDislikedPost.self)}
+        
+        for interaction in firebaseInteractionsList{
+            interactionsList.append(interaction)
+        }
+        
+        return interactionsList
+    }
 }

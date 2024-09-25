@@ -88,6 +88,8 @@
 		03B59C752C820BE6002DB53A /* TickerSentiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B59C742C820BE6002DB53A /* TickerSentiment.swift */; };
 		03B59C772C820C17002DB53A /* ChartQuote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B59C762C820C17002DB53A /* ChartQuote.swift */; };
 		03C170E42CA2C149008EC9E8 /* SocialChatRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C170E32CA2C149008EC9E8 /* SocialChatRow.swift */; };
+		03C170E62CA412D5008EC9E8 /* LikedOrDislikedPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C170E52CA412D5008EC9E8 /* LikedOrDislikedPost.swift */; };
+		03C170E82CA42241008EC9E8 /* SocialFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C170E72CA42241008EC9E8 /* SocialFeedViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -168,6 +170,8 @@
 		03B59C742C820BE6002DB53A /* TickerSentiment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerSentiment.swift; sourceTree = "<group>"; };
 		03B59C762C820C17002DB53A /* ChartQuote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartQuote.swift; sourceTree = "<group>"; };
 		03C170E32CA2C149008EC9E8 /* SocialChatRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialChatRow.swift; sourceTree = "<group>"; };
+		03C170E52CA412D5008EC9E8 /* LikedOrDislikedPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedOrDislikedPost.swift; sourceTree = "<group>"; };
+		03C170E72CA42241008EC9E8 /* SocialFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialFeedViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -374,6 +378,7 @@
 				0373BBF02C9DC9CE00C21627 /* WatchlistTicker.swift */,
 				0373BBF22CA1665B00C21627 /* SocialChat.swift */,
 				0373BBF42CA1858E00C21627 /* ChatComment.swift */,
+				03C170E52CA412D5008EC9E8 /* LikedOrDislikedPost.swift */,
 			);
 			path = FirebaseModels;
 			sourceTree = "<group>";
@@ -562,6 +567,7 @@
 		03C170E12CA2C0FF008EC9E8 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				03C170E72CA42241008EC9E8 /* SocialFeedViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -696,6 +702,7 @@
 				03B59C732C820A07002DB53A /* TickerNews.swift in Sources */,
 				03967A6F2C7FE47700707163 /* AlphaAvantageResponse.swift in Sources */,
 				03967A612C7FB3FF00707163 /* MonospacedStyle.swift in Sources */,
+				03C170E82CA42241008EC9E8 /* SocialFeedViewModel.swift in Sources */,
 				03AF61D62C8F11DE006B1143 /* TickerChart.swift in Sources */,
 				03718EF22C7E003C007284CB /* ApiClient.swift in Sources */,
 				03AF61CA2C8AF782006B1143 /* PriceRangeTable.swift in Sources */,
@@ -704,6 +711,7 @@
 				03AF61D22C8B7EFE006B1143 /* InfoTable.swift in Sources */,
 				03718EF42C7E1110007284CB /* UrlComponents.swift in Sources */,
 				03A3701E2C91D5C900F13A39 /* SearchView.swift in Sources */,
+				03C170E62CA412D5008EC9E8 /* LikedOrDislikedPost.swift in Sources */,
 				0373BBF32CA1665B00C21627 /* SocialChat.swift in Sources */,
 				0373BBD72C98DA1800C21627 /* FirebaseRepository.swift in Sources */,
 				03C170E42CA2C149008EC9E8 /* SocialChatRow.swift in Sources */,
