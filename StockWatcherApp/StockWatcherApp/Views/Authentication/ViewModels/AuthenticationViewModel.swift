@@ -20,7 +20,7 @@ class AuthenticationViewModel:ObservableObject{
     @Published var email = ""
     @Published var password = ""
     @Published var errorMessage = ""
-    @Published var showMainView = false
+    @Published var showMainView = true
     @Published var showAlert = false
     @Published var authenticationUser:User?
     
@@ -71,7 +71,6 @@ class AuthenticationViewModel:ObservableObject{
             showMainView = result != nil
         }
     }
-    
     
     func resetFields(){
         username = ""

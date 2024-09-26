@@ -13,8 +13,9 @@ struct HomeView: View {
     @ObservedObject var tickerProfileViewModel:TickerProfileViewModel
     @ObservedObject var detailsViewModel:DetailsViewModel
     @ObservedObject var newsViewModel:NewsViewModel
+    @StateObject var socialFeedViewModel = SocialFeedViewModel()
     @State var showSearchSheet = false
-    
+    @State var showNewPostSheet = false
     var body: some View {
         NavigationStack{
             VStack{
@@ -33,6 +34,9 @@ struct HomeView: View {
                 .padding()
                 ScrollView{
                     MyList(myTickersList: homeViewModel.myTickersList, tickerProfileViewModel: tickerProfileViewModel, detailsViewModel: detailsViewModel, newsViewModel: newsViewModel, homeViewModel: homeViewModel, showSearchSheet: $showSearchSheet)
+                    
+                    SociaFeedList(socialFeedViewModel: socialFeedViewModel, showNewPostSheet: $showNewPostSheet)
+                    
                 }
                 .navigationTitle("Home")
                 .navigationBarTitleDisplayMode(.inline)
@@ -46,6 +50,10 @@ struct HomeView: View {
         }
         .onAppear{
             homeViewModel.fetchFmpTickersList()
+            socialFeedViewModel.fetchSocialChats()
+        }
+        .sheet(isPresented: $showNewPostSheet) {
+            NewPostSheet(showNewPostSheet: $showNewPostSheet, socialFeedViewModel: socialFeedViewModel)
         }
     }
 }

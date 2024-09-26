@@ -29,20 +29,17 @@ class ApiClient{
         userThirdInput:String? = nil,
         userFourthInput:String? = nil )  async throws  -> T? {
             
-            
             var urlComponents = URLComponents()
             urlComponents.scheme = scheme
             urlComponents.host = host
             urlComponents.path = path
             
-            
             urlComponents.queryItems = [
-                URLQueryItem(name: queryItemFirst ?? "", value: userFirstInput),
+                URLQueryItem(name:queryItemFirst ?? "", value: userFirstInput),
                 URLQueryItem(name:queryItemSecond ?? "",value: userSecondInput),
                 URLQueryItem(name:queryItemThird ?? "",value: userThirdInput),
-                URLQueryItem(name: queryItemFourth ?? "",value: userFourthInput)
+                URLQueryItem(name:queryItemFourth ?? "",value: userFourthInput)
             ]
-            
             
             guard let  url = urlComponents.url else{
                 throw ApiErrors.invalidUrl

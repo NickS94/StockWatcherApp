@@ -6,14 +6,15 @@
 //
 
 import Foundation
-import FirebaseAuth
-import FirebaseFirestore
 
-struct SocialChat:Codable{
-   @DocumentID  var id:String?
+
+struct SocialChat:Codable,Identifiable{
+    
+    var id = UUID().uuidString
     let userId:String
     let publisherName:String
     let publisherProfileIcon:URL?
+    let title:String
     let content:String
     let likes:Int
     let dislikes:Int

@@ -35,8 +35,10 @@ struct AuthenticationView: View {
             authenticationViewModel.resetFields()
         }
         .alert(authenticationViewModel.errorMessage, isPresented: $authenticationViewModel.showAlert){}
+        
         .fullScreenCover(isPresented: $authenticationViewModel.showMainView){
             ContentView( authenticationViewModel: authenticationViewModel)
+            
         }
     }
 }

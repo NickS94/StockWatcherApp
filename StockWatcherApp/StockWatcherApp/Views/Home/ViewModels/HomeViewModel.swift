@@ -59,7 +59,7 @@ class HomeViewModel:ObservableObject{
     
     func addToWatchlist(ticker:String){
         do{
-            try firebaseClient.createWatchlist(ticker: ticker)
+            try firebaseClient.createAndUpdateWatchlist(ticker: ticker)
             fetchWatchListFromDatabase()
         }catch{
             print(error.localizedDescription)

@@ -18,6 +18,13 @@
 		033372F02C870E27009A611A /* TickerProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033372EF2C870E27009A611A /* TickerProfileViewModel.swift */; };
 		033372F22C8711D4009A611A /* CompanyProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033372F12C8711D4009A611A /* CompanyProfileView.swift */; };
 		033372F42C874CAD009A611A /* AboutTheCompanyDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033372F32C874CAD009A611A /* AboutTheCompanyDescription.swift */; };
+		03527AD42CA4783E0011B223 /* SociaFeedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03527AD32CA4783E0011B223 /* SociaFeedList.swift */; };
+		03527AD62CA4798D0011B223 /* SocialChatCommentRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03527AD52CA4798D0011B223 /* SocialChatCommentRow.swift */; };
+		03527AD82CA49DF00011B223 /* SocialChatDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03527AD72CA49DF00011B223 /* SocialChatDetailsView.swift */; };
+		03527ADA2CA4A1A80011B223 /* ChatCommentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03527AD92CA4A1A80011B223 /* ChatCommentsViewModel.swift */; };
+		03527ADC2CA551060011B223 /* EmptyViewWithText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03527ADB2CA551060011B223 /* EmptyViewWithText.swift */; };
+		03527ADE2CA5628C0011B223 /* NewPostSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03527ADD2CA5628C0011B223 /* NewPostSheet.swift */; };
+		03527AE02CA577430011B223 /* NewCommentField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03527ADF2CA577430011B223 /* NewCommentField.swift */; };
 		03718EE02C7D1969007284CB /* StockWatcherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03718EDF2C7D1969007284CB /* StockWatcherApp.swift */; };
 		03718EE22C7D1969007284CB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03718EE12C7D1969007284CB /* ContentView.swift */; };
 		03718EE42C7D196A007284CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03718EE32C7D196A007284CB /* Assets.xcassets */; };
@@ -104,6 +111,13 @@
 		033372EF2C870E27009A611A /* TickerProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerProfileViewModel.swift; sourceTree = "<group>"; };
 		033372F12C8711D4009A611A /* CompanyProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyProfileView.swift; sourceTree = "<group>"; };
 		033372F32C874CAD009A611A /* AboutTheCompanyDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutTheCompanyDescription.swift; sourceTree = "<group>"; };
+		03527AD32CA4783E0011B223 /* SociaFeedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SociaFeedList.swift; sourceTree = "<group>"; };
+		03527AD52CA4798D0011B223 /* SocialChatCommentRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialChatCommentRow.swift; sourceTree = "<group>"; };
+		03527AD72CA49DF00011B223 /* SocialChatDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialChatDetailsView.swift; sourceTree = "<group>"; };
+		03527AD92CA4A1A80011B223 /* ChatCommentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCommentsViewModel.swift; sourceTree = "<group>"; };
+		03527ADB2CA551060011B223 /* EmptyViewWithText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyViewWithText.swift; sourceTree = "<group>"; };
+		03527ADD2CA5628C0011B223 /* NewPostSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostSheet.swift; sourceTree = "<group>"; };
+		03527ADF2CA577430011B223 /* NewCommentField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCommentField.swift; sourceTree = "<group>"; };
 		03718EDC2C7D1969007284CB /* StockWatcherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StockWatcherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03718EDF2C7D1969007284CB /* StockWatcherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockWatcherApp.swift; sourceTree = "<group>"; };
 		03718EE12C7D1969007284CB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -207,7 +221,6 @@
 				033372DD2C85E5D3009A611A /* ViewModels */,
 				033372DC2C85E5CA009A611A /* Components */,
 				033372DE2C85E5F3009A611A /* NewsListView.swift */,
-				033372E62C85F64E009A611A /* NewsDetails.swift */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -215,6 +228,7 @@
 		033372DC2C85E5CA009A611A /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				033372E62C85F64E009A611A /* NewsDetails.swift */,
 				033372E02C85E65F009A611A /* TickersNewsRow.swift */,
 				033372E42C85EF0C009A611A /* TickerSentimentItem.swift */,
 			);
@@ -560,6 +574,12 @@
 			isa = PBXGroup;
 			children = (
 				03C170E32CA2C149008EC9E8 /* SocialChatRow.swift */,
+				03527AD32CA4783E0011B223 /* SociaFeedList.swift */,
+				03527AD52CA4798D0011B223 /* SocialChatCommentRow.swift */,
+				03527AD72CA49DF00011B223 /* SocialChatDetailsView.swift */,
+				03527ADB2CA551060011B223 /* EmptyViewWithText.swift */,
+				03527ADD2CA5628C0011B223 /* NewPostSheet.swift */,
+				03527ADF2CA577430011B223 /* NewCommentField.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -568,6 +588,7 @@
 			isa = PBXGroup;
 			children = (
 				03C170E72CA42241008EC9E8 /* SocialFeedViewModel.swift */,
+				03527AD92CA4A1A80011B223 /* ChatCommentsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -673,6 +694,7 @@
 				03A370352C9369AD00F13A39 /* LoginLogo.swift in Sources */,
 				033372DF2C85E5F3009A611A /* NewsListView.swift in Sources */,
 				03AF61D82C8F74A1006B1143 /* ChartLineColor.swift in Sources */,
+				03527AD82CA49DF00011B223 /* SocialChatDetailsView.swift in Sources */,
 				0373BBE72C9ACBA800C21627 /* UserProfileViewModel.swift in Sources */,
 				0373BBEB2C9AE8AB00C21627 /* ProfileHeader.swift in Sources */,
 				0373BBED2C9B918B00C21627 /* LogoutButton.swift in Sources */,
@@ -692,8 +714,10 @@
 				03A370332C93691200F13A39 /* AuthenticationViewModel.swift in Sources */,
 				03967A732C808D4100707163 /* TickerAvQuoteRow.swift in Sources */,
 				0373BBF52CA1858E00C21627 /* ChatComment.swift in Sources */,
+				03527ADE2CA5628C0011B223 /* NewPostSheet.swift in Sources */,
 				03967A5E2C7FB04000707163 /* TickerQuoteRow.swift in Sources */,
 				03718EFC2C7E8E2C007284CB /* HomeViewModel.swift in Sources */,
+				03527AD62CA4798D0011B223 /* SocialChatCommentRow.swift in Sources */,
 				03B59C6D2C81F63E002DB53A /* MainRepository.swift in Sources */,
 				0373BBE22C99C91B00C21627 /* FirestoreUser.swift in Sources */,
 				03B59C752C820BE6002DB53A /* TickerSentiment.swift in Sources */,
@@ -705,6 +729,7 @@
 				03C170E82CA42241008EC9E8 /* SocialFeedViewModel.swift in Sources */,
 				03AF61D62C8F11DE006B1143 /* TickerChart.swift in Sources */,
 				03718EF22C7E003C007284CB /* ApiClient.swift in Sources */,
+				03527ADA2CA4A1A80011B223 /* ChatCommentsViewModel.swift in Sources */,
 				03AF61CA2C8AF782006B1143 /* PriceRangeTable.swift in Sources */,
 				03967A592C7F5D1800707163 /* TickerQuote.swift in Sources */,
 				033372E52C85EF0C009A611A /* TickerSentimentItem.swift in Sources */,
@@ -715,11 +740,14 @@
 				0373BBF32CA1665B00C21627 /* SocialChat.swift in Sources */,
 				0373BBD72C98DA1800C21627 /* FirebaseRepository.swift in Sources */,
 				03C170E42CA2C149008EC9E8 /* SocialChatRow.swift in Sources */,
+				03527ADC2CA551060011B223 /* EmptyViewWithText.swift in Sources */,
 				03718EF62C7E4D45007284CB /* ApiKeys.swift in Sources */,
 				03967A5C2C7FABE400707163 /* HomeView.swift in Sources */,
 				03718EF82C7E4E01007284CB /* ApiErrors.swift in Sources */,
 				03967A7E2C809C4A00707163 /* TabsView.swift in Sources */,
 				0373BBD92C98E44500C21627 /* GoogleSignInButton.swift in Sources */,
+				03527AD42CA4783E0011B223 /* SociaFeedList.swift in Sources */,
+				03527AE02CA577430011B223 /* NewCommentField.swift in Sources */,
 				033372E92C85F676009A611A /* NewsViewModel.swift in Sources */,
 				033372D92C85B396009A611A /* PickerItems.swift in Sources */,
 				0373BBF12C9DC9CE00C21627 /* WatchlistTicker.swift in Sources */,

@@ -16,41 +16,38 @@ struct MyList: View {
     @Binding var showSearchSheet:Bool
     
     var body: some View {
-        
         VStack(alignment:.leading){
-            Text("My Watchlist")
-                .monospacedStyle(size: 22, weight: .bold)
-            VStack{
-                if myTickersList.isEmpty{
-                    Button{
-                        showSearchSheet = true
-                    }label: {
-                        VStack(spacing:10){
-                            Text("Your list is empty Add Symbol")
-                                .foregroundStyle(.mainApp)
-                            Image(systemName: "plus")
-                        }
-                        .overlay {
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(lineWidth: 0.2)
-                                .opacity(0.2)
-                        }
-                        .frame(width: 150,height: 150)
-                    }
-                }else{
-                    ForEach(myTickersList,id:\.symbol) { ticker in
-                        NavigationLink {
-                            TickerDetailsView(tickerProfileViewModel: tickerProfileViewModel, detailsViewModel: detailsViewModel, newsViewModel: newsViewModel, homeViewModel: homeViewModel, tickerSymbol: ticker.symbol ?? "")
-                        } label: {
-                            TickerQuoteRow(tickerQuote: ticker)
-                                .padding(8)
-                        }
+            HStack{
+                Text("My Watchlist")
+                    .monospacedStyle(size: 22, weight: .bold)
+                Spacer()
+                Button{
+                    showSearchSheet = true
+                }label: {
+                    Image(systemName: "plus")
+                        .font(.title.bold())
+                        .padding(5)
+                        .background(.gray.opacity(0.6))
+                        .clipShape(Circle())
+                }
+            }
+            if myTickersList.isEmpty{
+                Text("Your list is empty Add Symbol")
+                    .monospacedStyle(size: 16, weight: .semibold)
+                    .foregroundStyle(.mainApp)
+            }else{
+                ForEach(myTickersList,id:\.symbol) { ticker in
+                    NavigationLink {
+                        TickerDetailsView(tickerProfileViewModel: tickerProfileViewModel, detailsViewModel: detailsViewModel, newsViewModel: newsViewModel, homeViewModel: homeViewModel, tickerSymbol: ticker.symbol ?? "")
+                    } label: {
+                        TickerQuoteRow(tickerQuote: ticker)
+                            .padding(8)
                     }
                 }
-               
             }
         }
         .frame(maxWidth: .infinity)
+        .padding()
     }
 }
 
