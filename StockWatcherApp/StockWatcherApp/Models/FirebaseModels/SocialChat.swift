@@ -10,7 +10,7 @@ import Foundation
 
 struct SocialChat:Codable,Identifiable{
     
-    var id = UUID().uuidString
+    var id : String = UUID().uuidString
     let userId:String
     let publisherName:String
     let publisherProfileIcon:URL?

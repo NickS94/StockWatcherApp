@@ -10,7 +10,10 @@ import SwiftUI
 struct SocialChatRow: View {
     
     let socialChat:SocialChat
+    @State var isLiked = false
+    @State var isDisliked = false
     
+    @ObservedObject var socialFeedViewModel:SocialFeedViewModel
     var body: some View {
         VStack(alignment:.leading){
             HStack (alignment:.bottom,spacing: 10){
@@ -53,9 +56,22 @@ struct SocialChatRow: View {
                 //Like button
                 HStack(spacing:15) {
                     Button {
+                        Task{
+                            await socialFeedViewModel.onLikeClicked(socialChat: socialChat)
+                            
+                            let result = socialFeedViewModel.interactionCheck(chatId: socialChat.id)
+                            guard result.isEmpty else {
+                                isLiked = result[0].isLiked
+                                isDisliked = result[0].isDisliked
+                                
+                                return
+                            }
+                            isLiked = false
+                            isDisliked = false
+                        }
                         
                     } label: {
-                        Image(systemName: "hand.thumbsup")
+                        Image(systemName: isLiked ? "hand.thumbsup.fill" : "hand.thumbsup")
                         Text("\(socialChat.likes)")
                     }
                     Divider()
@@ -65,7 +81,7 @@ struct SocialChatRow: View {
                     Button{
                         
                     } label: {
-                        Image(systemName: "hand.thumbsdown")
+                        Image(systemName: isDisliked ? "hand.thumbsdown.fill" : "hand.thumbsdown")
                         Text("\(socialChat.dislikes)")
                     }
                 }
@@ -94,6 +110,14 @@ struct SocialChatRow: View {
                 .background(.mainApp)
                 .padding(7)
         }
+        .onAppear{
+            let result = socialFeedViewModel.interactionCheck(chatId: socialChat.id)
+            guard result.isEmpty else {
+                isLiked = result[0].isLiked
+                isDisliked = result[0].isDisliked
+                return
+            }
+        }
         .foregroundStyle(.mainApp)
         .padding()
         
@@ -101,6 +125,6 @@ struct SocialChatRow: View {
 }
 
 #Preview {
-    SocialChatRow(socialChat: SocialChat(userId: "", publisherName: "Nick St", publisherProfileIcon: URL(string: "https://financialmodelingprep.com/image-stock/TSLA.png"), title: "Tesla", content: "Lorem ipsum is typically a corrupted version of De finibus bonorum et malorum, a 1st-century BC text by the Roman statesman and philosopher Cicero, with words altered, added, and removed to make it nonsensical and improper Latin. The first two words themselves are a truncation of dolorem ipsum .", likes: 20, dislikes: 12))
+    SocialChatRow(socialChat: SocialChat(userId: "", publisherName: "Nick St", publisherProfileIcon: URL(string: "https://financialmodelingprep.com/image-stock/TSLA.png"), title: "Tesla", content: "Lorem ipsum is typically a corrupted version of De finibus bonorum et malorum, a 1st-century BC text by the Roman statesman and philosopher Cicero, with words altered, added, and removed to make it nonsensical and improper Latin. The first two words themselves are a truncation of dolorem ipsum .", likes: 20, dislikes: 12), socialFeedViewModel: SocialFeedViewModel())
 }
 

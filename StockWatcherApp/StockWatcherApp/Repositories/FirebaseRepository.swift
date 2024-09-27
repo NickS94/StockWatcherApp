@@ -139,20 +139,12 @@ class FirebaseRepository{
         return stringTickers
     }
     
-    func createAndUpdateSocialChat(user:User,content:String,title:String,likes:Int,dislikes:Int) throws{
-        let chat = SocialChat(
-            userId: user.uid,
-            publisherName: user.displayName ?? "",
-            publisherProfileIcon: user.photoURL,
-            title: title,
-            content: content,
-            likes: likes,
-            dislikes: dislikes)
+    func createAndUpdateSocialChat(socialChat:SocialChat) throws{
         
         try firestoreInstance
             .collection("SocialChats")
-            .document(chat.id)
-            .setData(from: chat,merge: true)
+            .document(socialChat.id)
+            .setData(from: socialChat,merge: true)
     }
     
     func fetchSocialChats()async throws->[SocialChat]{
@@ -164,7 +156,6 @@ class FirebaseRepository{
     }
     
     func createAndUpdateChatComment(user:User,chat:SocialChat,content:String,likes:Int,dislikes:Int) throws {
-        
         let chatComment = ChatComment(
             chatId: chat.id ,
             userId:user.uid,
@@ -190,9 +181,8 @@ class FirebaseRepository{
     }
     
     func likeOrDislikeAPost(user:User,chatId:String,isLiked:Bool,isDisliked:Bool) throws{
-        
         let interactionId = UUID().uuidString
-        let interaction = LikedOrDislikedPost( id: interactionId,chatId:chatId,userId: user.uid, isLiked: isLiked, isDisliked: isDisliked)
+        let interaction = LikedOrDislikedPost( id: interactionId,chatId:chatId, userId:user.uid,isLiked: isLiked, isDisliked: isDisliked)
         
         try firestoreInstance
             .collection("PostInteractions")
@@ -200,15 +190,12 @@ class FirebaseRepository{
             .setData(from: interaction)
     }
     
-    
     func deletePostInteraction( with interactionId:String) async throws{
-        
         try await firestoreInstance
             .collection("PostInteractions")
             .document(interactionId)
             .delete()
     }
-    
     
     func fetchPostInteractions() async throws -> [LikedOrDislikedPost]{
         
@@ -219,10 +206,9 @@ class FirebaseRepository{
             .map{try $0.data(as: LikedOrDislikedPost.self)}
     }
     
-    func fetchInteraction(for chatId:String, from userId:String)async throws -> [LikedOrDislikedPost]{
+    func fetchInteraction(from userId:String)async throws -> [LikedOrDislikedPost]{
         return try await firestoreInstance
             .collection("PostInteractions")
-            .whereField("chatId", isEqualTo: chatId)
             .whereField("userId", isEqualTo: userId)
             .getDocuments()
             .documents
@@ -230,4 +216,11 @@ class FirebaseRepository{
     }
     
     
+    func likeCountUp(){
+        
+    }
+    
+    func likeCountDown(){
+        
+    }
 }

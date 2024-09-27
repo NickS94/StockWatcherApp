@@ -9,12 +9,13 @@ import SwiftUI
 
 struct SocialChatDetailsView: View {
     let socialChat:SocialChat
+    @ObservedObject var socialFeedViewModel:SocialFeedViewModel
     @StateObject var chatCommentsViewModel = ChatCommentsViewModel()
     var body: some View {
         ScrollView{
             VStack{
                 
-                SocialChatRow(socialChat: socialChat)
+                SocialChatRow(socialChat: socialChat, socialFeedViewModel: socialFeedViewModel)
                 
                 NewCommentField(commentContent: $chatCommentsViewModel.commentContent)
                 
@@ -33,5 +34,5 @@ struct SocialChatDetailsView: View {
 }
 
 #Preview {
-    SocialChatDetailsView(socialChat: SocialChat(userId: "", publisherName: "Nick St", publisherProfileIcon: URL(string: "https://financialmodelingprep.com/image-stock/TSLA.png"), title: "Tesla", content: "Lorem ipsum is typically a corrupted version of De finibus bonorum et malorum, a 1st-century BC text by the Roman statesman and philosopher Cicero, with words altered, added, and removed to make it nonsensical and improper Latin. The first two words themselves are a truncation of dolorem ipsum .", likes: 20, dislikes: 12))
+    SocialChatDetailsView(socialChat: SocialChat(userId: "", publisherName: "Nick St", publisherProfileIcon: URL(string: "https://financialmodelingprep.com/image-stock/TSLA.png"), title: "Tesla", content: "Lorem ipsum is typically a corrupted version of De finibus bonorum et malorum, a 1st-century BC text by the Roman statesman and philosopher Cicero, with words altered, added, and removed to make it nonsensical and improper Latin. The first two words themselves are a truncation of dolorem ipsum .", likes: 20, dislikes: 12), socialFeedViewModel: SocialFeedViewModel())
 }

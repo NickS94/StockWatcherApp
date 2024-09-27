@@ -40,9 +40,9 @@ struct SociaFeedList: View {
             }else{
                 ForEach(socialFeedViewModel.socialChatList){ chat in
                     NavigationLink {
-                        SocialChatDetailsView(socialChat: chat)
+                        SocialChatDetailsView(socialChat: chat, socialFeedViewModel: socialFeedViewModel)
                     } label: {
-                        SocialChatRow(socialChat: chat)
+                        SocialChatRow(socialChat: chat, socialFeedViewModel: socialFeedViewModel)
                     }
                 }
             }

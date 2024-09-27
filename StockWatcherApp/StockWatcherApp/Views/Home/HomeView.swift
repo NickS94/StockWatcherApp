@@ -48,10 +48,11 @@ struct HomeView: View {
         .onChange(of: homeViewModel.tickerListInput) {
             homeViewModel.fetchFmpTickersList()
         }
-        .onAppear{
+        .task{
             homeViewModel.fetchFmpTickersList()
             socialFeedViewModel.fetchSocialChats()
             homeViewModel.fetchWatchListFromDatabase()
+            await socialFeedViewModel.fetchPostInteractions()
         }
         .sheet(isPresented: $showNewPostSheet) {
             NewPostSheet(showNewPostSheet: $showNewPostSheet, socialFeedViewModel: socialFeedViewModel)
