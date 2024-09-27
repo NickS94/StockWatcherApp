@@ -10,7 +10,8 @@ import FirebaseAuth
 
 struct ProfileHeader: View {
     let userProfile :User?
-   
+    let fireuser:FirestoreUser?
+    
     var body: some View {
         VStack{
             AsyncImage(url: userProfile?.photoURL){ image in
@@ -18,20 +19,25 @@ struct ProfileHeader: View {
                     .resizable()
                     .frame(width: 150,height: 150)
                     .clipShape(Circle())
+                
             }placeholder: {
-                ZStack{
-                    Circle()
-                        .frame(width: 150)
-                    Text(userProfile?.email?.prefix(2) ?? "")
-                        .monospacedStyle(size: 20, weight: .semibold)
-                        .foregroundStyle(.black)
-                }
+                
+                Image(systemName: fireuser?.userProfileIcon ?? "")
+                    .font(.system(size: 70))
+                    .overlay {
+                        Circle()
+                            .frame(width: 150,height: 150)
+                            .shadow(color: .mainApp, radius: 15)
+                            .foregroundStyle(.mainApp.opacity(0.2))
+                            
+                    }
+                    .padding(.vertical,50)
             }
-            Text(userProfile?.displayName ?? "")
+            Text(fireuser?.username ?? "")
                 .font(.title2)
                 .bold()
                 .italic()
-            Text(userProfile?.email ?? "")
+            Text(fireuser?.userEmail ?? "")
         }
         .padding()
     }

@@ -45,3 +45,45 @@ enum ChartTimeframes:String,CaseIterable{
         }
     }
 }
+
+enum ProfileIcons:String,CaseIterable{
+
+    case cat
+    case dog
+    case bug
+    case ant
+    case fish
+    case lizard
+    case hare
+    case tortoise
+    case bird
+    case paw
+    case teddybear
+    
+    var iconName:String{
+        switch self {
+        case .cat:
+            "cat.fill"
+        case .dog:
+            "dog.fill"
+        case .bug:
+            "ladybug.fill"
+        case .ant:
+            "ant.fill"
+        case .fish:
+            "fish.fill"
+        case .lizard:
+            "lizard.fill"
+        case .hare:
+            "hare.fill"
+        case .tortoise:
+            "tortoise.fill"
+        case .bird:
+            "bird.fill"
+        case .paw:
+            "pawprint.fill"
+        case .teddybear:
+            "teddybear.fill"
+        }
+    }    
+}

@@ -25,6 +25,7 @@
 		03527ADC2CA551060011B223 /* EmptyViewWithText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03527ADB2CA551060011B223 /* EmptyViewWithText.swift */; };
 		03527ADE2CA5628C0011B223 /* NewPostSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03527ADD2CA5628C0011B223 /* NewPostSheet.swift */; };
 		03527AE02CA577430011B223 /* NewCommentField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03527ADF2CA577430011B223 /* NewCommentField.swift */; };
+		03527AE22CA5863A0011B223 /* ProfileIconPick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03527AE12CA5863A0011B223 /* ProfileIconPick.swift */; };
 		03718EE02C7D1969007284CB /* StockWatcherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03718EDF2C7D1969007284CB /* StockWatcherApp.swift */; };
 		03718EE22C7D1969007284CB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03718EE12C7D1969007284CB /* ContentView.swift */; };
 		03718EE42C7D196A007284CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03718EE32C7D196A007284CB /* Assets.xcassets */; };
@@ -118,6 +119,7 @@
 		03527ADB2CA551060011B223 /* EmptyViewWithText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyViewWithText.swift; sourceTree = "<group>"; };
 		03527ADD2CA5628C0011B223 /* NewPostSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostSheet.swift; sourceTree = "<group>"; };
 		03527ADF2CA577430011B223 /* NewCommentField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCommentField.swift; sourceTree = "<group>"; };
+		03527AE12CA5863A0011B223 /* ProfileIconPick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileIconPick.swift; sourceTree = "<group>"; };
 		03718EDC2C7D1969007284CB /* StockWatcherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StockWatcherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03718EDF2C7D1969007284CB /* StockWatcherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockWatcherApp.swift; sourceTree = "<group>"; };
 		03718EE12C7D1969007284CB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -498,6 +500,7 @@
 				03A370362C936B7800F13A39 /* SignInToggleText.swift */,
 				03A370382C936BD900F13A39 /* ConfigurationButton.swift */,
 				0373BBD82C98E44500C21627 /* GoogleSignInButton.swift */,
+				03527AE12CA5863A0011B223 /* ProfileIconPick.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -719,6 +722,7 @@
 				03718EFC2C7E8E2C007284CB /* HomeViewModel.swift in Sources */,
 				03527AD62CA4798D0011B223 /* SocialChatCommentRow.swift in Sources */,
 				03B59C6D2C81F63E002DB53A /* MainRepository.swift in Sources */,
+				03527AE22CA5863A0011B223 /* ProfileIconPick.swift in Sources */,
 				0373BBE22C99C91B00C21627 /* FirestoreUser.swift in Sources */,
 				03B59C752C820BE6002DB53A /* TickerSentiment.swift in Sources */,
 				03A370202C91D63200F13A39 /* MyList.swift in Sources */,

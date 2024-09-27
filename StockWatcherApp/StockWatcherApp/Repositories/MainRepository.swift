@@ -23,8 +23,9 @@ class MainRepository:RepositoryProtocol{
                     scheme: Schemas.https.rawValue,
                     host: Hosts.fmp.rawValue,
                     path:quotePath.urlString,
-                    queryItemFirst: QueriesNames.apiKey.rawValue,
-                    userFirstInput: ApiKeys.fmpApiKey)
+                    queriesAndInputs: [(QueriesNames.apiKey.rawValue,ApiKeys.fmpApiKey)])
+                    
+                     
         }catch{
             throw error
         }
@@ -40,14 +41,13 @@ class MainRepository:RepositoryProtocol{
                     scheme: Schemas.https.rawValue,
                     host: Hosts.fmp.rawValue,
                     path: Paths.fmpSearchTicker.urlString,
-                    queryItemFirst: QueriesNames.fmpSearch.rawValue,
-                    queryItemSecond: QueriesNames.fmpLimit.rawValue,
-                    queryItemThird: QueriesNames.fmpExchange.rawValue,
-                    queryItemFourth: QueriesNames.apiKey.rawValue,
-                    userFirstInput: searchQuery,
-                    userSecondInput: limit,
-                    userThirdInput: exchange,
-                    userFourthInput: ApiKeys.fmpApiKey)
+                    queriesAndInputs: [
+                        (QueriesNames.fmpSearch.rawValue,searchQuery),
+                        (QueriesNames.fmpLimit.rawValue,limit),
+                        (QueriesNames.fmpExchange.rawValue,exchange),
+                        (QueriesNames.apiKey.rawValue,ApiKeys.fmpApiKey)
+                    ]
+                   )
         }catch{
             throw error
         }
@@ -65,8 +65,8 @@ class MainRepository:RepositoryProtocol{
                     scheme: Schemas.https.rawValue,
                     host: Hosts.fmp.rawValue,
                     path:profilePath.urlString,
-                    queryItemFirst: QueriesNames.apiKey.rawValue,
-                    userFirstInput: ApiKeys.fmpApiKey)
+                    queriesAndInputs: [(QueriesNames.apiKey.rawValue,ApiKeys.fmpApiKey)]
+                    )
         }catch{
             throw error
         }
@@ -83,12 +83,12 @@ class MainRepository:RepositoryProtocol{
                     scheme:Schemas.https.rawValue,
                     host: Hosts.fmp.rawValue,
                     path:chartPath.urlString,
-                    queryItemFirst: QueriesNames.fmpFromDate.rawValue,
-                    queryItemSecond: QueriesNames.fmpToDate.rawValue,
-                    queryItemThird: QueriesNames.apiKey.rawValue,
-                    userFirstInput: from,
-                    userSecondInput: to,
-                    userThirdInput: ApiKeys.fmpApiKey)
+                    queriesAndInputs: [
+                        (QueriesNames.fmpFromDate.rawValue,from),
+                        (QueriesNames.fmpToDate.rawValue,to),
+                        (QueriesNames.apiKey.rawValue,ApiKeys.fmpApiKey)
+                    ]
+                    )
         }catch{
             throw error
         }
@@ -104,10 +104,10 @@ class MainRepository:RepositoryProtocol{
                     scheme: Schemas.https.rawValue,
                     host: Hosts.av.rawValue,
                     path: Paths.avQuery.urlString,
-                    queryItemFirst: QueriesNames.avQuery.rawValue,
-                    queryItemSecond: QueriesNames.apiKey.rawValue,
-                    userFirstInput: QueryValues.avGainersAndLosers.rawValue,
-                    userSecondInput: ApiKeys.avApiKey
+                    queriesAndInputs: [
+                        (QueriesNames.avQuery.rawValue,QueryValues.avGainersAndLosers.rawValue),
+                        (QueriesNames.apiKey.rawValue,ApiKeys.fmpApiKey)
+                    ]
                 )
         }catch{
             throw error
@@ -124,12 +124,11 @@ class MainRepository:RepositoryProtocol{
                     scheme: Schemas.https.rawValue,
                     host: Hosts.av.rawValue,
                     path:Paths.avQuery.urlString,
-                    queryItemFirst: QueriesNames.avQuery.rawValue,
-                    queryItemSecond: QueriesNames.avTickers.rawValue,
-                    queryItemThird: QueriesNames.apiKey.rawValue,
-                    userFirstInput: QueryValues.avNews.rawValue,
-                    userSecondInput: ticker,
-                    userThirdInput: ApiKeys.avApiKey
+                    queriesAndInputs: [
+                        (QueriesNames.avQuery.rawValue,QueryValues.avNews.rawValue),
+                        (QueriesNames.avTickers.rawValue,ticker),
+                        (QueriesNames.apiKey.rawValue,ApiKeys.avApiKey)
+                    ]
                 )
         }catch{
             throw error

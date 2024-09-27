@@ -8,7 +8,7 @@
 import Foundation
 import FirebaseAuth
 
-
+@MainActor
 class UserProfileViewModel:ObservableObject{
     
     //MARK: Properties
@@ -19,7 +19,7 @@ class UserProfileViewModel:ObservableObject{
     @Published var content = ""
     @Published var isPublic = false
     
-    var user:User?
+   @Published  var user:User?
     
     init(){
         self.user = firebaseClient.checkAuth()

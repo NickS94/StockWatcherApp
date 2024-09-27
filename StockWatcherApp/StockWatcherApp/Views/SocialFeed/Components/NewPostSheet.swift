@@ -34,7 +34,7 @@ struct NewPostSheet: View {
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button{
-                        socialFeedViewModel.createNewPost()
+                        socialFeedViewModel.createAndUpdatePost()
                         showNewPostSheet = false
                     }label: {
                         Image(systemName: "paperplane.fill")

@@ -10,8 +10,7 @@ import FirebaseAuth
 
 @MainActor
 class AuthenticationViewModel:ObservableObject{
-    
-    
+
     private let firebaseClient = FirebaseRepository.shared
     
     //MARK: Properties
@@ -23,7 +22,7 @@ class AuthenticationViewModel:ObservableObject{
     @Published var showMainView = true
     @Published var showAlert = false
     @Published var authenticationUser:User?
-    
+    @Published var userIconPick:ProfileIcons = .dog
     
     init(){
         showMainView = firebaseClient.checkAuth() != nil
@@ -31,14 +30,13 @@ class AuthenticationViewModel:ObservableObject{
     
     //MARK: Methods
     
-    
     func registerUser(){
         Task{
             do{
                 let results = try await firebaseClient.newUserRegister(email, password, username)
                 authenticationUser = results
                 if let authUser =  authenticationUser   {
-                    try  firebaseClient.createNewFirestoreUser(user: authUser)
+                    try  firebaseClient.createNewFirestoreUser(user: authUser, userProfileIcon: userIconPick.iconName)
                 }
                 showMainView = true
             }catch{
@@ -66,7 +64,7 @@ class AuthenticationViewModel:ObservableObject{
             let result =  await firebaseClient.signInWithGoogle()
             authenticationUser = result
             if let authUser =  authenticationUser   {
-                try  firebaseClient.createNewFirestoreUser(user: authUser)
+                try  firebaseClient.createNewFirestoreUser(user: authUser, userProfileIcon: userIconPick.iconName)
             }
             showMainView = result != nil
         }

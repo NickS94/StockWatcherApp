@@ -51,6 +51,7 @@ struct HomeView: View {
         .onAppear{
             homeViewModel.fetchFmpTickersList()
             socialFeedViewModel.fetchSocialChats()
+            homeViewModel.fetchWatchListFromDatabase()
         }
         .sheet(isPresented: $showNewPostSheet) {
             NewPostSheet(showNewPostSheet: $showNewPostSheet, socialFeedViewModel: socialFeedViewModel)

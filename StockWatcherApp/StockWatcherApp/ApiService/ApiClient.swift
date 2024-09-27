@@ -17,29 +17,24 @@ class ApiClient{
         scheme:String,
         host:String,
         path:String,
-        queryItemFirst:String? = nil,
-        queryItemSecond:String? = nil,
-        queryItemThird:String? = nil,
-        queryItemFourth:String? = nil,
+        queriesAndInputs:[(String,String)] = [],
         headers:[String:String]? = nil ,
         body:[String:Any]? = nil ,
-        method:String? = nil ,
-        userFirstInput:String? = nil ,
-        userSecondInput:String? = nil,
-        userThirdInput:String? = nil,
-        userFourthInput:String? = nil )  async throws  -> T? {
+        method:String? = nil
+         )  async throws  -> T? {
             
             var urlComponents = URLComponents()
             urlComponents.scheme = scheme
             urlComponents.host = host
             urlComponents.path = path
             
-            urlComponents.queryItems = [
-                URLQueryItem(name:queryItemFirst ?? "", value: userFirstInput),
-                URLQueryItem(name:queryItemSecond ?? "",value: userSecondInput),
-                URLQueryItem(name:queryItemThird ?? "",value: userThirdInput),
-                URLQueryItem(name:queryItemFourth ?? "",value: userFourthInput)
-            ]
+            
+            
+           
+            
+            urlComponents.queryItems = queriesAndInputs.map{URLQueryItem(name: $0.0, value: $0.1)}
+            
+
             
             guard let  url = urlComponents.url else{
                 throw ApiErrors.invalidUrl

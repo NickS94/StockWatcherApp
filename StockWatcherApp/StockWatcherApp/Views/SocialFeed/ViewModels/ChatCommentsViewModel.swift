@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import FirebaseAuth
 @MainActor
 class ChatCommentsViewModel:ObservableObject{
     
@@ -34,6 +34,15 @@ class ChatCommentsViewModel:ObservableObject{
             }catch{
                 print(error.localizedDescription)
             }
+        }
+    }
+    
+    
+    func createNewComment(user:User,chat:SocialChat){
+        do{
+            try firebaseClient.createAndUpdateChatComment(user: user, chat: chat, content: commentContent, likes: commentLikes, dislikes: commentDislikes)
+        }catch{
+            print(error.localizedDescription)
         }
     }
 }

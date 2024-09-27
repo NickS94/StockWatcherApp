@@ -27,18 +27,13 @@ class FirebaseRepository{
     }
     
     func newUserRegister(_ email:String,_ password:String,_ username:String) async throws -> User {
-        
         let results = try await authInstance.createUser(withEmail: email, password: password)
-        
         results.user.setValue(username, forKey: "displayName")
-        
         return  results.user
     }
     
     func userSignIn(_ email:String,_ password:String) async throws -> User {
-        
         let results = try await authInstance.signIn(withEmail: email, password: password)
-        
         return results.user
     }
     
@@ -58,9 +53,7 @@ class FirebaseRepository{
         guard let clientID = FirebaseApp.app()?.options.clientID else{
             print("Client ID not exicted")
             return nil
-            
         }
-        
         let config = GIDConfiguration(clientID: clientID)
         
         GIDSignIn.sharedInstance.configuration = config
@@ -71,39 +64,31 @@ class FirebaseRepository{
             print("There is no root view controller")
             return nil
         }
-        
         do{
-            
             let userAuthentication = try await GIDSignIn.sharedInstance.signIn(withPresenting: rootViewController)
             let user = userAuthentication.user
             guard let idToken = user.idToken else{
                 return nil
             }
-            
             let accessToken = user.accessToken
             let credential = GoogleAuthProvider.credential(withIDToken: idToken.tokenString, accessToken: accessToken.tokenString)
-            
             let result = try await Auth.auth().signIn(with: credential)
-            
             return result.user
         }catch{
             print(error.localizedDescription)
             return nil
         }
-        
-        
     }
     
-    func createNewFirestoreUser(user:User) throws {
-        let user = FirestoreUser(user: user)
+    func createNewFirestoreUser(user:User,userProfileIcon:String) throws {
+        let user = FirestoreUser(user: user, userProfileIcon: userProfileIcon)
         try firestoreInstance
             .collection("users")
             .document(user.id)
-            .setData(from: user)
+            .setData(from: user.self)
     }
     
     func getFirestoreUser() async throws -> FirestoreUser?{
-        
         try await firestoreInstance
             .collection("users")
             .document(uid ?? "")
@@ -116,7 +101,6 @@ class FirebaseRepository{
             .collection("users")
             .document(user.uid)
             .delete()
-        
     }
     
     func createAndUpdateWatchlist(ticker:String) throws {
@@ -152,11 +136,10 @@ class FirebaseRepository{
         for ticker in firebaseWatchlistTickers{
             stringTickers.append(ticker.tickerSymbol)
         }
-        
         return stringTickers
     }
     
-    func createSocialChat(user:User,content:String,title:String,likes:Int,dislikes:Int) throws{
+    func createAndUpdateSocialChat(user:User,content:String,title:String,likes:Int,dislikes:Int) throws{
         let chat = SocialChat(
             userId: user.uid,
             publisherName: user.displayName ?? "",
@@ -169,7 +152,7 @@ class FirebaseRepository{
         try firestoreInstance
             .collection("SocialChats")
             .document(chat.id)
-            .setData(from: chat)
+            .setData(from: chat,merge: true)
     }
     
     func fetchSocialChats()async throws->[SocialChat]{
@@ -180,7 +163,7 @@ class FirebaseRepository{
             .map{try $0.data(as: SocialChat.self)}
     }
     
-    func createChatComment(user:User,chat:SocialChat,content:String,likes:Int,dislikes:Int) throws {
+    func createAndUpdateChatComment(user:User,chat:SocialChat,content:String,likes:Int,dislikes:Int) throws {
         
         let chatComment = ChatComment(
             chatId: chat.id ,
@@ -194,7 +177,7 @@ class FirebaseRepository{
         try firestoreInstance
             .collection("ChatComments")
             .document(chatComment.id ?? "")
-            .setData(from: chatComment)
+            .setData(from: chatComment,merge: true)
     }
     
     func fetchChatComments(with chatId:String) async throws -> [ChatComment] {
@@ -204,41 +187,47 @@ class FirebaseRepository{
             .getDocuments()
             .documents
             .map{try $0.data(as: ChatComment.self)}
-        
     }
     
     func likeOrDislikeAPost(user:User,chatId:String,isLiked:Bool,isDisliked:Bool) throws{
         
-        let interaction = LikedOrDislikedPost( id: chatId, userId: user.uid, isLiked: isLiked, isDisliked: isDisliked)
+        let interactionId = UUID().uuidString
+        let interaction = LikedOrDislikedPost( id: interactionId,chatId:chatId,userId: user.uid, isLiked: isLiked, isDisliked: isDisliked)
         
         try firestoreInstance
-            .collection("users")
-            .document(uid ?? "")
             .collection("PostInteractions")
-            .document(interaction.id)
+            .document(interactionId)
             .setData(from: interaction)
     }
     
-    func deletePostInteraction( with chatId:String) async throws{
+    
+    func deletePostInteraction( with interactionId:String) async throws{
         
         try await firestoreInstance
-            .collection("users")
-            .document(uid ?? "")
             .collection("PostInteractions")
-            .document(chatId)
+            .document(interactionId)
             .delete()
     }
+    
     
     func fetchPostInteractions() async throws -> [LikedOrDislikedPost]{
         
         return try await firestoreInstance
-            .collection("users")
-            .document(uid ?? "")
             .collection("PostInteractions")
             .getDocuments()
             .documents
             .map{try $0.data(as: LikedOrDislikedPost.self)}
-        
     }
+    
+    func fetchInteraction(for chatId:String, from userId:String)async throws -> [LikedOrDislikedPost]{
+        return try await firestoreInstance
+            .collection("PostInteractions")
+            .whereField("chatId", isEqualTo: chatId)
+            .whereField("userId", isEqualTo: userId)
+            .getDocuments()
+            .documents
+            .map{try $0.data(as: LikedOrDislikedPost.self)}
+    }
+    
     
 }

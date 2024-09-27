@@ -16,7 +16,8 @@ struct AuthenticationView: View {
     var body: some View {
         NavigationStack{
             VStack(spacing:20){
-                LoginLogo()
+                
+                LoginLogo(isLoginMode: $loginMode, profileIcons: $authenticationViewModel.userIconPick)
                 TextFields(loginMode: $loginMode, isHidden: $isHidden, viewModel: authenticationViewModel)
                 ConfigurationButton(viewModel: authenticationViewModel, loginMode: $loginMode)
                 Text(loginMode ? "Or" : "")
