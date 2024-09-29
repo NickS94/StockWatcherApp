@@ -83,17 +83,27 @@ class FirebaseRepository{
     func createNewFirestoreUser(user:User,userProfileIcon:String) throws {
         let user = FirestoreUser(user: user, userProfileIcon: userProfileIcon)
         try firestoreInstance
-            .collection("users")
+            .collection("Users")
             .document(user.id)
             .setData(from: user.self)
     }
     
     func getFirestoreUser() async throws -> FirestoreUser?{
         try await firestoreInstance
-            .collection("users")
+            .collection("Users")
             .document(uid ?? "")
             .getDocument()
             .data(as: FirestoreUser.self)
+    }
+    
+    func fetchFirestoreUsers() async throws -> [FirestoreUser]{
+        
+        try await firestoreInstance
+            .collection("Users")
+            .getDocuments()
+            .documents
+            .map{try $0.data(as: FirestoreUser.self)}
+        
     }
     
     func deleteUsersCollection(user:User)async throws{
@@ -106,18 +116,18 @@ class FirebaseRepository{
     func createAndUpdateWatchlist(ticker:String) throws {
         let newTicker = WatchlistTicker(id: ticker, tickerSymbol: ticker)
         try firestoreInstance
-            .collection("users")
+            .collection("Users")
             .document(uid ?? "")
-            .collection("watchlist")
+            .collection("Watchlist")
             .document(ticker)
             .setData(from: newTicker)
     }
     
     func deleteFromWatchlist(ticker:String)async throws{
         try await firestoreInstance
-            .collection("users")
+            .collection("Users")
             .document(uid ?? "")
-            .collection("watchlist")
+            .collection("Watchlist")
             .document(ticker)
             .delete()
     }
@@ -125,13 +135,12 @@ class FirebaseRepository{
     func fetchUserWatchlist() async throws -> [String]{
         var stringTickers:[String] = []
         let firebaseWatchlistTickers = try await firestoreInstance
-            .collection("users")
+            .collection("Users")
             .document(uid ?? "")
-            .collection("watchlist")
+            .collection("Watchlist")
             .getDocuments()
             .documents
             .map{try $0.data(as: WatchlistTicker.self)}
-        
         
         for ticker in firebaseWatchlistTickers{
             stringTickers.append(ticker.tickerSymbol)
@@ -139,12 +148,21 @@ class FirebaseRepository{
         return stringTickers
     }
     
-    func createAndUpdateSocialChat(socialChat:SocialChat) throws{
+    func createSocialChat(fireuser:FirestoreUser,user:User,title:String,content:String) throws{
+        
+        let chat = SocialChat(
+            userId:user.uid,
+            publisherName: user.displayName ?? fireuser.username,
+            publisherProfileIcon: user.photoURL,
+            title: title,
+            content: content,
+            likes: 0,
+            dislikes: 0)
         
         try firestoreInstance
             .collection("SocialChats")
-            .document(socialChat.id)
-            .setData(from: socialChat,merge: true)
+            .document(chat.id)
+            .setData(from: chat)
     }
     
     func fetchSocialChats()async throws->[SocialChat]{
@@ -216,11 +234,26 @@ class FirebaseRepository{
     }
     
     
-    func likeCountUp(){
+    func updatePostLikes(postId:String,likeCount:Int)async throws{
         
+        let updatePost:[String:Any] = [
+            "likes" : likeCount
+        ]
+        
+        try await firestoreInstance
+            .collection("SocialChats")
+            .document(postId)
+            .updateData(updatePost)
     }
     
-    func likeCountDown(){
+    func updatePostDislikes(postId:String,dislikeCount:Int)async throws{
+        let updatePost:[String:Any] = [
+            "dislikes" : dislikeCount
+        ]
         
+        try await firestoreInstance
+            .collection("SocialChats")
+            .document(postId)
+            .updateData(updatePost)
     }
 }

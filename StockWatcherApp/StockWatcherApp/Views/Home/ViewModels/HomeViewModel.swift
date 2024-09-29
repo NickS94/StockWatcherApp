@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FirebaseAuth
 
 @MainActor
 class HomeViewModel:ObservableObject{
@@ -17,8 +18,9 @@ class HomeViewModel:ObservableObject{
     @Published var myTickersList:[TickerQuote] = []
     @Published var userSearchInput = ""
     @Published var userExchangeInput = ""
-    
     @Published var tickerListInput:[String] = []
+    @Published var fireusers:[FirestoreUser] = []
+    @Published var user:User?
     
     let repository:RepositoryProtocol
     
@@ -27,6 +29,22 @@ class HomeViewModel:ObservableObject{
     }
     
     //MARK: - Methods
+    
+    func fetchUser(){
+        Task{
+            let result = firebaseClient.checkAuth()
+            user = result
+        }
+    }
+    
+    func fetchFireusers(){
+        Task{
+            do{
+                let result = try await firebaseClient.fetchFirestoreUsers()
+                fireusers = result
+            }
+        }
+    }
     
     func fetchFmpTickersList(){
         Task{

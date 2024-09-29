@@ -16,7 +16,7 @@ struct NewCommentField: View {
                 .background(.gray.opacity(0.4))
                 .clipShape(RoundedRectangle(cornerRadius: 12))
                 .padding(.horizontal)
-            Button(role: .none) {
+            Button{
                 // TODO: Send comment button
             } label: {
                 Image(systemName: "paperplane.fill")

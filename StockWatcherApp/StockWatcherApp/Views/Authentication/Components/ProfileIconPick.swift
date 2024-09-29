@@ -43,12 +43,11 @@ struct ProfileIconPick: View {
                 }
             }
             .pickerStyle(.navigationLink)
-            .padding()
             Divider()
                 .frame(height: 1)
                 .background(.mainApp.opacity(0.7))
-                .padding()
         }
+        .padding(.horizontal)
     }
 }
 

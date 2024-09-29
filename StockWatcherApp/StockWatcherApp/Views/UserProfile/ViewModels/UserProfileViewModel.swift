@@ -18,12 +18,7 @@ class UserProfileViewModel:ObservableObject{
     @Published var fireuser:FirestoreUser?
     @Published var content = ""
     @Published var isPublic = false
-    
-   @Published  var user:User?
-    
-    init(){
-        self.user = firebaseClient.checkAuth()
-    }
+    @Published var user:User?
     
     //MARK: Methods
     
@@ -42,10 +37,7 @@ class UserProfileViewModel:ObservableObject{
         Task{
             do{
                 let result = firebaseClient.checkAuth()
-                
-                if let result = result{
-                    user = result
-                }
+                user = result
             }
         }
     }

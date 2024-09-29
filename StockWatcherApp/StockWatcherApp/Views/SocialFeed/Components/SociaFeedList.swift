@@ -10,6 +10,7 @@ import SwiftUI
 struct SociaFeedList: View {
     @ObservedObject var socialFeedViewModel:SocialFeedViewModel
     @Binding var showNewPostSheet:Bool
+    
     var body: some View {
         
         VStack{
@@ -49,9 +50,12 @@ struct SociaFeedList: View {
         }
         .frame(maxWidth: .infinity)
         .padding()
+        .onAppear{
+            socialFeedViewModel.fetchSocialChats()
+        }
     }
 }
 
-#Preview {
-    SociaFeedList(socialFeedViewModel: SocialFeedViewModel(), showNewPostSheet: .constant(false))
-}
+//#Preview {
+//    SociaFeedList(socialFeedViewModel: SocialFeedViewModel(), showNewPostSheet: .constant(false))
+//}

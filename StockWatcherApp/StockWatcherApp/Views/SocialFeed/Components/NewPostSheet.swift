@@ -10,6 +10,7 @@ import SwiftUI
 struct NewPostSheet: View {
     @Binding var showNewPostSheet:Bool
     @ObservedObject var socialFeedViewModel:SocialFeedViewModel
+    
     var body: some View {
         NavigationStack{
             VStack(spacing: 30){
@@ -18,11 +19,11 @@ struct NewPostSheet: View {
                 
                 TextField("What's on your mind?", text: $socialFeedViewModel.chatContent, axis: .vertical)
                     .font(.title2)
-                
                 Spacer()
             }
             .padding()
             .toolbar{
+                
                 ToolbarItem(placement: .topBarLeading) {
                     Button{
                         showNewPostSheet = false
@@ -32,9 +33,10 @@ struct NewPostSheet: View {
                             .foregroundStyle(.mainApp)
                     }
                 }
+                
                 ToolbarItem(placement: .topBarTrailing) {
                     Button{
-                        socialFeedViewModel.createAndUpdatePost()
+                        socialFeedViewModel.createPost()
                         showNewPostSheet = false
                     }label: {
                         Image(systemName: "paperplane.fill")
@@ -46,9 +48,6 @@ struct NewPostSheet: View {
             }
             .toolbarTitleDisplayMode(.inline)
             .navigationTitle("New Post")
-            .onDisappear{
-                socialFeedViewModel.fetchSocialChats()
-            }
         }
     }
 }

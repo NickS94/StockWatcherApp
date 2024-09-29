@@ -34,9 +34,7 @@ struct HomeView: View {
                 .padding()
                 ScrollView{
                     MyList(myTickersList: homeViewModel.myTickersList, tickerProfileViewModel: tickerProfileViewModel, detailsViewModel: detailsViewModel, newsViewModel: newsViewModel, homeViewModel: homeViewModel, showSearchSheet: $showSearchSheet)
-                    
                     SociaFeedList(socialFeedViewModel: socialFeedViewModel, showNewPostSheet: $showNewPostSheet)
-                    
                 }
                 .navigationTitle("Home")
                 .navigationBarTitleDisplayMode(.inline)
@@ -49,10 +47,13 @@ struct HomeView: View {
             homeViewModel.fetchFmpTickersList()
         }
         .task{
+            await socialFeedViewModel.fetchPostInteractions()
             homeViewModel.fetchFmpTickersList()
             socialFeedViewModel.fetchSocialChats()
             homeViewModel.fetchWatchListFromDatabase()
-            await socialFeedViewModel.fetchPostInteractions()
+            homeViewModel.fetchUser()
+            homeViewModel.fetchFmpTickersList()
+            homeViewModel.fetchFireusers()
         }
         .sheet(isPresented: $showNewPostSheet) {
             NewPostSheet(showNewPostSheet: $showNewPostSheet, socialFeedViewModel: socialFeedViewModel)
