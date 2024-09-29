@@ -13,12 +13,44 @@ struct NewPostSheet: View {
     
     var body: some View {
         NavigationStack{
-            VStack(spacing: 30){
+            VStack(alignment:.leading,spacing: 30){
+                HStack(alignment:.center){
+                    AsyncImage(url: socialFeedViewModel.user?.photoURL){ image in
+                        image
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 45,height:45)
+                            .clipShape(Circle())
+                            .overlay {
+                                Circle()
+                                    .stroke(lineWidth: 0.3)
+                                    .frame(width: 52,height: 52)
+                            }
+                    }placeholder: {
+                        Image(systemName: socialFeedViewModel.fireuser?.userProfileIcon ?? "person")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 45,height:45)
+                            .clipShape(Circle())
+                            .overlay {
+                                Circle()
+                                    .stroke(lineWidth: 0.3)
+                                    .frame(width: 52,height: 52)
+                            }
+                    }
+                    .padding(.vertical)
+                    
+                    
+                    VStack(alignment:.leading){
+                        Text("@\(socialFeedViewModel.fireuser?.username ?? "NoName")")
+                            .font(.title3.bold())
+                    }
+                }
                 TextField("Add Title", text: $socialFeedViewModel.chatTitle)
                     .font(.title.bold())
                 
                 TextField("What's on your mind?", text: $socialFeedViewModel.chatContent, axis: .vertical)
-                    .font(.title2)
+                    .font(.title2.italic())
                 Spacer()
             }
             .padding()
@@ -48,6 +80,9 @@ struct NewPostSheet: View {
             }
             .toolbarTitleDisplayMode(.inline)
             .navigationTitle("New Post")
+            .onAppear {
+                socialFeedViewModel.fetchFireUser()
+            }
         }
     }
 }

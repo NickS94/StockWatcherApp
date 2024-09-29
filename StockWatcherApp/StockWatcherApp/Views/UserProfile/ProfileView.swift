@@ -18,8 +18,8 @@ struct ProfileView: View {
                 DeleteAccountButton(deleteAction: userProfileViewModel.deleteUser, showMainView: $authenticationViewModel.showMainView)
                 LogoutButton(profileViewModel: userProfileViewModel, showMainView: $authenticationViewModel.showMainView)
             }
-            .onAppear{
-                userProfileViewModel.fetchUser()
+            .task{
+                await userProfileViewModel.fetchUser()
                 userProfileViewModel.getFireUser()
             }
             .navigationTitle("Profile")

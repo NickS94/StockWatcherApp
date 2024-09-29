@@ -16,6 +16,7 @@ struct HomeView: View {
     @StateObject var socialFeedViewModel = SocialFeedViewModel()
     @State var showSearchSheet = false
     @State var showNewPostSheet = false
+    
     var body: some View {
         NavigationStack{
             VStack{
@@ -38,6 +39,7 @@ struct HomeView: View {
                 }
                 .navigationTitle("Home")
                 .navigationBarTitleDisplayMode(.inline)
+                .scrollIndicators(.hidden)
             }
         }
         .sheet(isPresented: $showSearchSheet){
@@ -47,17 +49,18 @@ struct HomeView: View {
             homeViewModel.fetchFmpTickersList()
         }
         .task{
-            await socialFeedViewModel.fetchPostInteractions()
+            homeViewModel.fetchFireusers()
             homeViewModel.fetchFmpTickersList()
             socialFeedViewModel.fetchSocialChats()
             homeViewModel.fetchWatchListFromDatabase()
-            homeViewModel.fetchUser()
             homeViewModel.fetchFmpTickersList()
-            homeViewModel.fetchFireusers()
+            await homeViewModel.fetchUser()
+            await socialFeedViewModel.fetchPostInteractions()
         }
         .sheet(isPresented: $showNewPostSheet) {
             NewPostSheet(showNewPostSheet: $showNewPostSheet, socialFeedViewModel: socialFeedViewModel)
         }
+        .padding(10)
     }
 }
 

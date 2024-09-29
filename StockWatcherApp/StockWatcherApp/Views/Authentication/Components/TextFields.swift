@@ -11,31 +11,33 @@ struct TextFields: View {
     
     @Binding var loginMode:Bool
     @Binding var isHidden:Bool
-    
-    @ObservedObject var viewModel:AuthenticationViewModel
+    @Binding var username:String
+    @Binding var email:String
+    @Binding var password:String
     
     var body: some View {
         VStack{
             if !loginMode{
-                TextField("Username",text: $viewModel.username)
+                TextField("Username",text: $username)
                     .padding()
                     .background(.gray.opacity(0.4))
                     .clipShape(RoundedRectangle(cornerRadius: 12))
             }
-            TextField("Email",text: $viewModel.email)
+            TextField("Email",text: $email)
                 .padding()
                 .background(.gray.opacity(0.4))
                 .clipShape(RoundedRectangle(cornerRadius: 12))
                 .textInputAutocapitalization(.never)
+                .textContentType(.emailAddress)
             
   
                 ZStack(alignment:.trailing) {
                     
                     if isHidden {
-                        SecureField("Password", text: $viewModel.password)
+                        SecureField("Password", text: $password)
                             .textInputAutocapitalization(.never)
                     }else{
-                        TextField("Password",text: $viewModel.password)
+                        TextField("Password",text: $password)
                             .textInputAutocapitalization(.never)
                 }
                     Image(systemName: isHidden ? "eye.slash.fill" : "eye.fill")
@@ -54,5 +56,5 @@ struct TextFields: View {
 }
 
 #Preview {
-    TextFields(loginMode: .constant(false), isHidden: .constant(true), viewModel: AuthenticationViewModel())
+    TextFields(loginMode: .constant(false), isHidden: .constant(false), username: .constant(""), email: .constant(""), password: .constant(""))
 }

@@ -17,7 +17,7 @@ struct AuthenticationView: View {
         NavigationStack{
             VStack(spacing:20){
                 LoginLogo(isLoginMode: $loginMode, profileIcons: $authenticationViewModel.userIconPick)
-                TextFields(loginMode: $loginMode, isHidden: $isHidden, viewModel: authenticationViewModel)
+                TextFields(loginMode: $loginMode, isHidden: $isHidden,username: $authenticationViewModel.username,email: $authenticationViewModel.email,password: $authenticationViewModel.password)
                 ConfigurationButton(viewModel: authenticationViewModel, loginMode: $loginMode)
                 Text(loginMode ? "Or" : "")
                 GoogleSignInButton(authenticationViewModel: authenticationViewModel, loginMode: $loginMode)

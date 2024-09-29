@@ -66,6 +66,7 @@
 		03967A752C808F3F00707163 /* ColouredValuesStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03967A742C808F3F00707163 /* ColouredValuesStrings.swift */; };
 		03967A782C809AF900707163 /* HotListComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03967A772C809AF900707163 /* HotListComponent.swift */; };
 		03967A7E2C809C4A00707163 /* TabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03967A7D2C809C4A00707163 /* TabsView.swift */; };
+		039E46C42CA9F33F00A3FAF6 /* LikeOrDislikeAComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039E46C32CA9F33F00A3FAF6 /* LikeOrDislikeAComment.swift */; };
 		03A3701C2C91A5F700F13A39 /* SearchTickerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3701B2C91A5F700F13A39 /* SearchTickerRow.swift */; };
 		03A3701E2C91D5C900F13A39 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3701D2C91D5C900F13A39 /* SearchView.swift */; };
 		03A370202C91D63200F13A39 /* MyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3701F2C91D63200F13A39 /* MyList.swift */; };
@@ -159,6 +160,7 @@
 		03967A742C808F3F00707163 /* ColouredValuesStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColouredValuesStrings.swift; sourceTree = "<group>"; };
 		03967A772C809AF900707163 /* HotListComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotListComponent.swift; sourceTree = "<group>"; };
 		03967A7D2C809C4A00707163 /* TabsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsView.swift; sourceTree = "<group>"; };
+		039E46C32CA9F33F00A3FAF6 /* LikeOrDislikeAComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeOrDislikeAComment.swift; sourceTree = "<group>"; };
 		03A3701B2C91A5F700F13A39 /* SearchTickerRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTickerRow.swift; sourceTree = "<group>"; };
 		03A3701D2C91D5C900F13A39 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		03A3701F2C91D63200F13A39 /* MyList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyList.swift; sourceTree = "<group>"; };
@@ -395,6 +397,7 @@
 				0373BBF22CA1665B00C21627 /* SocialChat.swift */,
 				0373BBF42CA1858E00C21627 /* ChatComment.swift */,
 				03C170E52CA412D5008EC9E8 /* LikedOrDislikedPost.swift */,
+				039E46C32CA9F33F00A3FAF6 /* LikeOrDislikeAComment.swift */,
 			);
 			path = FirebaseModels;
 			sourceTree = "<group>";
@@ -577,8 +580,8 @@
 			isa = PBXGroup;
 			children = (
 				03C170E32CA2C149008EC9E8 /* SocialChatRow.swift */,
-				03527AD32CA4783E0011B223 /* SociaFeedList.swift */,
 				03527AD52CA4798D0011B223 /* SocialChatCommentRow.swift */,
+				03527AD32CA4783E0011B223 /* SociaFeedList.swift */,
 				03527AD72CA49DF00011B223 /* SocialChatDetailsView.swift */,
 				03527ADB2CA551060011B223 /* EmptyViewWithText.swift */,
 				03527ADD2CA5628C0011B223 /* NewPostSheet.swift */,
@@ -725,6 +728,7 @@
 				03527AE22CA5863A0011B223 /* ProfileIconPick.swift in Sources */,
 				0373BBE22C99C91B00C21627 /* FirestoreUser.swift in Sources */,
 				03B59C752C820BE6002DB53A /* TickerSentiment.swift in Sources */,
+				039E46C42CA9F33F00A3FAF6 /* LikeOrDislikeAComment.swift in Sources */,
 				03A370202C91D63200F13A39 /* MyList.swift in Sources */,
 				03AF61D02C8B2A38006B1143 /* NumberFormatterHelper.swift in Sources */,
 				03B59C732C820A07002DB53A /* TickerNews.swift in Sources */,

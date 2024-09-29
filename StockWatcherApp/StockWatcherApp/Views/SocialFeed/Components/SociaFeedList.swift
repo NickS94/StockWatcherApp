@@ -10,15 +10,12 @@ import SwiftUI
 struct SociaFeedList: View {
     @ObservedObject var socialFeedViewModel:SocialFeedViewModel
     @Binding var showNewPostSheet:Bool
-    
     var body: some View {
-        
         VStack{
             HStack{
                 Text("Social Feed")
                     .monospacedStyle(size: 22, weight: .bold)
                 Spacer()
-                
                 Button {
                     showNewPostSheet = true
                 } label: {
@@ -32,9 +29,7 @@ struct SociaFeedList: View {
                             .background(.gray.opacity(0.6))
                             .clipShape(Circle())
                     }
-                    
                 }
-
             }
             if socialFeedViewModel.socialChatList.isEmpty{
                 EmptyViewWithText(text: "No posts yet")
@@ -50,12 +45,9 @@ struct SociaFeedList: View {
         }
         .frame(maxWidth: .infinity)
         .padding()
-        .onAppear{
-            socialFeedViewModel.fetchSocialChats()
-        }
     }
 }
 
-//#Preview {
-//    SociaFeedList(socialFeedViewModel: SocialFeedViewModel(), showNewPostSheet: .constant(false))
-//}
+#Preview {
+    SociaFeedList(socialFeedViewModel: SocialFeedViewModel(), showNewPostSheet: .constant(false))
+}

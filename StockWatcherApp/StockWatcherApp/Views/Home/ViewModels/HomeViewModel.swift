@@ -21,6 +21,7 @@ class HomeViewModel:ObservableObject{
     @Published var tickerListInput:[String] = []
     @Published var fireusers:[FirestoreUser] = []
     @Published var user:User?
+    @Published var firestoreUser:FirestoreUser?
     
     let repository:RepositoryProtocol
     
@@ -30,10 +31,19 @@ class HomeViewModel:ObservableObject{
     
     //MARK: - Methods
     
-    func fetchUser(){
-        Task{
+    func fetchUser()async{
             let result = firebaseClient.checkAuth()
             user = result
+    }
+    
+    func fetchFireUser(){
+        Task{
+            do{
+                let result = try await firebaseClient.getFirestoreUser()
+                firestoreUser = result
+            }catch{
+                print(error)
+            }
         }
     }
     
@@ -42,8 +52,11 @@ class HomeViewModel:ObservableObject{
             do{
                 let result = try await firebaseClient.fetchFirestoreUsers()
                 fireusers = result
+            }catch{
+                print(error)
             }
         }
+      
     }
     
     func fetchFmpTickersList(){

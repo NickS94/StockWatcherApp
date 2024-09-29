@@ -13,10 +13,4 @@ struct FirestoreUser:Codable{
     let username:String
     let userEmail:String
     let userProfileIcon:String
-    init(user:User,userProfileIcon:String){
-        self.id = user.uid
-        self.userEmail = user.email ?? ""
-        self.username = user.displayName ?? ""
-        self.userProfileIcon = userProfileIcon
-    }
 }

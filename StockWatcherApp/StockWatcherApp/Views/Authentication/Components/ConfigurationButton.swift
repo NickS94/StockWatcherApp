@@ -18,10 +18,11 @@ struct ConfigurationButton: View {
                 if loginMode{
                     viewModel.loginUser()
                     print(viewModel.authenticationUser?.email ?? "")
-                    
                 }else{
-                    viewModel.registerUser()
-                    loginMode = true
+                    
+                viewModel.registerUser()
+                loginMode = true
+                    
                 }
             } label: {
                 Text(loginMode ? "Login" : "Register")

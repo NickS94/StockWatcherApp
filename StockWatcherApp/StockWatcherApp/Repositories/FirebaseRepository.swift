@@ -80,8 +80,8 @@ class FirebaseRepository{
         }
     }
     
-    func createNewFirestoreUser(user:User,userProfileIcon:String) throws {
-        let user = FirestoreUser(user: user, userProfileIcon: userProfileIcon)
+    func createNewFirestoreUser(username:String, userEmail:String, userProfileIcon:String) throws {
+        let user = FirestoreUser(id: uid ?? "", username: username, userEmail: userEmail, userProfileIcon: userProfileIcon)
         try firestoreInstance
             .collection("Users")
             .document(user.id)
@@ -97,14 +97,13 @@ class FirebaseRepository{
     }
     
     func fetchFirestoreUsers() async throws -> [FirestoreUser]{
-        
         try await firestoreInstance
             .collection("Users")
             .getDocuments()
             .documents
             .map{try $0.data(as: FirestoreUser.self)}
-        
     }
+    
     
     func deleteUsersCollection(user:User)async throws{
         try await firestoreInstance
@@ -153,7 +152,7 @@ class FirebaseRepository{
         let chat = SocialChat(
             userId:user.uid,
             publisherName: user.displayName ?? fireuser.username,
-            publisherProfileIcon: user.photoURL,
+            publisherProfileIcon: user.photoURL?.absoluteString ?? "",
             title: title,
             content: content,
             likes: 0,
@@ -173,7 +172,7 @@ class FirebaseRepository{
             .map{try $0.data(as: SocialChat.self)}
     }
     
-    func createAndUpdateChatComment(user:User,chat:SocialChat,content:String,likes:Int,dislikes:Int) throws {
+    func createChatComment(user:User,chat:SocialChat,content:String,likes:Int,dislikes:Int) throws {
         let chatComment = ChatComment(
             chatId: chat.id ,
             userId:user.uid,
@@ -185,8 +184,8 @@ class FirebaseRepository{
         
         try firestoreInstance
             .collection("ChatComments")
-            .document(chatComment.id ?? "")
-            .setData(from: chatComment,merge: true)
+            .document(chatComment.id)
+            .setData(from: chatComment)
     }
     
     func fetchChatComments(with chatId:String) async throws -> [ChatComment] {
@@ -196,6 +195,70 @@ class FirebaseRepository{
             .getDocuments()
             .documents
             .map{try $0.data(as: ChatComment.self)}
+    }
+    
+    func likeOrDislikeAcomment(user:User,commentId:String,isLiked:Bool,isDisliked:Bool)  throws {
+        let interactionsId = UUID().uuidString
+        let interaction = LikeOrDislikeAComment(id: interactionsId, commentId: commentId, userId: user.uid, isLiked: isLiked, isDisliked: isDisliked)
+        try firestoreInstance
+            .collection("CommentInteractions")
+            .document(interactionsId)
+            .setData(from: interaction)
+    }
+    
+    func deleteCommentInteraction( with interactionId:String) async throws{
+        try await firestoreInstance
+            .collection("CommentInteractions")
+            .document(interactionId)
+            .delete()
+    }
+    
+    func fetchCommentInteractions() async throws -> [LikeOrDislikeAComment]{
+        return try await firestoreInstance
+            .collection("CommentInteractions")
+            .getDocuments()
+            .documents
+            .map{try $0.data(as: LikeOrDislikeAComment.self)}
+    }
+    
+    func fetchCommentInteraction(from userId:String) async throws ->[LikeOrDislikeAComment]{
+        return try await firestoreInstance
+            .collection("CommentInteractions")
+            .whereField("userId", isEqualTo: userId)
+            .getDocuments()
+            .documents
+            .map{try $0.data(as: LikeOrDislikeAComment.self)}
+    }
+    
+    func updateCommentInteraction(interactionId:String, isLiked:Bool, isDisliked:Bool) async throws {
+        let updateComment:[String:Any] = [
+            "isLiked" : isLiked,
+            "isDisliked" : isDisliked
+        ]
+        try await firestoreInstance
+            .collection("CommentInteractions")
+            .document(interactionId)
+            .updateData(updateComment)
+    }
+    
+    func updateCommentLikes(commentId:String,likeCount:Int)async throws{
+        let updateCommentLikes:[String:Any] = [
+            "likes" : likeCount
+        ]
+        try await firestoreInstance
+            .collection("ChatComments")
+            .document(commentId)
+            .updateData(updateCommentLikes)
+    }
+    
+    func updateCommentDislikes(commentId:String,dislikeCount:Int)async throws{
+        let updateCommentDislikes:[String:Any] = [
+            "dislikes" : dislikeCount
+        ]
+        try await firestoreInstance
+            .collection("ChatComments")
+            .document(commentId)
+            .updateData(updateCommentDislikes)
     }
     
     func likeOrDislikeAPost(user:User,chatId:String,isLiked:Bool,isDisliked:Bool) throws{
@@ -224,7 +287,7 @@ class FirebaseRepository{
             .map{try $0.data(as: LikedOrDislikedPost.self)}
     }
     
-    func fetchInteraction(from userId:String)async throws -> [LikedOrDislikedPost]{
+    func fetchPostInteraction(from userId:String)async throws -> [LikedOrDislikedPost]{
         return try await firestoreInstance
             .collection("PostInteractions")
             .whereField("userId", isEqualTo: userId)
@@ -233,27 +296,34 @@ class FirebaseRepository{
             .map{try $0.data(as: LikedOrDislikedPost.self)}
     }
     
+    func updateInteraction(interactionId: String, isLiked: Bool, isDisliked: Bool) async throws {
+        let updateInteraction = [
+            "isLiked" : isLiked,
+            "isDiliked" : isDisliked
+        ]
+        try await firestoreInstance
+            .collection("PostInteractions")
+            .document(interactionId)
+            .updateData(updateInteraction)
+    }
     
     func updatePostLikes(postId:String,likeCount:Int)async throws{
-        
-        let updatePost:[String:Any] = [
+        let updatePostLikes:[String:Any] = [
             "likes" : likeCount
         ]
-        
         try await firestoreInstance
             .collection("SocialChats")
             .document(postId)
-            .updateData(updatePost)
+            .updateData(updatePostLikes)
     }
     
     func updatePostDislikes(postId:String,dislikeCount:Int)async throws{
-        let updatePost:[String:Any] = [
+        let updatePostDislikes:[String:Any] = [
             "dislikes" : dislikeCount
         ]
-        
         try await firestoreInstance
             .collection("SocialChats")
             .document(postId)
-            .updateData(updatePost)
+            .updateData(updatePostDislikes)
     }
 }

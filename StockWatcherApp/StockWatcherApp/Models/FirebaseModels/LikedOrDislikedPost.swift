@@ -8,7 +8,6 @@
 import Foundation
 
 struct LikedOrDislikedPost:Codable{
-    
     let id:String
     let chatId:String
     let userId:String

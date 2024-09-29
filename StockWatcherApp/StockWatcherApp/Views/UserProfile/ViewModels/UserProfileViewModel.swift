@@ -33,13 +33,13 @@ class UserProfileViewModel:ObservableObject{
         }
     }
     
-    func fetchUser(){
-        Task{
+    func fetchUser() async {
+   
             do{
                 let result = firebaseClient.checkAuth()
                 user = result
             }
-        }
+        
     }
     
     func deleteUser(){

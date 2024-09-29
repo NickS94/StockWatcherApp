@@ -40,7 +40,7 @@ class ChatCommentsViewModel:ObservableObject{
     
     func createNewComment(user:User,chat:SocialChat){
         do{
-            try firebaseClient.createAndUpdateChatComment(user: user, chat: chat, content: commentContent, likes: commentLikes, dislikes: commentDislikes)
+            try firebaseClient.createChatComment(user: user, chat: chat, content: commentContent, likes: commentLikes, dislikes: commentDislikes)
         }catch{
             print(error.localizedDescription)
         }

@@ -6,11 +6,9 @@
 //
 
 import Foundation
-import FirebaseFirestore
-import FirebaseAuth
 
 struct ChatComment:Codable,Identifiable{
-    @DocumentID var id:String?
+    var id:String = UUID().uuidString
     let chatId:String
     let userId:String
     let publisherName:String

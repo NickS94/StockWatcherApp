@@ -16,33 +16,32 @@ struct SocialChatRow: View {
     var body: some View {
         VStack(alignment:.leading){
             HStack (alignment:.bottom,spacing: 10){
-                
-                AsyncImage(url: socialChat.publisherProfileIcon) { image in
+                AsyncImage(url: URL(string: socialFeedViewModel.getFireUserProfileIcon(socialPost: socialChat))) { image in
                     image
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 45,height:45)
+                        .frame(width: 45, height: 45)
                         .clipShape(Circle())
                         .overlay {
                             Circle()
                                 .stroke(lineWidth: 0.3)
-                                .frame(width: 52,height: 52)
+                                .frame(width: 52, height: 52)
                         }
                 } placeholder: {
-                    Image(systemName: socialFeedViewModel.fireuser?.userProfileIcon ?? "person")
+                    Image(systemName: socialFeedViewModel.getFireUserProfileIcon(socialPost: socialChat))
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 45,height:45)
+                        .frame(width: 45, height: 45)
                         .clipShape(Circle())
                         .overlay {
                             Circle()
                                 .stroke(lineWidth: 0.3)
-                                .frame(width: 52,height: 52)
+                                .frame(width: 52, height: 52)
                         }
                 }
-                
                 VStack(alignment:.leading){
                     Text("@\(socialChat.publisherName)")
+                        .font(.title3)
                     Text(socialChat.createdAt.formatted(date: .abbreviated, time: .shortened))
                 }
             }
@@ -61,8 +60,7 @@ struct SocialChatRow: View {
                 HStack(spacing:15) {
                     Button {
                         Task{
-                            await socialFeedViewModel.onLikeClicked(socialChat: socialChat)
-                    
+                            await  socialFeedViewModel.onLikeClicked(socialChat: socialChat)
                             let result = socialFeedViewModel.interactionCheck(chatId: socialChat.id)
                             guard result.isEmpty else {
                                 isLiked = result[0].isLiked
@@ -71,8 +69,8 @@ struct SocialChatRow: View {
                             }
                             isLiked = false
                             isDisliked = false
+                            
                         }
-                        
                     } label: {
                         Image(systemName: isLiked ? "hand.thumbsup.fill" : "hand.thumbsup")
                         Text("\(socialChat.likes)")
@@ -84,11 +82,10 @@ struct SocialChatRow: View {
                     Button{
                         Task{
                             await socialFeedViewModel.onDislikeClicked(socialChat: socialChat)
-                          
                             let result = socialFeedViewModel.interactionCheck(chatId: socialChat.id)
                             guard result.isEmpty else {
-                                isLiked = result[0].isLiked
                                 isDisliked = result[0].isDisliked
+                                isLiked = result[0].isLiked
                                 return
                             }
                             isLiked = false
@@ -124,13 +121,15 @@ struct SocialChatRow: View {
                 .background(.mainApp)
                 .padding(7)
         }
-        .onAppear{
+        .onAppear {
             let result = socialFeedViewModel.interactionCheck(chatId: socialChat.id)
             guard result.isEmpty else {
                 isLiked = result[0].isLiked
                 isDisliked = result[0].isDisliked
                 return
             }
+            
+            socialFeedViewModel.fetchFireUsers()
         }
         .foregroundStyle(.mainApp)
         .padding()

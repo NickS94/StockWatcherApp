@@ -9,11 +9,10 @@ import Foundation
 
 
 struct SocialChat:Codable,Identifiable{
-    
     var id : String = UUID().uuidString
     let userId:String
     let publisherName:String
-    let publisherProfileIcon:URL?
+    let publisherProfileIcon:String
     let title:String
     let content:String
     let likes:Int

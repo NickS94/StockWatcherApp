@@ -9,6 +9,7 @@ import SwiftUI
 
 struct NewCommentField: View {
     @Binding var commentContent:String
+    
     var body: some View {
         HStack{
             TextField("Write a comment...", text: $commentContent, axis: .vertical)
