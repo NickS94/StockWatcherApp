@@ -15,8 +15,8 @@ struct AddNewSymbolView: View {
     @Binding var showAddToWatchlistView:Bool
     var body: some View {
         NavigationStack{
-            VStack(alignment:.leading,spacing: 30){
-                TextField("Write a symbol here...", text: $homeViewModel.userSearchInput)
+            VStack(spacing: 30){
+                TextField("Search symbol here...", text: $homeViewModel.userSearchInput)
                     .padding(8)
                     .background(.gray.opacity(0.4))
                     .clipShape(RoundedRectangle(cornerRadius: 12))
@@ -36,12 +36,16 @@ struct AddNewSymbolView: View {
                 .pickerStyle(.navigationLink)
                 
                 Button{
-                    
+                    homeViewModel.fetchSearchList(userExchangeInput: homeViewModel.exchangeInput.rawValue)
                 }label:{
                     Text("Search")
                         .font(.title2)
                         .foregroundStyle(.mainApp)
                 }
+                .frame(width: 200,height: 55)
+                .background(.gray.opacity(0.6))
+                .clipShape(RoundedRectangle(cornerRadius: 12))
+                
                 
                 List {
                     ForEach(homeViewModel.searchList,id:\.symbol){ ticker in
@@ -52,6 +56,7 @@ struct AddNewSymbolView: View {
                         }
                     }
                 }
+                .listStyle(.inset)
             }
             .padding(20)
             .toolbar{
@@ -65,6 +70,8 @@ struct AddNewSymbolView: View {
                     }
                 }
             }
+            .navigationTitle("Add To Watchlist")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

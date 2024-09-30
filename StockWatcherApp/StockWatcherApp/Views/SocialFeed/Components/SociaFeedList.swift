@@ -25,6 +25,7 @@ struct SociaFeedList: View {
                             .foregroundStyle(.mainApp)
                         Image(systemName: "plus")
                             .font(.title.bold())
+                            .foregroundStyle(.mainApp)
                             .padding(5)
                             .background(.gray.opacity(0.6))
                             .clipShape(Circle())

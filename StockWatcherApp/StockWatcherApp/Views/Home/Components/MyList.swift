@@ -13,7 +13,7 @@ struct MyList: View {
     @ObservedObject var detailsViewModel:DetailsViewModel
     @ObservedObject var newsViewModel:NewsViewModel
     @ObservedObject var homeViewModel:HomeViewModel
-    @Binding var showSearchSheet:Bool
+    @Binding var showAddToWatchlistSheet:Bool
     
     var body: some View {
         VStack(alignment:.leading){
@@ -22,10 +22,11 @@ struct MyList: View {
                     .roundedStyle(size: 22, weight: .bold)
                 Spacer()
                 Button{
-                    showSearchSheet = true
+                    showAddToWatchlistSheet = true
                 }label: {
                     Image(systemName: "plus")
                         .font(.title.bold())
+                        .foregroundStyle(.mainApp)
                         .padding(5)
                         .background(.gray.opacity(0.6))
                         .clipShape(Circle())
@@ -52,5 +53,5 @@ struct MyList: View {
 }
 
 #Preview {
-    MyList(myTickersList: [],tickerProfileViewModel: TickerProfileViewModel(repository: MockRepository()),detailsViewModel: DetailsViewModel(repository: MockRepository()),newsViewModel: NewsViewModel(repository: MockRepository()), homeViewModel: HomeViewModel(repository: MockRepository()), showSearchSheet: .constant(false))
+    MyList(myTickersList: [],tickerProfileViewModel: TickerProfileViewModel(repository: MockRepository()),detailsViewModel: DetailsViewModel(repository: MockRepository()),newsViewModel: NewsViewModel(repository: MockRepository()), homeViewModel: HomeViewModel(repository: MockRepository()), showAddToWatchlistSheet: .constant(false))
 }

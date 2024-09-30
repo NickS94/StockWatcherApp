@@ -50,10 +50,13 @@ struct SocialChatRow: View {
                 .font(.title)
                 .bold()
                 .padding(.vertical)
+                .multilineTextAlignment(.leading)
             
             Text(socialChat.content)
                 .font(.title3)
                 .fontWeight(.light)
+                .multilineTextAlignment(.leading)
+            
             HStack{
                 //Like button
                 HStack(spacing:15) {

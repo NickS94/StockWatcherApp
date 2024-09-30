@@ -16,6 +16,7 @@ struct HomeView: View {
     @StateObject var socialFeedViewModel = SocialFeedViewModel()
     @State var showSearchSheet = false
     @State var showNewPostSheet = false
+    @State var showAddToWatchlistSheet = false
     
     var body: some View {
         NavigationStack{
@@ -34,7 +35,7 @@ struct HomeView: View {
                 .tint(.mainApp).opacity(0.3)
                 .padding()
                 ScrollView{
-                    MyList(myTickersList: homeViewModel.myTickersList, tickerProfileViewModel: tickerProfileViewModel, detailsViewModel: detailsViewModel, newsViewModel: newsViewModel, homeViewModel: homeViewModel, showSearchSheet: $showSearchSheet)
+                    MyList(myTickersList: homeViewModel.myTickersList, tickerProfileViewModel: tickerProfileViewModel, detailsViewModel: detailsViewModel, newsViewModel: newsViewModel, homeViewModel: homeViewModel, showAddToWatchlistSheet:$showAddToWatchlistSheet)
                     SociaFeedList(socialFeedViewModel: socialFeedViewModel, showNewPostSheet: $showNewPostSheet)
                 }
                 .navigationTitle("Home")
@@ -44,6 +45,12 @@ struct HomeView: View {
         }
         .sheet(isPresented: $showSearchSheet){
             SearchView(homeViewModel: homeViewModel, tickerProfileViewModel: tickerProfileViewModel, detailsViewModel: detailsViewModel, newsViewModel: newsViewModel, showSearchSheet: $showSearchSheet)
+        }
+        .sheet(isPresented: $showNewPostSheet) {
+            NewPostSheet(showNewPostSheet: $showNewPostSheet, socialFeedViewModel: socialFeedViewModel)
+        }
+        .sheet(isPresented: $showAddToWatchlistSheet) {
+            AddNewSymbolView(homeViewModel: homeViewModel, tickerProfileViewModel: tickerProfileViewModel, detailsViewModel: detailsViewModel, newsViewModel: newsViewModel, showAddToWatchlistView: $showAddToWatchlistSheet)
         }
         .onChange(of: homeViewModel.tickerListInput) {
             homeViewModel.fetchFmpTickersList()
@@ -55,9 +62,6 @@ struct HomeView: View {
             homeViewModel.fetchWatchListFromDatabase()
             homeViewModel.fetchFmpTickersList()
             socialFeedViewModel.fetchPostInteractions()
-        }
-        .sheet(isPresented: $showNewPostSheet) {
-            NewPostSheet(showNewPostSheet: $showNewPostSheet, socialFeedViewModel: socialFeedViewModel)
         }
         .padding(10)
     }

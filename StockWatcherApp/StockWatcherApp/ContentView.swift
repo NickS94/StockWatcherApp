@@ -9,11 +9,11 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @StateObject var hotListsViewModel = HotTickersViewModel(repository: MockRepository())
-    @StateObject var newsViewModel = NewsViewModel(repository: MockRepository())
-    @StateObject var tickerProfileViewModel = TickerProfileViewModel(repository: MockRepository())
-    @StateObject var detailsViewModel = DetailsViewModel(repository: MockRepository())
-    @StateObject var homeViewModel = HomeViewModel(repository: MockRepository())
+    @StateObject var hotListsViewModel = HotTickersViewModel(repository: MainRepository())
+    @StateObject var newsViewModel = NewsViewModel(repository: MainRepository())
+    @StateObject var tickerProfileViewModel = TickerProfileViewModel(repository: MainRepository())
+    @StateObject var detailsViewModel = DetailsViewModel(repository: MainRepository())
+    @StateObject var homeViewModel = HomeViewModel(repository: MainRepository())
     @ObservedObject var authenticationViewModel : AuthenticationViewModel
     
     var body: some View {
