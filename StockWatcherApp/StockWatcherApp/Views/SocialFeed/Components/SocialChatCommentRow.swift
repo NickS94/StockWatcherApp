@@ -10,8 +10,6 @@ import SwiftUI
 struct SocialChatCommentRow: View {
     let chatComment:ChatComment
     let chatId:String
-    @State var isLiked = false
-    @State var isDisliked = false
     @ObservedObject var chatCommentViewModel:ChatCommentsViewModel
     var body: some View {
         VStack(alignment:.leading,spacing:20){
@@ -45,30 +43,21 @@ struct SocialChatCommentRow: View {
                 Spacer()
                 Text(chatComment.createdAt.formatted(date: .abbreviated, time: .shortened))
                     .font(.footnote)
-
+                
             }
             
             Text(chatComment.content)
                 .roundedStyle(size: 16, weight: .regular)
-               
+            
             HStack{
                 //Like button
                 HStack(spacing:20) {
                     Button {
-                        Task{
-                            await chatCommentViewModel.onCommentLikeClicked(chatComment:chatComment,chatId:chatId)
-                            
-                            let result = chatCommentViewModel.commentInteractionCheck(commentId: chatComment.id)
-                            guard result.isEmpty else{
-                                isLiked = result[0].isLiked
-                                isDisliked = result[0].isDisliked
-                                return
-                            }
-                            isLiked = false
-                            isDisliked = false
-                        }
+                        chatCommentViewModel.onCommentLikeClicked(chatComment:chatComment,chatId:chatId)
+                        chatCommentViewModel.isLiked = true
+                        chatCommentViewModel.isDisliked = false
                     } label: {
-                        Image(systemName: isLiked ? "hand.thumbsup.fill" : "hand.thumbsup")
+                        Image(systemName: chatCommentViewModel.likeCheck(chatComment: chatComment) ? "hand.thumbsup.fill" : "hand.thumbsup")
                         Text("\(chatComment.likes)")
                     }
                     Divider()
@@ -76,19 +65,11 @@ struct SocialChatCommentRow: View {
                         .background(.mainApp)
                     //Dislike button
                     Button{
-                        Task{
-                            await chatCommentViewModel.onCommentDislikeClicked(chatComment: chatComment, chatId: chatId)
-                            let result = chatCommentViewModel.commentInteractionCheck(commentId: chatComment.id)
-                            guard result.isEmpty else{
-                                isDisliked = result[0].isDisliked
-                                isLiked = result[0].isLiked
-                                return
-                            }
-                            isLiked = false
-                            isDisliked = false
-                        }
+                        chatCommentViewModel.onCommentDislikeClicked(chatComment: chatComment, chatId: chatId)
+                        chatCommentViewModel.isDisliked = true
+                        chatCommentViewModel.isLiked = false
                     } label: {
-                        Image(systemName: isDisliked ? "hand.thumbsdown.fill" : "hand.thumbsdown")
+                        Image(systemName: chatCommentViewModel.dislikeCheck(chatComment: chatComment) ? "hand.thumbsdown.fill" : "hand.thumbsdown")
                         Text("\(chatComment.dislikes)")
                     }
                 }
@@ -108,14 +89,8 @@ struct SocialChatCommentRow: View {
         .frame(maxWidth: .infinity)
         .padding(20)
         .onAppear{
-            let result = chatCommentViewModel.commentInteractionCheck(commentId: chatComment.id)
-            guard result.isEmpty else{
-                isLiked = result[0].isLiked
-                isDisliked = result[0].isDisliked
-                return
-            }
+            chatCommentViewModel.fetchCommentInteractions()
             chatCommentViewModel.fetchFireUsers()
-            chatCommentViewModel.fetchFireUser()
         }
     }
 }

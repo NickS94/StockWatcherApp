@@ -19,6 +19,8 @@ class SocialFeedViewModel:ObservableObject{
     @Published var chatInteractionsList:[LikedOrDislikedPost] = []
     @Published var fireuser:FirestoreUser?
     @Published var fireusers:[FirestoreUser] = []
+    @Published var isLiked = false
+    @Published var isDisliked = false
     
     var user:User?{
         return firebaseClient.checkAuth()
@@ -78,7 +80,13 @@ class SocialFeedViewModel:ObservableObject{
         do{
             
             if let user = user{
-                try firebaseClient.createSocialChat(fireuser: fireuser ?? FirestoreUser(id: user.uid, username: user.displayName ?? "NoName", userEmail: user.email ?? "NoEmail", userProfileIcon: user.photoURL?.absoluteString ?? ""), user: user, title: chatTitle, content: chatContent)
+                try firebaseClient.createSocialChat(
+                    fireuser: fireuser ?? FirestoreUser(
+                        id: user.uid,
+                        username: user.displayName ?? "NoName",
+                        userEmail: user.email ?? "NoEmail",
+                        userProfileIcon: user.photoURL?.absoluteString ?? ""),
+                    user: user, title: chatTitle, content: chatContent)
                 fetchSocialChats()
             }
         }catch{
@@ -86,34 +94,39 @@ class SocialFeedViewModel:ObservableObject{
         }
     }
     
-    func likeOrDislikePost(chatId: String, isLiked: Bool, isDisliked: Bool)async {
-        guard let user else { return }
-        do {
-            try firebaseClient.likeOrDislikeAPost(user: user, chatId: chatId, isLiked: isLiked, isDisliked: isDisliked)
-        } catch {
-            print(error.localizedDescription)
-        }
-    }
-    
-    
-    func fetchPostInteractions()async {
-        do{
-            guard let user else {return}
+    func likeOrDislikePost(chatId: String) {
+        Task{
+            guard let user else { return }
+            do {
+                try firebaseClient.likeOrDislikeAPost(user: user, chatId: chatId, isLiked: isLiked, isDisliked: isDisliked)
+            } catch {
+                print(error.localizedDescription)
+            }
             
-            let results = try await firebaseClient.fetchPostInteraction(from: user.uid)
-            chatInteractionsList = results
-        }catch{
-            print(error.localizedDescription)
         }
-        
-        
     }
     
-    func deleteInteraction(interactionId:String) async {
-        do{
-            try await firebaseClient.deletePostInteraction(with: interactionId)
-        }catch{
-            print(error.localizedDescription)
+    
+    func fetchPostInteractions() {
+        Task{
+            do{
+                guard let user else {return}
+                
+                let results = try await firebaseClient.fetchPostInteraction(from: user.uid)
+                chatInteractionsList = results
+            }catch{
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func deleteInteraction(interactionId:String) {
+        Task{
+            do{
+                try await firebaseClient.deletePostInteraction(with: interactionId)
+            }catch{
+                print(error.localizedDescription)
+            }
         }
     }
     
@@ -123,68 +136,88 @@ class SocialFeedViewModel:ObservableObject{
         }
     }
     
-    func updateChatLikes(chatId:String,likeCount:Int)async {
-        
-        do{
-            try await firebaseClient.updatePostLikes(postId: chatId, likeCount: likeCount)
-            await fetchPostInteractions()
-        }catch{
-            print(error.localizedDescription)
-        }
-        
-        
-    }
-    
-    func updateChatDislikes(chatId:String,dislikeCount:Int) async{
-        do{
-            try await firebaseClient.updatePostDislikes(postId: chatId, dislikeCount: dislikeCount)
-            await fetchPostInteractions()
-        }catch{
-            print(error.localizedDescription)
+    func updateChatLikes(chatId:String,likeCount:Int) {
+        Task{
+            do{
+                try await firebaseClient.updatePostLikes(postId: chatId, likeCount: likeCount)
+                fetchPostInteractions()
+            }catch{
+                print(error.localizedDescription)
+            }
         }
     }
     
-    func onLikeClicked(socialChat: SocialChat) async {
+    func updateChatDislikes(chatId:String,dislikeCount:Int) {
+        Task{
+            do{
+                try await firebaseClient.updatePostDislikes(postId: chatId, dislikeCount: dislikeCount)
+                fetchPostInteractions()
+            }catch{
+                print(error.localizedDescription)
+            }
+        }
+        
+    }
+    
+    func onLikeClicked(socialChat: SocialChat) {
         
         let interactions = interactionCheck(chatId: socialChat.id)
         
         if !interactions.isEmpty, interactions[0].isLiked {
-            await updateChatLikes(chatId: socialChat.id, likeCount: socialChat.likes - 1)
-            await deleteInteraction(interactionId: interactions[0].id)
-            
+            updateChatLikes(chatId: socialChat.id, likeCount: socialChat.likes - 1)
+            deleteInteraction(interactionId: interactions[0].id)
         }else if !interactions.isEmpty, interactions[0].isDisliked {
-            await updateChatDislikes(chatId: socialChat.id, dislikeCount: socialChat.dislikes - 1)
-            await deleteInteraction(interactionId: interactions[0].id)
-            await likeOrDislikePost(chatId: socialChat.id, isLiked: true, isDisliked: false)
-            await updateChatLikes(chatId: socialChat.id, likeCount: socialChat.likes + 1)
+            updateChatDislikes(chatId: socialChat.id, dislikeCount: socialChat.dislikes - 1)
+            deleteInteraction(interactionId: interactions[0].id)
+            likeOrDislikePost(chatId: socialChat.id)
+            updateChatLikes(chatId: socialChat.id, likeCount: socialChat.likes + 1)
             
         }else {
-            await updateChatLikes(chatId: socialChat.id, likeCount: socialChat.likes + 1)
-            await likeOrDislikePost(chatId: socialChat.id, isLiked: true, isDisliked: false)
+            updateChatLikes(chatId: socialChat.id, likeCount: socialChat.likes + 1)
+            likeOrDislikePost(chatId: socialChat.id)
         }
-        await fetchPostInteractions()
+        fetchPostInteractions()
         fetchSocialChats()
     }
     
-    func onDislikeClicked(socialChat: SocialChat) async {
+    func onDislikeClicked(socialChat: SocialChat) {
         
         let interactions = interactionCheck(chatId: socialChat.id)
         if !interactions.isEmpty, interactions[0].isDisliked {
-            await updateChatDislikes(chatId: socialChat.id, dislikeCount: socialChat.dislikes - 1)
-            await deleteInteraction(interactionId: interactions[0].id)
+            updateChatDislikes(chatId: socialChat.id, dislikeCount: socialChat.dislikes - 1)
+            deleteInteraction(interactionId: interactions[0].id)
             
         }else if !interactions.isEmpty, interactions[0].isLiked {
-            await updateChatLikes(chatId: socialChat.id, likeCount: socialChat.likes - 1)
-            await deleteInteraction(interactionId: interactions[0].id)
-            await likeOrDislikePost(chatId: socialChat.id, isLiked: false, isDisliked: true)
-            await updateChatDislikes(chatId: socialChat.id, dislikeCount: socialChat.dislikes + 1)
+            updateChatLikes(chatId: socialChat.id, likeCount: socialChat.likes - 1)
+            deleteInteraction(interactionId: interactions[0].id)
+            likeOrDislikePost(chatId: socialChat.id)
+            updateChatDislikes(chatId: socialChat.id, dislikeCount: socialChat.dislikes + 1)
             
         }else {
-            await updateChatDislikes(chatId: socialChat.id, dislikeCount: socialChat.dislikes + 1)
-            await likeOrDislikePost(chatId: socialChat.id, isLiked: false, isDisliked: true)
+            updateChatDislikes(chatId: socialChat.id, dislikeCount: socialChat.dislikes + 1)
+            likeOrDislikePost(chatId: socialChat.id)
         }
-        await fetchPostInteractions()
+        fetchPostInteractions()
         fetchSocialChats()
     }
     
+    func likeCheck(socialChat:SocialChat) ->Bool{
+        let interactions = interactionCheck(chatId: socialChat.id)
+        if !interactions.isEmpty, interactions[0].chatId == socialChat.id{
+            if interactions[0].isLiked{
+                return true
+            }
+        }
+        return false
+    }
+    
+    func dislikeCheck(socialChat:SocialChat) ->Bool{
+        let interactions = interactionCheck(chatId: socialChat.id)
+        if !interactions.isEmpty,interactions[0].chatId == socialChat.id{
+            if interactions[0].isDisliked{
+                return true
+            }
+        }
+        return false
+    }
 }

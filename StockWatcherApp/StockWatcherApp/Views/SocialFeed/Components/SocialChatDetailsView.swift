@@ -37,6 +37,7 @@ struct SocialChatDetailsView: View {
         }
         .onChange(of: chatCommentsViewModel.chatComments) {
             chatCommentsViewModel.fetchFireUser()
+            chatCommentsViewModel.fetchFireUsers()
             chatCommentsViewModel.fetchComments(chatId: socialChat.id)
         }
     }

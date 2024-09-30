@@ -18,10 +18,11 @@ struct NewCommentField: View {
                 .clipShape(RoundedRectangle(cornerRadius: 12))
                 .padding(.horizontal)
             Button{
-                chatCommentsViewModel.fetchFireUser()
-                chatCommentsViewModel.createNewComment(chat: socialChat)
-                chatCommentsViewModel.commentContent = ""
-                
+                Task{
+                    chatCommentsViewModel.fetchFireUser()
+                    await chatCommentsViewModel.createNewComment(chat: socialChat)
+                    chatCommentsViewModel.commentContent = ""
+                }
             } label: {
                 Image(systemName: "paperplane.fill")
                     .font(.title)

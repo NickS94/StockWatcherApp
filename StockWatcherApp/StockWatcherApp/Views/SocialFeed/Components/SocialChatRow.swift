@@ -10,8 +10,7 @@ import SwiftUI
 struct SocialChatRow: View {
     
     let socialChat:SocialChat
-    @State var isLiked = false
-    @State var isDisliked = false
+    
     @ObservedObject var socialFeedViewModel:SocialFeedViewModel
     var body: some View {
         VStack(alignment:.leading){
@@ -59,20 +58,11 @@ struct SocialChatRow: View {
                 //Like button
                 HStack(spacing:15) {
                     Button {
-                        Task{
-                            await  socialFeedViewModel.onLikeClicked(socialChat: socialChat)
-                            let result = socialFeedViewModel.interactionCheck(chatId: socialChat.id)
-                            guard result.isEmpty else {
-                                isLiked = result[0].isLiked
-                                isDisliked = result[0].isDisliked
-                                return
-                            }
-                            isLiked = false
-                            isDisliked = false
-                            
-                        }
+                        socialFeedViewModel.onLikeClicked(socialChat: socialChat)
+                        socialFeedViewModel.isLiked = true
+                        socialFeedViewModel.isDisliked = false
                     } label: {
-                        Image(systemName: isLiked ? "hand.thumbsup.fill" : "hand.thumbsup")
+                        Image(systemName: socialFeedViewModel.likeCheck(socialChat: socialChat) ? "hand.thumbsup.fill" : "hand.thumbsup")
                         Text("\(socialChat.likes)")
                     }
                     Divider()
@@ -80,19 +70,11 @@ struct SocialChatRow: View {
                         .background(.mainApp)
                     //Dislike button
                     Button{
-                        Task{
-                            await socialFeedViewModel.onDislikeClicked(socialChat: socialChat)
-                            let result = socialFeedViewModel.interactionCheck(chatId: socialChat.id)
-                            guard result.isEmpty else {
-                                isDisliked = result[0].isDisliked
-                                isLiked = result[0].isLiked
-                                return
-                            }
-                            isLiked = false
-                            isDisliked = false
-                        }
+                        socialFeedViewModel.onDislikeClicked(socialChat: socialChat)
+                        socialFeedViewModel.isDisliked = true
+                        socialFeedViewModel.isLiked = false
                     } label: {
-                        Image(systemName: isDisliked ? "hand.thumbsdown.fill" : "hand.thumbsdown")
+                        Image(systemName: socialFeedViewModel.dislikeCheck(socialChat: socialChat) ? "hand.thumbsdown.fill" : "hand.thumbsdown")
                         Text("\(socialChat.dislikes)")
                     }
                 }
@@ -122,12 +104,7 @@ struct SocialChatRow: View {
                 .padding(7)
         }
         .onAppear {
-            let result = socialFeedViewModel.interactionCheck(chatId: socialChat.id)
-            guard result.isEmpty else {
-                isLiked = result[0].isLiked
-                isDisliked = result[0].isDisliked
-                return
-            }
+            socialFeedViewModel.fetchPostInteractions()
             socialFeedViewModel.fetchFireUsers()
         }
         .foregroundStyle(.mainApp)

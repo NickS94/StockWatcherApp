@@ -19,6 +19,8 @@ class ChatCommentsViewModel:ObservableObject{
     @Published var commentInteractions:[LikeOrDislikeAComment] = []
     @Published var fireuser:FirestoreUser?
     @Published var fireusers:[FirestoreUser] = []
+    @Published var isLiked = false
+    @Published var isDisliked = false
     
     var user:User?{
         return firebaseClient.checkAuth()
@@ -38,10 +40,18 @@ class ChatCommentsViewModel:ObservableObject{
         }
     }
     
-    func createNewComment(chat:SocialChat){
+    func createNewComment(chat:SocialChat) async{
         do{
             if let authUser = user{
-                try firebaseClient.createChatComment(fireuser: fireuser ?? FirestoreUser(id: authUser.uid, username: authUser.displayName ?? "NoName", userEmail: authUser.email ?? "NoEmail", userProfileIcon: authUser.photoURL?.absoluteString ?? ""), user: authUser, chat: chat, content: commentContent)
+                try firebaseClient.createChatComment(
+                    fireuser: fireuser ?? FirestoreUser(
+                        id: authUser.uid,
+                        username: authUser.displayName ?? "NoName",
+                        userEmail: authUser.email ?? "NoEmail",
+                        userProfileIcon: authUser.photoURL?.absoluteString ?? ""),
+                    user: authUser,
+                    chat: chat,
+                    content: commentContent)
             }
             fetchFireUser()
             fetchComments(chatId: chat.id)
@@ -89,89 +99,120 @@ class ChatCommentsViewModel:ObservableObject{
         }
     }
     
-    func likeOrDislikeAComment(commentId:String,isLiked:Bool,isDisliked:Bool) async {
-        guard let user else{return}
-        
-        do{
-            try firebaseClient.likeOrDislikeAcomment(user: user, commentId: commentId, isLiked: isLiked, isDisliked: isDisliked)
-        }catch{
-            print(error.localizedDescription)
-        }
-    }
-    
-    func fetchCommentInteractions() async {
-        do{
+    func likeOrDislikeAComment(commentId:String)  {
+        Task{
             guard let user else{return}
             
-            let results = try await firebaseClient.fetchCommentInteraction(from: user.uid)
-            commentInteractions = results
-        }catch{
-            print(error.localizedDescription)
+            do{
+                try firebaseClient.likeOrDislikeAcomment(user: user, commentId: commentId, isLiked: isLiked, isDisliked: isDisliked)
+            }catch{
+                print(error.localizedDescription)
+            }
         }
     }
     
-    func deleteCommentInteraction(commentInteractioId:String) async {
-        do{
-            try await firebaseClient.deleteCommentInteraction(with: commentInteractioId)
-        }catch{
-            print(error.localizedDescription)
+    func fetchCommentInteractions() {
+        Task{
+            do{
+                guard let user else{return}
+                
+                let results = try await firebaseClient.fetchCommentInteraction(from: user.uid)
+                commentInteractions = results
+            }catch{
+                print(error.localizedDescription)
+            }
         }
     }
     
-    func updateCommentLikes(commentId:String,likeCount:Int)async{
-        do{
-            try await firebaseClient.updateCommentLikes(commentId: commentId, likeCount: likeCount)
-            await fetchCommentInteractions()
-        }catch{
-            print(error.localizedDescription)
+    func deleteCommentInteraction(commentInteractioId:String) {
+        Task{
+            do{
+                try await firebaseClient.deleteCommentInteraction(with: commentInteractioId)
+            }catch{
+                print(error.localizedDescription)
+            }
         }
     }
     
-    func updateCommentDislikes(commentId:String,dislikeCount:Int) async {
-        do{
-            try await firebaseClient.updateCommentDislikes(commentId: commentId, dislikeCount: dislikeCount)
-            await fetchCommentInteractions()
-        }catch{
-            print(error.localizedDescription)
+    func updateCommentLikes(commentId:String,likeCount:Int){
+        Task{
+            do{
+                try await firebaseClient.updateCommentLikes(commentId: commentId, likeCount: likeCount)
+                fetchCommentInteractions()
+            }catch{
+                print(error.localizedDescription)
+            }
         }
     }
     
-    func onCommentLikeClicked(chatComment:ChatComment,chatId:String) async {
+    func updateCommentDislikes(commentId:String,dislikeCount:Int){
+        Task{
+            do{
+                try await firebaseClient.updateCommentDislikes(commentId: commentId, dislikeCount: dislikeCount)
+                fetchCommentInteractions()
+            }catch{
+                print(error.localizedDescription)
+            }
+            
+        }
+    }
+    
+    func onCommentLikeClicked(chatComment:ChatComment,chatId:String) {
         let interactions = commentInteractionCheck(commentId: chatComment.id)
         
         if !interactions.isEmpty , interactions[0].isLiked{
-            await updateCommentLikes(commentId: chatComment.id, likeCount: chatComment.likes - 1)
-            await deleteCommentInteraction(commentInteractioId: interactions[0].id)
+             updateCommentLikes(commentId: chatComment.id, likeCount: chatComment.likes - 1)
+             deleteCommentInteraction(commentInteractioId: interactions[0].id)
         }else if !interactions.isEmpty,interactions[0].isDisliked{
-            await updateCommentDislikes(commentId: chatComment.id, dislikeCount: chatComment.dislikes - 1)
-            await deleteCommentInteraction(commentInteractioId: interactions[0].id)
-            await likeOrDislikeAComment(commentId: chatComment.id, isLiked: true, isDisliked: false)
-            await updateCommentLikes(commentId: chatComment.id, likeCount: chatComment.likes + 1)
+             updateCommentDislikes(commentId: chatComment.id, dislikeCount: chatComment.dislikes - 1)
+             deleteCommentInteraction(commentInteractioId: interactions[0].id)
+             likeOrDislikeAComment(commentId: chatComment.id)
+             updateCommentLikes(commentId: chatComment.id, likeCount: chatComment.likes + 1)
         }else{
-            await updateCommentLikes(commentId: chatComment.id, likeCount: chatComment.likes + 1)
-            await likeOrDislikeAComment(commentId: chatComment.id, isLiked: true, isDisliked: false)
+             updateCommentLikes(commentId: chatComment.id, likeCount: chatComment.likes + 1)
+             likeOrDislikeAComment(commentId: chatComment.id)
         }
-        await fetchCommentInteractions()
+         fetchCommentInteractions()
         fetchComments(chatId: chatId)
     }
     
     
-    func onCommentDislikeClicked(chatComment:ChatComment,chatId:String) async {
+    func onCommentDislikeClicked(chatComment:ChatComment,chatId:String){
         let interactions = commentInteractionCheck(commentId: chatComment.id)
         
         if !interactions.isEmpty,interactions[0].isDisliked{
-            await updateCommentDislikes(commentId: chatComment.id, dislikeCount: chatComment.dislikes - 1)
-            await deleteCommentInteraction(commentInteractioId: interactions[0].id)
+             updateCommentDislikes(commentId: chatComment.id, dislikeCount: chatComment.dislikes - 1)
+             deleteCommentInteraction(commentInteractioId: interactions[0].id)
         }else if !interactions.isEmpty,interactions[0].isLiked{
-            await updateCommentLikes(commentId: chatComment.id, likeCount: chatComment.likes - 1)
-            await deleteCommentInteraction(commentInteractioId: interactions[0].id)
-            await likeOrDislikeAComment(commentId: chatComment.id, isLiked: false, isDisliked: true)
-            await updateCommentDislikes(commentId: chatComment.id, dislikeCount: chatComment.dislikes + 1)
+             updateCommentLikes(commentId: chatComment.id, likeCount: chatComment.likes - 1)
+             deleteCommentInteraction(commentInteractioId: interactions[0].id)
+             likeOrDislikeAComment(commentId: chatComment.id)
+             updateCommentDislikes(commentId: chatComment.id, dislikeCount: chatComment.dislikes + 1)
         }else{
-            await updateCommentDislikes(commentId: chatComment.id, dislikeCount: chatComment.dislikes + 1)
-            await likeOrDislikeAComment(commentId: chatComment.id, isLiked: false, isDisliked: true)
+             updateCommentDislikes(commentId: chatComment.id, dislikeCount: chatComment.dislikes + 1)
+             likeOrDislikeAComment(commentId: chatComment.id)
         }
-        await fetchCommentInteractions()
+         fetchCommentInteractions()
         fetchComments(chatId: chatId)
+    }
+    
+    func likeCheck(chatComment:ChatComment) ->Bool{
+        let interactions = commentInteractionCheck(commentId: chatComment.id)
+        if !interactions.isEmpty, interactions[0].commentId == chatComment.id{
+            if interactions[0].isLiked{
+                return true
+            }
+        }
+        return false
+    }
+    
+    func dislikeCheck(chatComment:ChatComment) ->Bool{
+        let interactions = commentInteractionCheck(commentId: chatComment.id)
+        if !interactions.isEmpty,interactions[0].commentId == chatComment.id{
+            if interactions[0].isDisliked{
+                return true
+            }
+        }
+        return false
     }
 }
