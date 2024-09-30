@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+//Model for the ChatComment item.
 struct ChatComment:Codable,Identifiable,Equatable{
     var id:String = UUID().uuidString
     let chatId:String

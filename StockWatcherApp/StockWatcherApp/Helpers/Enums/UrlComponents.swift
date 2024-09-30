@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+//Here are all the URLComponents so i can create the URL for my APICall
 enum Schemas:String{
     case http,https
 }

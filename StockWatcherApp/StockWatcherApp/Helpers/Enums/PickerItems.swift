@@ -7,6 +7,7 @@
 
 import Foundation
 
+// All the picker item enums
 
 enum HotListsPickerItems:String,CaseIterable{
     case mostActivelyTraded = "Most Traded"

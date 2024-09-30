@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+//This modifier is to color the string text.
 struct ColouredValuesStrings:ViewModifier{
     
     let input:String

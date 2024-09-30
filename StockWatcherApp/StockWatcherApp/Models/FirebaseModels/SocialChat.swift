@@ -7,7 +7,7 @@
 
 import Foundation
 
-
+//Model for the SocialChat item.
 struct SocialChat:Codable,Identifiable{
     var id : String = UUID().uuidString
     let userId:String

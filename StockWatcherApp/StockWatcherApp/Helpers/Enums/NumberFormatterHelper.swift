@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+//Formatter for numbers from million and above.
 enum NumberFormatterToString{
     
     static func formattedNumber(number: Int) -> String {

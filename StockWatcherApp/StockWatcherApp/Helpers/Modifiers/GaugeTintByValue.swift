@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-
+// This modifier is for the GaugeViews in the TickerDetailsView.
 struct GaugeTintByValue:ViewModifier{
     let minValue:Double
     let maxValue:Double

@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+//Model to save the like or dislike interaction in post comment.
 struct LikeOrDislikeAComment:Codable{
     let id:String
     let commentId:String

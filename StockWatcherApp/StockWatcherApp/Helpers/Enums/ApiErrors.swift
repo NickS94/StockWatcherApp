@@ -8,7 +8,7 @@
 import Foundation
 
 
-
+// Enum to handle the ApiErrors
 enum ApiErrors:String, Error{
     case invalidUrl = "The Url is Invalid"
     case badResponse = "Bad Server Response"

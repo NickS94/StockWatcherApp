@@ -11,6 +11,7 @@ import FirebaseAuth
 import GoogleSignIn
 import FirebaseCore
 
+//Firebase repository where it handles all the Firebase Authentication and Firebase Firestore features.
 class FirebaseRepository{
     
     static let shared = FirebaseRepository()

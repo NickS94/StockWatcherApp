@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-
+//Modifier for the text style.
 struct RoundedStyle:ViewModifier{
     
     let size:CGFloat

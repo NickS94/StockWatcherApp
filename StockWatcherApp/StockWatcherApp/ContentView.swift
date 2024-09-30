@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+// In ContentView are all the views packed with the MainRepository so i will have real data only when i start the App.
 struct ContentView: View {
     
     @StateObject var hotListsViewModel = HotTickersViewModel(repository: MainRepository())
@@ -17,6 +17,7 @@ struct ContentView: View {
     @ObservedObject var authenticationViewModel : AuthenticationViewModel
     
     var body: some View {
+        
         TabsView(hotListsViewModel: hotListsViewModel, newsViewModel: newsViewModel, tickerProfileViewModel: tickerProfileViewModel, detailsViewModel: detailsViewModel, authenticationViewModel: authenticationViewModel, homeViewModel: homeViewModel)
     }
 }

@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+//Here are all the tabs of the app.
 struct TabsView: View {
     @ObservedObject var hotListsViewModel:HotTickersViewModel
     @ObservedObject var newsViewModel:NewsViewModel
@@ -16,13 +16,16 @@ struct TabsView: View {
     @ObservedObject var homeViewModel:HomeViewModel
     var body: some View {
         TabView{
+            
             HomeView( homeViewModel: homeViewModel, tickerProfileViewModel: tickerProfileViewModel, detailsViewModel: detailsViewModel, newsViewModel: newsViewModel)
                 .tabItem {
                     VStack {
                         Image(systemName: "house")
                         Text("Home")
                     }
+                    
                 }
+            
             HotListsView(hotListViewModel: hotListsViewModel, tickerProfileViewModel: tickerProfileViewModel, detailsViewModel: detailsViewModel, newsViewModel: newsViewModel, homeViewModel: homeViewModel)
                 .tabItem {
                     VStack {

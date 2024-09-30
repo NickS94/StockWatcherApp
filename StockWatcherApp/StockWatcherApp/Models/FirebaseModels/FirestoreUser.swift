@@ -7,7 +7,7 @@
 
 import Foundation
 import FirebaseAuth
-
+// Model for the user in Firestore.
 struct FirestoreUser:Codable{
     let id:String
     let username:String

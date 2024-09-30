@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+//Model for the WatchlistTicker.
 struct WatchlistTicker:Codable{
     let id:String
     let tickerSymbol:String

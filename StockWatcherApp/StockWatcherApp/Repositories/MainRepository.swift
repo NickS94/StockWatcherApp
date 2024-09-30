@@ -6,26 +6,22 @@
 //
 
 import Foundation
-
+//MainRepository where the ApiCalls are executed.
 class MainRepository:RepositoryProtocol{
     
     private let apiClient = ApiClient.shared
-    
     /**
      Use this method to call the BULK ticker quote list so you can create your watchlist.
      */
     func fetchQuoteList(_ tickersList: [String]) async throws -> [TickerQuote]? {
         do{
             let quotePath = Paths.fmpQuote(tickersList: tickersList)
-            
             return try await apiClient
                 .makeRequest(
                     scheme: Schemas.https.rawValue,
                     host: Hosts.fmp.rawValue,
                     path:quotePath.urlString,
                     queriesAndInputs: [(QueriesNames.apiKey.rawValue,ApiKeys.fmpApiKey)])
-                    
-                     
         }catch{
             throw error
         }

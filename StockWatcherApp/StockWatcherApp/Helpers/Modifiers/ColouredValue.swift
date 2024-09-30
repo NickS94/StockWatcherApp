@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+//Modifier for coloured numbers value used on the symbol prices etc...
 struct ColouredValue:ViewModifier{
     
     let value:Double

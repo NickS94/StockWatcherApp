@@ -7,6 +7,7 @@
 
 import Foundation
 
+// RepositoryProtocol to make the Dependency Injection.
 protocol RepositoryProtocol {
     
     func fetchQuoteList(_ tickersList:[String]) async throws ->[TickerQuote]?

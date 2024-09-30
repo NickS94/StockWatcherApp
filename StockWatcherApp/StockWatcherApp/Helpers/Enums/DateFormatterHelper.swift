@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+// Formatting how the Date is viewed as string.
 enum DateFormatterHelper {
     static func formattedDate(from dateString: String?, with format: String = "yyyy-MM-dd'T'HH:mm:ssZ") -> String {
         guard let dateString = dateString else {

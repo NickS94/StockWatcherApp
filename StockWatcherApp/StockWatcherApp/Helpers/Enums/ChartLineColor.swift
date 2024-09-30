@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-
+//A modifier for the ChartLineColor.
 enum ChartLineColor{
  
    static func chartLineColor(lastClose:Double,chartQuoteList:[ChartQuote]) ->Color{
