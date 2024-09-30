@@ -54,7 +54,6 @@ struct HomeView: View {
             socialFeedViewModel.fetchSocialChats()
             homeViewModel.fetchWatchListFromDatabase()
             homeViewModel.fetchFmpTickersList()
-            await homeViewModel.fetchUser()
             await socialFeedViewModel.fetchPostInteractions()
         }
         .sheet(isPresented: $showNewPostSheet) {

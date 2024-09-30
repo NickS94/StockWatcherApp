@@ -43,6 +43,8 @@ struct SearchView: View {
                 }
                 .listStyle(.inset)
             }
+            .navigationTitle("Search")
+            .navigationBarTitleDisplayMode(.inline)
         }
         .onAppear{
             homeViewModel.fetchWatchListFromDatabase()

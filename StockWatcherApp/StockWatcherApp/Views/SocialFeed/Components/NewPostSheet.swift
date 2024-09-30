@@ -76,6 +76,7 @@ struct NewPostSheet: View {
                             .foregroundStyle(.mainApp)
                             .padding(.horizontal,6)
                     }
+                    .disabled(socialFeedViewModel.chatContent == "")
                 }
             }
             .toolbarTitleDisplayMode(.inline)

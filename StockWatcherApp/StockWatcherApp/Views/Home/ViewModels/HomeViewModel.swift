@@ -20,7 +20,6 @@ class HomeViewModel:ObservableObject{
     @Published var userExchangeInput = ""
     @Published var tickerListInput:[String] = []
     @Published var fireusers:[FirestoreUser] = []
-    @Published var user:User?
     @Published var firestoreUser:FirestoreUser?
     
     let repository:RepositoryProtocol
@@ -30,11 +29,6 @@ class HomeViewModel:ObservableObject{
     }
     
     //MARK: - Methods
-    
-    func fetchUser()async{
-            let result = firebaseClient.checkAuth()
-            user = result
-    }
     
     func fetchFireUser(){
         Task{

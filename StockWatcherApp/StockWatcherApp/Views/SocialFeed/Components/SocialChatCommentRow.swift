@@ -9,10 +9,14 @@ import SwiftUI
 
 struct SocialChatCommentRow: View {
     let chatComment:ChatComment
+    let chatId:String
+    @State var isLiked = false
+    @State var isDisliked = false
+    @ObservedObject var chatCommentViewModel:ChatCommentsViewModel
     var body: some View {
         VStack(alignment:.leading,spacing:20){
             HStack(spacing:15){
-                AsyncImage(url: chatComment.publisherProfileIcon) { image in
+                AsyncImage(url: URL(string: chatCommentViewModel.getFireUserProfileIcon(chatComment: chatComment))) { image in
                     image
                         .resizable()
                         .scaledToFit()
@@ -24,7 +28,7 @@ struct SocialChatCommentRow: View {
                                 .frame(width: 42,height: 42)
                         }
                 } placeholder: {
-                    Image(systemName: "person.fill")
+                    Image(systemName: chatCommentViewModel.getFireUserProfileIcon(chatComment: chatComment))
                         .resizable()
                         .scaledToFit()
                         .frame(width: 36,height:36)
@@ -34,7 +38,6 @@ struct SocialChatCommentRow: View {
                                 .stroke(lineWidth: 0.3)
                                 .frame(width: 42,height: 42)
                         }
-                    
                 }
                 
                 Text("@\(chatComment.publisherName)")
@@ -52,9 +55,20 @@ struct SocialChatCommentRow: View {
                 //Like button
                 HStack(spacing:20) {
                     Button {
-                        
+                        Task{
+                            await chatCommentViewModel.onCommentLikeClicked(chatComment:chatComment,chatId:chatId)
+                            
+                            let result = chatCommentViewModel.commentInteractionCheck(commentId: chatComment.id)
+                            guard result.isEmpty else{
+                                isLiked = result[0].isLiked
+                                isDisliked = result[0].isDisliked
+                                return
+                            }
+                            isLiked = false
+                            isDisliked = false
+                        }
                     } label: {
-                        Image(systemName: "hand.thumbsup")
+                        Image(systemName: isLiked ? "hand.thumbsup.fill" : "hand.thumbsup")
                         Text("\(chatComment.likes)")
                     }
                     Divider()
@@ -62,9 +76,19 @@ struct SocialChatCommentRow: View {
                         .background(.mainApp)
                     //Dislike button
                     Button{
-                        
+                        Task{
+                            await chatCommentViewModel.onCommentDislikeClicked(chatComment: chatComment, chatId: chatId)
+                            let result = chatCommentViewModel.commentInteractionCheck(commentId: chatComment.id)
+                            guard result.isEmpty else{
+                                isDisliked = result[0].isDisliked
+                                isLiked = result[0].isLiked
+                                return
+                            }
+                            isLiked = false
+                            isDisliked = false
+                        }
                     } label: {
-                        Image(systemName: "hand.thumbsdown")
+                        Image(systemName: isDisliked ? "hand.thumbsdown.fill" : "hand.thumbsdown")
                         Text("\(chatComment.dislikes)")
                     }
                 }
@@ -83,9 +107,19 @@ struct SocialChatCommentRow: View {
         }
         .frame(maxWidth: .infinity)
         .padding(20)
+        .onAppear{
+            let result = chatCommentViewModel.commentInteractionCheck(commentId: chatComment.id)
+            guard result.isEmpty else{
+                isLiked = result[0].isLiked
+                isDisliked = result[0].isDisliked
+                return
+            }
+            chatCommentViewModel.fetchFireUsers()
+            chatCommentViewModel.fetchFireUser()
+        }
     }
 }
 
 #Preview {
-    SocialChatCommentRow(chatComment:ChatComment(chatId: "", userId: "", publisherName: "NickS94", publisherProfileIcon: URL(string: ""), content: "Lorem ipsum is typically a corrupted version of De finibus bonorum et malorum, a 1st-century BC text by the Roman statesman and philosopher Cicero," , likes: 2, dislikes: 1))
+    SocialChatCommentRow(chatComment:ChatComment(chatId: "", userId: "", publisherName: "NickS94", publisherProfileIcon: "", content: "Lorem ipsum is typically a corrupted version of De finibus bonorum et malorum, a 1st-century BC text by the Roman statesman and philosopher Cicero," , likes: 2, dislikes: 1), chatId: "", chatCommentViewModel: ChatCommentsViewModel())
 }
