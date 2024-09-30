@@ -95,7 +95,7 @@ class SocialFeedViewModel:ObservableObject{
         }
     }
     
- 
+    
     func fetchPostInteractions()async {
         do{
             guard let user else {return}
@@ -145,15 +145,19 @@ class SocialFeedViewModel:ObservableObject{
     }
     
     func onLikeClicked(socialChat: SocialChat) async {
+        
         let interactions = interactionCheck(chatId: socialChat.id)
+        
         if !interactions.isEmpty, interactions[0].isLiked {
             await updateChatLikes(chatId: socialChat.id, likeCount: socialChat.likes - 1)
             await deleteInteraction(interactionId: interactions[0].id)
+            
         }else if !interactions.isEmpty, interactions[0].isDisliked {
             await updateChatDislikes(chatId: socialChat.id, dislikeCount: socialChat.dislikes - 1)
             await deleteInteraction(interactionId: interactions[0].id)
             await likeOrDislikePost(chatId: socialChat.id, isLiked: true, isDisliked: false)
             await updateChatLikes(chatId: socialChat.id, likeCount: socialChat.likes + 1)
+            
         }else {
             await updateChatLikes(chatId: socialChat.id, likeCount: socialChat.likes + 1)
             await likeOrDislikePost(chatId: socialChat.id, isLiked: true, isDisliked: false)
@@ -163,15 +167,18 @@ class SocialFeedViewModel:ObservableObject{
     }
     
     func onDislikeClicked(socialChat: SocialChat) async {
+        
         let interactions = interactionCheck(chatId: socialChat.id)
         if !interactions.isEmpty, interactions[0].isDisliked {
             await updateChatDislikes(chatId: socialChat.id, dislikeCount: socialChat.dislikes - 1)
             await deleteInteraction(interactionId: interactions[0].id)
+            
         }else if !interactions.isEmpty, interactions[0].isLiked {
             await updateChatLikes(chatId: socialChat.id, likeCount: socialChat.likes - 1)
             await deleteInteraction(interactionId: interactions[0].id)
             await likeOrDislikePost(chatId: socialChat.id, isLiked: false, isDisliked: true)
             await updateChatDislikes(chatId: socialChat.id, dislikeCount: socialChat.dislikes + 1)
+            
         }else {
             await updateChatDislikes(chatId: socialChat.id, dislikeCount: socialChat.dislikes + 1)
             await likeOrDislikePost(chatId: socialChat.id, isLiked: false, isDisliked: true)

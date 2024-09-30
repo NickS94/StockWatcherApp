@@ -19,7 +19,7 @@ struct MyList: View {
         VStack(alignment:.leading){
             HStack{
                 Text("My Watchlist")
-                    .monospacedStyle(size: 22, weight: .bold)
+                    .roundedStyle(size: 22, weight: .bold)
                 Spacer()
                 Button{
                     showSearchSheet = true
@@ -33,7 +33,7 @@ struct MyList: View {
             }
             if myTickersList.isEmpty{
                 Text("Your list is empty Add Symbol")
-                    .monospacedStyle(size: 16, weight: .semibold)
+                    .roundedStyle(size: 16, weight: .semibold)
                     .foregroundStyle(.mainApp)
             }else{
                 ForEach(myTickersList,id:\.symbol) { ticker in

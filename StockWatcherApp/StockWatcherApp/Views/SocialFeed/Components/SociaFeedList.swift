@@ -14,14 +14,14 @@ struct SociaFeedList: View {
         VStack{
             HStack{
                 Text("Social Feed")
-                    .monospacedStyle(size: 22, weight: .bold)
+                    .roundedStyle(size: 22, weight: .bold)
                 Spacer()
                 Button {
                     showNewPostSheet = true
                 } label: {
                     HStack{
                         Text("New Post")
-                            .monospacedStyle(size: 14, weight: .semibold)
+                            .roundedStyle(size: 14, weight: .semibold)
                             .foregroundStyle(.mainApp)
                         Image(systemName: "plus")
                             .font(.title.bold())

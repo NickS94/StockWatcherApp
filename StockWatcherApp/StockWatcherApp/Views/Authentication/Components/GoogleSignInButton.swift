@@ -17,7 +17,7 @@ struct GoogleSignInButton: View {
             }label: {
                 HStack{
                     Text("Login with")
-                        .monospacedStyle(size: 20, weight: .semibold)
+                        .roundedStyle(size: 20, weight: .semibold)
                         .foregroundStyle(.mainApp)
                     Image("google")
                         .resizable()

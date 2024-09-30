@@ -14,11 +14,11 @@ struct InfoTable: View {
             ForEach(tickerProfileViewModel.generateInformationTable(),id:\.0) { label,info  in
                 HStack{
                     Text(label)
-                        .monospacedStyle(size: 14, weight: .regular)
+                        .roundedStyle(size: 14, weight: .regular)
                         .foregroundStyle(.gray)
                     Spacer()
                     Text(info)
-                        .monospacedStyle(size: 14, weight: .regular)
+                        .roundedStyle(size: 14, weight: .regular)
                    Divider()
                 }
             }

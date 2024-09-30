@@ -16,7 +16,7 @@ struct DeleteAccountButton: View {
             showMainView = false
         } label: {
             Text("Delete Account")
-                .monospacedStyle(size: 18, weight: .semibold)
+                .roundedStyle(size: 18, weight: .semibold)
                 .foregroundStyle(.red)
         }
         .frame(maxWidth: .infinity)

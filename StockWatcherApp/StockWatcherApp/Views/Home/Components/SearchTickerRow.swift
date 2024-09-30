@@ -14,9 +14,9 @@ struct SearchTickerRow: View {
         HStack{
             VStack(alignment:.leading,spacing: 10){
                 Text(tickerSearch.symbol)
-                    .monospacedStyle(size: 16, weight: .semibold)
+                    .roundedStyle(size: 16, weight: .semibold)
                 Text("\(tickerSearch.name) \(tickerSearch.exchangeShortName?.uppercased() ?? "")")
-                    .monospacedStyle(size: 14, weight: .light)
+                    .roundedStyle(size: 14, weight: .light)
             }
             Spacer()
             

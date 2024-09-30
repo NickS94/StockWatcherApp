@@ -14,7 +14,7 @@ struct EmptyViewWithText: View {
             Image(systemName: "ellipses.bubble.fill")
                 .font(.system(size: 100))
             Text(text)
-                .monospacedStyle(size: 20, weight: .semibold)
+                .roundedStyle(size: 20, weight: .semibold)
         }
         .padding(.vertical,50)
     }

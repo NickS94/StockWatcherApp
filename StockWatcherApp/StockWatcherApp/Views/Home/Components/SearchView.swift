@@ -29,7 +29,6 @@ struct SearchView: View {
                     }label: {
                         Text(homeViewModel.userSearchInput.isEmpty ? "Cancel" : "Done")
                     }
-                   
                 }
                 .padding(20)
                 List {

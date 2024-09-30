@@ -14,7 +14,7 @@ struct TickerSentimentItem: View {
     var body: some View {
         VStack{
             Text(tickerSentiment.ticker)
-                .monospacedStyle(size: size, weight: .regular)
+                .roundedStyle(size: size, weight: .regular)
                 .padding(4)
         }
         .overlay {

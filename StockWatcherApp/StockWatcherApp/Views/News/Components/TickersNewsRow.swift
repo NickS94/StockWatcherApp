@@ -14,14 +14,14 @@ struct TickersNewsRow: View {
             VStack(alignment:.leading,spacing: 10){
                 Group {
                     Text(tickerNews.title)
-                        .monospacedStyle(size: 14, weight: .regular)
+                        .roundedStyle(size: 14, weight: .regular)
                     .lineLimit(3)
                     HStack{
                         Text(tickerNews.source)
-                            .monospacedStyle(size: 12, weight: .bold)
+                            .roundedStyle(size: 12, weight: .bold)
                         
                         Text(DateFormatterHelper.formattedDate(from: tickerNews.timePublished,with: "yyyyMMdd'T'HHmmss"))
-                            .monospacedStyle(size: 10, weight: .semibold)
+                            .roundedStyle(size: 10, weight: .semibold)
                     }
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack {

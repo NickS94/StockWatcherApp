@@ -19,7 +19,7 @@ struct AboutTheCompanyDescription: View {
             Text("About the company")
                 .font(.title2.bold())
             Text(tickerProfileViewModel.tickerProfile.description ?? "")
-                .monospacedStyle(size: 14, weight: .regular)
+                .roundedStyle(size: 14, weight: .regular)
                 .lineLimit(lineLimit)
             
             Text(showFullDescription ? "Read less" : "Read more")

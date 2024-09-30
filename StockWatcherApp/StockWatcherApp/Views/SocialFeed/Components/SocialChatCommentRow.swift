@@ -49,7 +49,7 @@ struct SocialChatCommentRow: View {
             }
             
             Text(chatComment.content)
-                .monospacedStyle(size: 16, weight: .regular)
+                .roundedStyle(size: 16, weight: .regular)
                
             HStack{
                 //Like button

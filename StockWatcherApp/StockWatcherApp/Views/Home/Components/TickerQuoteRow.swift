@@ -40,9 +40,9 @@ struct TickerQuoteRow: View {
             }
             VStack(alignment:.leading,spacing: 8){
                 Text(tickerQuote.symbol ?? "")
-                    .monospacedStyle(size: 16, weight: .bold)
+                    .roundedStyle(size: 16, weight: .bold)
                 Text(tickerQuote.name?.prefix(12) ?? "")
-                    .monospacedStyle(size: 12, weight: .light)
+                    .roundedStyle(size: 12, weight: .light)
             }
             .foregroundStyle(.mainApp)
             
@@ -51,15 +51,15 @@ struct TickerQuoteRow: View {
             
             VStack(alignment:.trailing){
                 Text(String(tickerQuote.price ?? 0)+"$")
-                    .monospacedStyle(size: 14, weight: .semibold)
+                    .roundedStyle(size: 14, weight: .semibold)
                     .foregroundStyle(.mainApp)
                 
                 HStack {
                     Text(String(format: "%.2f", tickerQuote.change ?? 0))
-                        .monospacedStyle(size: 12, weight: .regular)
+                        .roundedStyle(size: 12, weight: .regular)
                         .colouredValue(value: tickerQuote.change ?? 0)
                     Text("(\(String(format: "%.2f",tickerQuote.changesPercentage ?? 0))%)")
-                        .monospacedStyle(size: 12, weight: .regular)
+                        .roundedStyle(size: 12, weight: .regular)
                         .colouredValue(value: tickerQuote.changesPercentage ?? 0)
                 }
             }

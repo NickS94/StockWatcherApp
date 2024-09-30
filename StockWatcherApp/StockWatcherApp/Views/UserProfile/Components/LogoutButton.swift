@@ -16,7 +16,7 @@ struct LogoutButton: View {
             showMainView = false
         } label: {
             Text("Logout")
-                .monospacedStyle(size: 18, weight: .semibold)
+                .roundedStyle(size: 18, weight: .semibold)
                 .foregroundStyle(.mainApp)
         }
         .frame(maxWidth: .infinity)

@@ -34,11 +34,11 @@ struct ProfileIconPick: View {
             } label: {
                 HStack{
                     Text("Pick an icon")
-                        .monospacedStyle(size: 20, weight: .semibold)
+                        .roundedStyle(size: 20, weight: .semibold)
                         .foregroundStyle(.mainApp)
                     Spacer()
                     Image(systemName: "arrow.right")
-                        .monospacedStyle(size: 20, weight: .semibold)
+                        .roundedStyle(size: 20, weight: .semibold)
                         .foregroundStyle(.mainApp)
                 }
             }

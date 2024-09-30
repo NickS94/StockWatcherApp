@@ -17,7 +17,7 @@ class HomeViewModel:ObservableObject{
     @Published var searchList:[TickerSearch] = []
     @Published var myTickersList:[TickerQuote] = []
     @Published var userSearchInput = ""
-    @Published var userExchangeInput = ""
+    @Published var exchangeInput:StockExchange = .amex
     @Published var tickerListInput:[String] = []
     @Published var fireusers:[FirestoreUser] = []
     @Published var firestoreUser:FirestoreUser?
@@ -67,8 +67,7 @@ class HomeViewModel:ObservableObject{
         }
     }
     
-    
-    func fetchSearchList(){
+    func fetchSearchList(userExchangeInput:String = ""){
         Task{
             do{
                 let results = try await repository.fetchSearchTickers(userSearchInput, "15", userExchangeInput)

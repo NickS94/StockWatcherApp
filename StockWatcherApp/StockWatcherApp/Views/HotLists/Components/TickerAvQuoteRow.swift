@@ -44,20 +44,20 @@ struct TickerAvQuoteRow: View {
             
             VStack(alignment:.leading,spacing: 8){
                 Text(tickerQuoteAv.ticker)
-                    .monospacedStyle(size: 16, weight: .bold)
+                    .roundedStyle(size: 16, weight: .bold)
             }
             
             Spacer()
             
             VStack(alignment:.trailing,spacing: 8){
                 Text(String(tickerQuoteAv.price)+"$")
-                    .monospacedStyle(size: 14, weight: .semibold)
+                    .roundedStyle(size: 14, weight: .semibold)
                 HStack {
                     Text(tickerQuoteAv.changeAmount)
-                        .monospacedStyle(size: 12, weight: .regular)
+                        .roundedStyle(size: 12, weight: .regular)
                         .colouredValuesStrings(input: tickerQuoteAv.changeAmount)
                     Text("(\(tickerQuoteAv.changePercentage))")
-                        .monospacedStyle(size: 12, weight: .regular)
+                        .roundedStyle(size: 12, weight: .regular)
                         .colouredValuesStrings(input: tickerQuoteAv.changePercentage)
                 }
             }

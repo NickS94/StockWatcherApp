@@ -28,7 +28,7 @@ struct HotListsView: View {
             VStack(alignment:.leading){
                 // Set the header text depending on the rawValue of the listSelection.
                 Text(hotListViewModel.listSelection.rawValue)
-                    .monospacedStyle(size: 22, weight: .bold)
+                    .roundedStyle(size: 22, weight: .bold)
                 // Used one list component and set the hotList from view model inside,
                 //so the outcome is what the hotList have as a value.
                 HotListComponent(tickerProfileViewModel: tickerProfileViewModel, detailsViewModel: detailsViewModel, newsViewModel: newsViewModel, homeViewModel: homeViewModel, hotList: hotListViewModel.hotList)

@@ -28,18 +28,18 @@ struct NewsDetails: View {
                     .padding(.top,10)
                 
                 Text(tickerNews.title)
-                    .monospacedStyle(size: 22, weight: .bold)
+                    .roundedStyle(size: 22, weight: .bold)
                     .padding()
                 
                 
                 ForEach(tickerNews.authors,id:\.count){author in
                     Text("By \(author)")
-                        .monospacedStyle(size: 14, weight: .semibold)
+                        .roundedStyle(size: 14, weight: .semibold)
                         .padding(.leading,10)
                 }
                 
                 Text(DateFormatterHelper.formattedDate(from: tickerNews.timePublished,with: "yyyyMMdd'T'HHmmss"))
-                    .monospacedStyle(size: 10, weight: .regular)
+                    .roundedStyle(size: 10, weight: .regular)
                     .foregroundStyle(.mainApp.opacity(0.5))
                     .padding(.leading,10)
                 
@@ -55,7 +55,7 @@ struct NewsDetails: View {
                 .padding()
                 
                 Text(tickerNews.summary)
-                    .monospacedStyle(size: 16, weight: .regular)
+                    .roundedStyle(size: 16, weight: .regular)
                     .padding()
                 Link(destination: URL(string: tickerNews.url)!, label: {
                     HStack{

@@ -17,18 +17,18 @@ struct ProfileHeaderItems: View {
             
             VStack(alignment:.leading,spacing: 20){
                     Text(tickerQuote.name ?? "")
-                        .monospacedStyle(size: 25, weight: .semibold)
+                        .roundedStyle(size: 25, weight: .semibold)
                         .padding(.bottom,40)
                 VStack(alignment:.leading){
                     Text("\(String(tickerQuote.price ?? 0))$")
-                        .monospacedStyle(size: 25, weight: .semibold)
+                        .roundedStyle(size: 25, weight: .semibold)
                     HStack {
                         Text(String(format:"%.2f",tickerQuote.change ?? 0))
-                            .monospacedStyle(size: 16, weight: .regular)
+                            .roundedStyle(size: 16, weight: .regular)
                             .colouredValue(value: tickerQuote.change ?? 0)
                         
                         Text("(\(String(format:"%.2f",tickerQuote.changesPercentage ?? 0)) %)")
-                            .monospacedStyle(size: 16, weight: .regular)
+                            .roundedStyle(size: 16, weight: .regular)
                             .colouredValue(value: tickerQuote.changesPercentage ?? 0)
                     }
                 }

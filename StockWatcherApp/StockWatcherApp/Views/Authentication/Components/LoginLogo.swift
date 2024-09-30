@@ -20,7 +20,7 @@ struct LoginLogo: View {
                     .clipShape(RoundedRectangle(cornerRadius: 25.0))
                     .shadow(color:.mainApp,radius: 15)
                 Text("Stock Watcher")
-                    .monospacedStyle(size: 30, weight: .heavy)
+                    .roundedStyle(size: 30, weight: .heavy)
             }else{
                 ProfileIconPick(profileIcons: $profileIcons)
             }

@@ -38,7 +38,7 @@ struct PriceRangeTable: View {
                 
             }
             .gaugeStyle(.accessoryLinearCapacity)
-            .monospacedStyle(size: 14, weight: .semibold)
+            .roundedStyle(size: 14, weight: .semibold)
         }
     }
 }

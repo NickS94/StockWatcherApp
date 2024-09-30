@@ -8,11 +8,67 @@
 import SwiftUI
 
 struct AddNewSymbolView: View {
+    @ObservedObject var homeViewModel:HomeViewModel
+    @ObservedObject var tickerProfileViewModel:TickerProfileViewModel
+    @ObservedObject var detailsViewModel:DetailsViewModel
+    @ObservedObject var newsViewModel:NewsViewModel
+    @Binding var showAddToWatchlistView:Bool
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack{
+            VStack(alignment:.leading,spacing: 30){
+                TextField("Write a symbol here...", text: $homeViewModel.userSearchInput)
+                    .padding(8)
+                    .background(.gray.opacity(0.4))
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 12)
+                            .stroke(lineWidth: 1)
+                    }
+                    .padding(.vertical)
+                
+                Picker("Select Stock Exchange", selection: $homeViewModel.exchangeInput) {
+                    ForEach(StockExchange.allCases, id: \.self) { exchange in
+                        Text(exchange.rawValue).tag(exchange)
+                            .font(.title2)
+                            .foregroundStyle(.mainApp)
+                    }
+                }
+                .pickerStyle(.navigationLink)
+                
+                Button{
+                    
+                }label:{
+                    Text("Search")
+                        .font(.title2)
+                        .foregroundStyle(.mainApp)
+                }
+                
+                List {
+                    ForEach(homeViewModel.searchList,id:\.symbol){ ticker in
+                        NavigationLink {
+                            TickerDetailsView(tickerProfileViewModel: tickerProfileViewModel, detailsViewModel: detailsViewModel, newsViewModel: newsViewModel, homeViewModel: homeViewModel, tickerSymbol: ticker.symbol)
+                        } label: {
+                            SearchTickerRow(tickerSearch: ticker, homeViewModel: homeViewModel)
+                        }
+                    }
+                }
+            }
+            .padding(20)
+            .toolbar{
+                ToolbarItem {
+                    Button {
+                     showAddToWatchlistView = false
+                    } label: {
+                     Image(systemName: "xmark")
+                            .font(.title2.bold())
+                            .tint(.mainApp)
+                    }
+                }
+            }
+        }
     }
 }
 
 #Preview {
-    AddNewSymbolView()
+    AddNewSymbolView(homeViewModel: HomeViewModel(repository: MockRepository()), tickerProfileViewModel: TickerProfileViewModel(repository: MockRepository()), detailsViewModel: DetailsViewModel(repository: MockRepository()), newsViewModel: NewsViewModel(repository: MockRepository()), showAddToWatchlistView: .constant(false))
 }

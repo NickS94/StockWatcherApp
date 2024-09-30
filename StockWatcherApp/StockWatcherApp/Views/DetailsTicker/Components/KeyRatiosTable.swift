@@ -21,11 +21,11 @@ struct KeyRatiosTable: View {
             ForEach(detailsViewModel.generateTickerKeyRatios(divident: dividend,beta: beta),id: \.0){ label , value in
                 HStack{
                     Text(label)
-                        .monospacedStyle(size: 14, weight: .regular)
+                        .roundedStyle(size: 14, weight: .regular)
                         .foregroundStyle(.gray)
                     Spacer()
                     Text("\(NumberFormatterToString.formattedNumber(number:Int(value)))")
-                        .monospacedStyle(size: 16, weight: .regular)
+                        .roundedStyle(size: 16, weight: .regular)
                 }
             }
         }

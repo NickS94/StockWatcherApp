@@ -26,7 +26,7 @@ struct ConfigurationButton: View {
                 }
             } label: {
                 Text(loginMode ? "Login" : "Register")
-                    .monospacedStyle(size: 20, weight: .semibold)
+                    .roundedStyle(size: 20, weight: .semibold)
                     .foregroundStyle(.mainApp)
             }
             .frame(maxWidth: .infinity)
