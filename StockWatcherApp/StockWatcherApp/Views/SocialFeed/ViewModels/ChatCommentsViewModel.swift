@@ -93,6 +93,15 @@ class ChatCommentsViewModel:ObservableObject{
         return "person"
     }
     
+    func getFireUserUsername(chatComment:ChatComment) -> String{
+        for fireUser in fireusers{
+            if fireUser.id == chatComment.userId{
+                return fireUser.username
+            }
+        }
+        return "NoName"
+    }
+    
     func commentInteractionCheck(commentId:String) -> [LikeOrDislikeAComment]{
         return commentInteractions.filter { interaction in
             interaction.commentId == commentId

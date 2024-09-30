@@ -68,6 +68,7 @@
 		03967A7E2C809C4A00707163 /* TabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03967A7D2C809C4A00707163 /* TabsView.swift */; };
 		039E46C42CA9F33F00A3FAF6 /* LikeOrDislikeAComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039E46C32CA9F33F00A3FAF6 /* LikeOrDislikeAComment.swift */; };
 		039E46C62CAA298E00A3FAF6 /* AddNewSymbolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039E46C52CAA298E00A3FAF6 /* AddNewSymbolView.swift */; };
+		039E46C82CAAD63400A3FAF6 /* UpdateUserInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039E46C72CAAD63400A3FAF6 /* UpdateUserInformationView.swift */; };
 		03A3701C2C91A5F700F13A39 /* SearchTickerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3701B2C91A5F700F13A39 /* SearchTickerRow.swift */; };
 		03A3701E2C91D5C900F13A39 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3701D2C91D5C900F13A39 /* SearchView.swift */; };
 		03A370202C91D63200F13A39 /* MyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3701F2C91D63200F13A39 /* MyList.swift */; };
@@ -163,6 +164,7 @@
 		03967A7D2C809C4A00707163 /* TabsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsView.swift; sourceTree = "<group>"; };
 		039E46C32CA9F33F00A3FAF6 /* LikeOrDislikeAComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeOrDislikeAComment.swift; sourceTree = "<group>"; };
 		039E46C52CAA298E00A3FAF6 /* AddNewSymbolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewSymbolView.swift; sourceTree = "<group>"; };
+		039E46C72CAAD63400A3FAF6 /* UpdateUserInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserInformationView.swift; sourceTree = "<group>"; };
 		03A3701B2C91A5F700F13A39 /* SearchTickerRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTickerRow.swift; sourceTree = "<group>"; };
 		03A3701D2C91D5C900F13A39 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		03A3701F2C91D63200F13A39 /* MyList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyList.swift; sourceTree = "<group>"; };
@@ -410,6 +412,7 @@
 				0373BBEA2C9AE8AB00C21627 /* ProfileHeader.swift */,
 				0373BBEC2C9B918B00C21627 /* LogoutButton.swift */,
 				0373BBEE2C9C448200C21627 /* DeleteAccountButton.swift */,
+				039E46C72CAAD63400A3FAF6 /* UpdateUserInformationView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -744,6 +747,7 @@
 				03527ADA2CA4A1A80011B223 /* ChatCommentsViewModel.swift in Sources */,
 				03AF61CA2C8AF782006B1143 /* PriceRangeTable.swift in Sources */,
 				03967A592C7F5D1800707163 /* TickerQuote.swift in Sources */,
+				039E46C82CAAD63400A3FAF6 /* UpdateUserInformationView.swift in Sources */,
 				033372E52C85EF0C009A611A /* TickerSentimentItem.swift in Sources */,
 				03AF61D22C8B7EFE006B1143 /* InfoTable.swift in Sources */,
 				03718EF42C7E1110007284CB /* UrlComponents.swift in Sources */,

@@ -38,7 +38,7 @@ struct SocialChatCommentRow: View {
                         }
                 }
                 
-                Text("@\(chatComment.publisherName)")
+                Text("@\(chatCommentViewModel.getFireUserUsername(chatComment: chatComment))")
                     .font(.footnote)
                 Spacer()
                 Text(chatComment.createdAt.formatted(date: .abbreviated, time: .shortened))

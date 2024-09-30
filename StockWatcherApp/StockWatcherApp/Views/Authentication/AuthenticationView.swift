@@ -24,6 +24,7 @@ struct AuthenticationView: View {
                 SignInToggleText(loginMode: $loginMode, viewModel: authenticationViewModel)
             }
             .navigationTitle(loginMode ? "Login" : "Register")
+            .navigationBarTitleDisplayMode(.inline)
         }
         .onAppear{
             authenticationViewModel.resetFields()

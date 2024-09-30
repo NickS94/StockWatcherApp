@@ -16,9 +16,12 @@ class UserProfileViewModel:ObservableObject{
     private let firebaseClient = FirebaseRepository.shared
     
     @Published var fireuser:FirestoreUser?
-    @Published var content = ""
-    @Published var isPublic = false
-    @Published var user:User?
+    @Published var profileIcons:ProfileIcons = .lizard
+    @Published var username = ""
+    
+    var user:User?{
+        return firebaseClient.checkAuth()
+    }
     
     //MARK: Methods
     
@@ -33,13 +36,22 @@ class UserProfileViewModel:ObservableObject{
         }
     }
     
-    func fetchUser() async {
-   
+    func updateUserInformation(){
+        Task{
             do{
-                let result = firebaseClient.checkAuth()
-                user = result
+                try await firebaseClient.updateFireuserInformation(username: username, userProfileIcon: profileIcons.iconName)
+            }catch{
+                
             }
-        
+        }
+    }
+    
+    func logoutUser(){
+        do{
+            try firebaseClient.logout()
+        }catch{
+            print(error.localizedDescription)
+        }
     }
     
     func deleteUser(){
@@ -53,14 +65,6 @@ class UserProfileViewModel:ObservableObject{
             }catch{
                 print(error.localizedDescription)
             }
-        }
-    }
-    
-    func logoutUser(){
-        do{
-            try firebaseClient.logout()
-        }catch{
-            print(error.localizedDescription)
         }
     }
 }

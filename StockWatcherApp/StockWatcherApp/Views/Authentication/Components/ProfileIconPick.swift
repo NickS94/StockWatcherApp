@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ProfileIconPick: View {
     @Binding var profileIcons:ProfileIcons
+ 
     var body: some View {
         VStack{
             Image(systemName: profileIcons.iconName)

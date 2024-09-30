@@ -39,7 +39,7 @@ struct SocialChatRow: View {
                         }
                 }
                 VStack(alignment:.leading){
-                    Text("@\(socialChat.publisherName)")
+                    Text("@\(socialFeedViewModel.getFireUserUserName(socialPost: socialChat))")
                         .font(.title3)
                     Text(socialChat.createdAt.formatted(date: .abbreviated, time: .shortened))
                 }

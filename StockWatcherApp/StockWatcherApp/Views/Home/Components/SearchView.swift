@@ -28,6 +28,8 @@ struct SearchView: View {
                         showSearchSheet = false
                     }label: {
                         Text(homeViewModel.userSearchInput.isEmpty ? "Cancel" : "Done")
+                            .font(.title3.bold())
+                            .foregroundStyle(.mainApp)
                     }
                 }
                 .padding(20)

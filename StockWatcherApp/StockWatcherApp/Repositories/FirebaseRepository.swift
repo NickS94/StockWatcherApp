@@ -96,6 +96,17 @@ class FirebaseRepository{
             .data(as: FirestoreUser.self)
     }
     
+    func updateFireuserInformation(username:String,userProfileIcon:String) async throws{
+        let updatedInformation:[String:Any] = [
+            "username" : username,
+            "userProfileIcon" : userProfileIcon
+        ]
+        try await firestoreInstance
+            .collection("Users")
+            .document(uid ?? "")
+            .updateData(updatedInformation)
+    }
+    
     func fetchFirestoreUsers() async throws -> [FirestoreUser]{
         try await firestoreInstance
             .collection("Users")

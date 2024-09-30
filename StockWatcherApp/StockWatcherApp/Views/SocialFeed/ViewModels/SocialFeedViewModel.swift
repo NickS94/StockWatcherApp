@@ -63,12 +63,23 @@ class SocialFeedViewModel:ObservableObject{
         return "person"
     }
     
+    func getFireUserUserName(socialPost:SocialChat) -> String{
+        for fireUser in fireusers{
+            if fireUser.id == socialPost.userId{
+                return fireUser.username
+            }
+        }
+        return "NoName"
+    }
+    
     func fetchSocialChats(){
         Task{
             do{
                 let results = try await firebaseClient.fetchSocialChats()
                 
-                socialChatList = results
+                socialChatList = results.sorted(by: {socialChat1,socialChat2  in
+                    socialChat1.createdAt > socialChat2.createdAt
+                })
                 
             } catch{
                 print(error.localizedDescription)
