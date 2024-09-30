@@ -11,8 +11,17 @@ Darüber hinaus enthält Stock Watcher eine einzigartige Social-Feed-Funktion, m
 
 Füge hier einige repräsentative Designs deiner App ein (z.B. aus Figma)
 <p>
-  <img src="./img/first_example.jpg" width="200">
-  <img src="./img/second_example.png" width="200">
+  <img src="./img/AddWatchlistView.png" width="200">
+  <img src="./img/DetailViewChart.png" width="200">
+  <img src="./img/DetailViewNews.png" width="200">
+  <img src="./img/DetailViewProfile.png" width="200">
+  <img src="./img/HotListView.png" width="200">
+  <img src="./img/LoginView.png" width="200">
+  <img src="./img/NewsDetails.png" width="200">
+  <img src="./img/NewsList.png" width="200">
+  <img src="./img/SearchViewList.png" width="200">
+  <img src="./img/SocialChatView.png" width="200">
+  <img src="./img/WatchlistView.png" width="200">
 </p>
 
 ## Features
@@ -42,9 +51,6 @@ Endpoint #5: https://www.alphavantage.co/query?function=NEWS_SENTIMENT&tickers={
 Endpoint #6: https://www.alphavantage.co/query?function=TOP_GAINERS_LOSERS&apikey={demo}
 
 #### 3rd-Party Frameworks
- Die eine Framework das ich verwende wurde Firebase Package sein . 
+ Die eine Framework das ich verwende wurde Firebase Package sein. 
 
-
-## Ausblick
-Beschreibe hier, wo die Reise nach deinem Praxisprojekt hin geht. Was möchtest du in Zukunft noch ergänzen? Erstelle auch hierzu Issues und verlinke sie, wie oben.
  
