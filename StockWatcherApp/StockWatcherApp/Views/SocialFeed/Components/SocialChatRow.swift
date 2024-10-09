@@ -89,7 +89,7 @@ struct SocialChatRow: View {
                 }
                 Spacer()
                 //Share button
-                ShareLink(item:"Post from :\(socialChat.publisherName)", label: {
+                ShareLink(item:"Post from :\(socialChat.publisherName)\n\(socialChat.content)", label: {
                     Image(systemName: "arrowshape.turn.up.forward")
                 })
                 .padding(8)

@@ -23,7 +23,6 @@ struct TabsView: View {
                         Image(systemName: "house")
                         Text("Home")
                     }
-                    
                 }
             
             HotListsView(hotListViewModel: hotListsViewModel, tickerProfileViewModel: tickerProfileViewModel, detailsViewModel: detailsViewModel, newsViewModel: newsViewModel, homeViewModel: homeViewModel)
