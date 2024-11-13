@@ -9,7 +9,7 @@ Darüber hinaus enthält Stock Watcher eine einzigartige Social-Feed-Funktion, m
 
 ## Geplantes Design
 
-Füge hier einige repräsentative Designs deiner App ein (z.B. aus Figma)
+
 <p>
   <img src="./img/AddWatchlistView.png" width="200">
   <img src="./img/DetailViewChart.png" width="200">
